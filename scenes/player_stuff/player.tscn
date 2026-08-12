@@ -2,21 +2,85 @@
 
 [ext_resource type="Script" uid="uid://bdsb4j1vw0y34" path="res://scenes/player_stuff/player.gd" id="1_cjdgx"]
 [ext_resource type="PackedScene" uid="uid://dhxptosw5t003" path="res://scenes/player_stuff/player_ui.tscn" id="2_6bb7o"]
-[ext_resource type="PackedScene" uid="uid://x00e0rc54x4k" path="res://scenes/player_stuff/char.tscn" id="3_w0jm0"]
+[ext_resource type="PackedScene" uid="uid://b41e6qwjiul" path="res://assets/player/pickaxe/pickaxe.tscn" id="2_w0jm0"]
+[ext_resource type="Script" uid="uid://c4j6dfk7p2cml" path="res://scenes/player_stuff/ropemesh.gd" id="4_0kdj7"]
+[ext_resource type="Texture2D" uid="uid://bjb2erx6mwqhd" path="res://assets/player/pickaxe/ropemesh.jpg" id="5_o8utk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e68yd"]
 height = 1.8059082
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e68yd"]
 
-[node name="Player" type="CharacterBody3D" unique_id=909619284 node_paths=PackedStringArray("player_head", "body_anim", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check")]
+[sub_resource type="Animation" id="Animation_o8utk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../head/Pickaxe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.21305078, -0.31953657, -0.57684165)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../head/Pickaxe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.584759, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qpdw4"]
+resource_name = "boost"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../head/Pickaxe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.26666665, 0.3333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.21305078, -0.31953657, -0.57684165), Vector3(0.21305078, -0.31953657, -0.57684165), Vector3(0.21305078, -0.31953657, -0.8655375), Vector3(0.213, -0.32, -1.5), Vector3(0.21305078, -0.31953657, -0.57684165)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../head/Pickaxe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.53333336, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.584759, 0), Vector3(0.013936547, -1.5699426, 1.6319807), Vector3(0.013936547, -1.5699426, 1.6319807), Vector3(0, -1.584759, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0m3n"]
+_data = {
+&"RESET": SubResource("Animation_o8utk"),
+&"boost": SubResource("Animation_qpdw4")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=909619284 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "pickaxe_boost_anim")]
 script = ExtResource("1_cjdgx")
 player_head = NodePath("head")
-body_anim = NodePath("char")
+hook_mesh_parent = NodePath("callables/ropemesh")
 air_speed = 10.0
+jump_speed = 8.0
 gravity = -22.0
 max_fall_speed = -30.0
-coyote_time = 0.5
+coyote_time = 0.1
 mouse_tilt_amount = 0.1
 wall_ray_right = NodePath("wallrun_rays/right_cast")
 wall_ray_left = NodePath("wallrun_rays/left_cast")
@@ -30,12 +94,23 @@ wallrun_jump_push = 9.0
 wallrun_cooldown = 0.5
 standing_collision = NodePath("standing_col")
 crouching_collision = NodePath("crouch_col")
-ceiling_check = NodePath("head/RayCast3D")
+ceiling_check = NodePath("headray")
 standing_head_y = 1.0
 crouching_head_y = 0.35
-slide_speed = 13.0
-slide_max_duration = 10.0
-slide_pitch_amount = 0.2
+slide_speed = 15.0
+slide_friction = 10.0
+slide_max_duration = 2.0
+hookray = NodePath("head/hookray")
+swing_pump_accel = 10.0
+pickaxe_throw_speed = 30.0
+PickAxe = NodePath("head/Pickaxe")
+BoostRay = NodePath("head/boostray")
+boost_str = 25.0
+pickaxe_boost_anim = NodePath("animations/pickaxeboost")
+
+[node name="headray" type="RayCast3D" parent="." unique_id=1938437607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88423467, 0)
+target_position = Vector3(0, 0.5, 0)
 
 [node name="standing_col" type="CollisionShape3D" parent="." unique_id=1098400765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3614502, 0)
@@ -50,9 +125,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Camera3D" type="Camera3D" parent="head" unique_id=958952540]
 fov = 80.0
 
-[node name="RayCast3D" type="RayCast3D" parent="head" unique_id=331456581]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10120571, 0)
-target_position = Vector3(0, 0.5, 0)
+[node name="hookray" type="RayCast3D" parent="head" unique_id=331456581]
+target_position = Vector3(0, 0, -15)
+collide_with_areas = true
+
+[node name="Pickaxe" parent="head" unique_id=564506919 instance=ExtResource("2_w0jm0")]
+transform = Transform3D(-0.027924433, 0, -1.9998051, 0, 2, 0, 1.9998051, 0, -0.027924433, 0.21305078, -0.31953657, -0.57684165)
+
+[node name="boostray" type="RayCast3D" parent="head" unique_id=1125900641]
+transform = Transform3D(1, 0, 0, 0, 0.9712023, 0.23825625, 0, -0.23825625, 0.9712023, 0, 0, 0)
+target_position = Vector3(0, 0, -2.5)
+debug_shape_custom_color = Color(0.79607844, 0.7607843, 0, 1)
+debug_shape_thickness = 5
 
 [node name="wallrun_rays" type="Node3D" parent="." unique_id=615479592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29637462, 0)
@@ -67,7 +151,13 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="player_ui" parent="." unique_id=1487717365 instance=ExtResource("2_6bb7o")]
 
-[node name="body" type="Node3D" parent="." unique_id=1916498718]
+[node name="callables" type="Node" parent="." unique_id=163597885]
 
-[node name="char" parent="." unique_id=1785207506 instance=ExtResource("3_w0jm0")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.01944232, -0.4600047, 0.21568602)
+[node name="ropemesh" type="Node" parent="callables" unique_id=527953485]
+script = ExtResource("4_0kdj7")
+rope_tex = ExtResource("5_o8utk")
+
+[node name="animations" type="Node" parent="." unique_id=1001436758]
+
+[node name="pickaxeboost" type="AnimationPlayer" parent="animations" unique_id=1857932350]
+libraries/ = SubResource("AnimationLibrary_p0m3n")

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b41e6qwjiul"]
+
+[ext_resource type="PackedScene" uid="uid://c1ucv0kxwxlwa" path="res://assets/player/pickaxe/Pickaxe.fbx" id="1_qjh8x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e68yd"]
+size = Vector3(0.22521973, 0.34179688, 0.059326172)
+
+[node name="Pickaxe" unique_id=564506919 instance=ExtResource("1_qjh8x")]
+collision_layer = 0
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=874822845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005554199, 0.0068359375, -0.009887695)
+shape = SubResource("BoxShape3D_e68yd")

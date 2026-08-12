@@ -1,7 +1,10 @@
 extends CharacterBody3D
+class_name PlayerDwarf
 
 @export var player_head: Node3D
-@export var body_anim: Body_anim;
+
+@export_group("Callables")
+@export var hook_mesh_parent: RopeMesh
 
 @export_group("Movement")
 @export var speed: float = 10.0
@@ -32,6 +35,7 @@ extends CharacterBody3D
 @export var tilt_smoothing: float = 8.0
 
 @export_group("Wallrun stuffy")
+@export var wall_run_enabled: bool = false
 @export var wall_ray_right: RayCast3D
 @export var wall_ray_left: RayCast3D
 @export var wallrun_speed: float = 12.0
@@ -58,6 +62,39 @@ extends CharacterBody3D
 @export var slide_max_duration: float = 1.2       # cap it hard
 @export var slide_pitch_amount: float = deg_to_rad(6.0)
 
+@export_group("hook stuff")
+@export var hookray: RayCast3D
+
+@export_group("Swingin vars")
+@export var min_rope_length: float = 2.0
+@export var swing_gravity: float = -20.0
+@export var swing_pump_accel: float = 25.0
+@export var swing_air_damping: float = 0.15
+@export var rope_pull_in_speed: float = 0.0
+
+@export_group("Pickaxe Throw")
+@export var pickaxe_throw_speed: float = 60.0
+@export var pickaxe_retract_speed: float = 45.0
+
+@export_group("Player stuff")
+@export var PickAxe: StaticBody3D
+
+@export_group("Pickaxe Boost")
+@export var BoostRay: RayCast3D
+@export var boost_str: float = 5.0
+@export var pickaxe_boost_anim: AnimationPlayer;
+
+enum HookState { IDLE, THROWING, ATTACHED, RETRACTING }
+var hook_state: HookState = HookState.IDLE
+
+var is_swinging: bool = false
+var hook_anchor: Vector3 = Vector3.ZERO
+var rope_length: float = 0.0
+
+var pickaxe_pos: Vector3 = Vector3.ZERO
+var pickaxe_original_parent: Node = null
+var pickaxe_rest_transform: Transform3D = Transform3D.IDENTITY
+
 var pitch: float = 0.0
 var current_tilt: float = 0.0
 var mouse_tilt: float = 0.0
@@ -69,6 +106,7 @@ var wall_normal: Vector3 = Vector3.ZERO
 var wall_side: int = 0
 var wallrun_timer: float = 0.0
 var wallrun_cooldown_timer: float = 0.0
+var floor_jump_done: bool = false;
 
 var is_crouching: bool = false
 var is_sliding: bool = false
@@ -78,31 +116,63 @@ var slide_timer: float = 0.0
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+	if PickAxe:
+		pickaxe_original_parent = PickAxe.get_parent()
+		pickaxe_rest_transform = PickAxe.transform
+
 
 func _physics_process(delta: float) -> void:
 	var input_dir := _get_input_direction()
 	var direction := (global_transform.basis * input_dir).normalized()
 
 	_update_wallrun(delta)
-	_update_coyote_timer(delta)
+
+	_update_pickaxe_travel(delta)
+	_update_rope_line()
 	_update_crouch_and_slide(delta)
 
 	if is_sliding:
 		_process_slide_movement(delta)
 	elif is_wall_running:
 		_process_wallrun_movement(delta)
+	elif hook_state == HookState.ATTACHED:
+		_process_swing_movement(delta, direction)
 	elif is_on_floor():
 		_process_ground_movement(delta, direction)
 	else:
 		_process_air_movement(delta, direction)
 
 	move_and_slide()
+	_update_coyote_timer(delta)
 	_update_head_tilt(delta, input_dir)
 	_update_head_height(delta)
 
 
-func _process_ground_movement(delta: float, direction: Vector3) -> void:
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		jump()
+
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		pitch = clamp(pitch - event.relative.y * mouse_sensitivity, pitch_min, pitch_max)
+		if player_head:
+			player_head.rotation.x = pitch + slide_pitch
+
+		mouse_tilt = clamp(
+			mouse_tilt - event.relative.x * mouse_tilt_sensitivity,
+			-mouse_tilt_amount, mouse_tilt_amount
+		)
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		if !event.pressed:
+			_release_hook()
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.is_pressed():
+			boost_off_surface()
+
+func _process_ground_movement(delta: float, direction: Vector3) -> void:
 	var current_speed := crouch_speed if is_crouching else speed
 	if direction != Vector3.ZERO:
 		velocity.x = lerp(velocity.x, direction.x * current_speed, accel * delta)
@@ -127,13 +197,6 @@ func _process_air_movement(delta: float, direction: Vector3) -> void:
 	velocity.y = max(velocity.y + gravity * delta, max_fall_speed)
 
 
-func _update_coyote_timer(delta: float) -> void:
-	if is_on_floor():
-		coyote_timer = coyote_time
-	else:
-		coyote_timer -= delta
-
-
 func _get_input_direction() -> Vector3:
 	var direction := Vector3.ZERO
 	if Input.is_action_pressed("up"):
@@ -144,47 +207,116 @@ func _get_input_direction() -> Vector3:
 		direction.x -= 1
 	if Input.is_action_pressed("right"):
 		direction.x += 1
-
-	if direction.length() > 0 and is_on_floor():
-		if !body_anim.is_playing_anim():
-			body_anim.play_animation("run")
-	else:
-		body_anim.play_animation("reset")
+	if Input.is_action_pressed("rmb"):
+		_try_attach_hook()
 
 	return direction.normalized()
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
-		jump()
-
-	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		pitch = clamp(pitch - event.relative.y * mouse_sensitivity, pitch_min, pitch_max)
-		if player_head:
-			player_head.rotation.x = pitch + slide_pitch
-
-		mouse_tilt = clamp(
-			mouse_tilt - event.relative.x * mouse_tilt_sensitivity,
-			-mouse_tilt_amount, mouse_tilt_amount
-		)
-
-
 func jump() -> void:
+	if hook_state == HookState.ATTACHED:
+		velocity.y = wallrun_jump_speed
 	if is_wall_running:
 		velocity.y = wallrun_jump_speed
 		velocity += wall_normal * wallrun_jump_push
 		_end_wallrun()
 		wallrun_cooldown_timer = wallrun_cooldown
-	elif is_on_floor() or coyote_timer > 0.0:
+	elif is_on_floor() or coyote_timer > 0.0 and !floor_jump_done:
 		velocity.y = jump_speed
+		floor_jump_done = true;
 		coyote_timer = 0.0
 		is_sliding = false
 		is_crouching = false
 
 
+func _update_crouch_and_slide(delta: float) -> void:
+	var crouch_held := Input.is_action_pressed("crouch")
 
+	if is_sliding:
+		slide_timer += delta
+		var speed_now := Vector2(velocity.x, velocity.z).length()
+		var should_end := not crouch_held \
+			or speed_now < slide_min_speed \
+			or slide_timer > slide_max_duration \
+			or not is_on_floor()
+		if should_end:
+			is_sliding = false
+			is_crouching = crouch_held
+	elif Input.is_action_just_pressed("crouch"):
+		var horiz_speed := Vector2(velocity.x, velocity.z).length()
+		if horiz_speed >= slide_enter_speed and is_on_floor():
+			_start_slide()
+		else:
+			is_crouching = true
+	elif is_crouching and not crouch_held and _can_stand():
+		is_crouching = false
+
+	if standing_collision:
+		standing_collision.disabled = is_crouching or is_sliding
+	if crouching_collision:
+		crouching_collision.disabled = not (is_crouching or is_sliding)
+
+
+func _start_slide() -> void:
+	is_sliding = true
+	is_crouching = true
+	slide_timer = 0.0
+
+	var dir := Vector3(velocity.x, 0.0, velocity.z).normalized()
+	if dir == Vector3.ZERO:
+		dir = -global_transform.basis.z
+	velocity.x = dir.x * slide_speed
+	velocity.z = dir.z * slide_speed
+
+
+func _process_slide_movement(delta: float) -> void:
+	var horiz := Vector2(velocity.x, velocity.z)
+	var speed_now: float = max(horiz.length() - slide_friction * delta, 0.0)
+	horiz = horiz.normalized() * speed_now if horiz.length() > 0.0 else Vector2.ZERO
+	velocity.x = horiz.x
+	velocity.z = horiz.y
+
+	if is_on_floor():
+		velocity.y = -1.0 # stick to the floor a bit mybe? so groundslide possible
+	else:
+		velocity.y = max(velocity.y + gravity * delta, max_fall_speed)
+
+
+func _update_head_height(delta: float) -> void:
+	if not player_head:
+		return
+	var target_y := crouching_head_y if (is_crouching or is_sliding) else standing_head_y
+	var pos := player_head.position
+	pos.y = lerp(pos.y, target_y, clamp(head_height_smoothing * delta, 0.0, 1.0))
+	player_head.position = pos
+
+	var target_pitch := slide_pitch_amount if is_sliding else 0.0
+	slide_pitch = lerp(slide_pitch, target_pitch, clamp(head_height_smoothing * delta, 0.0, 1.0))
+	player_head.rotation.x = pitch + slide_pitch
+
+
+func _update_head_tilt(delta: float, input_dir: Vector3) -> void:
+	var target_tilt := 0.0
+	if is_wall_running:
+		target_tilt = wall_side * wallrun_tilt_amount
+	else:
+		target_tilt = -input_dir.x * strafe_tilt_amount
+
+	mouse_tilt = lerp(mouse_tilt, 0.0, clamp(mouse_tilt_decay * delta, 0.0, 1.0))
+	target_tilt += mouse_tilt
+
+	current_tilt = lerp(current_tilt, target_tilt, clamp(tilt_smoothing * delta, 0.0, 1.0))
+
+	if player_head:
+		player_head.rotation.z = current_tilt
+
+
+
+#################### WALLRUN STUFF ####################
 func _update_wallrun(delta: float) -> void:
+	if !wall_run_enabled:
+		return
+
 	if wallrun_cooldown_timer > 0.0:
 		wallrun_cooldown_timer -= delta
 
@@ -244,89 +376,174 @@ func _end_wallrun() -> void:
 	wall_side = 0
 
 
-func _update_crouch_and_slide(delta: float) -> void:
-	var crouch_held := Input.is_action_pressed("crouch")
+#################### HOOK STUFF ####################
+func _try_attach_hook() -> void:
+	if hookray == null or hook_state != HookState.IDLE:
+		return
 
-	if is_sliding:
-		slide_timer += delta
-		var speed_now := Vector2(velocity.x, velocity.z).length()
-		var should_end := not crouch_held \
-			or speed_now < slide_min_speed \
-			or slide_timer > slide_max_duration \
-			or not is_on_floor()
-		if should_end:
-			is_sliding = false
-			is_crouching = crouch_held
-	elif Input.is_action_just_pressed("crouch"):
-		var horiz_speed := Vector2(velocity.x, velocity.z).length()
-		if horiz_speed >= slide_enter_speed and is_on_floor():
-			_start_slide()
-		else:
-			is_crouching = true
-	elif is_crouching and not crouch_held and _can_stand():
-		is_crouching = false
+	hookray.force_raycast_update()
+	if not hookray.is_colliding():
+		return
 
-	if standing_collision:
-		standing_collision.disabled = is_crouching or is_sliding
-	if crouching_collision:
-		crouching_collision.disabled = not (is_crouching or is_sliding)
+	var spot := hookray.get_collider()
+	if spot == null or not is_valid_hookspot(spot):
+		return
 
+	hook_anchor = hookray.get_collision_point()
 
-func _start_slide() -> void:
-	is_sliding = true
-	is_crouching = true
-	slide_timer = 0.0
+	hook_state = HookState.THROWING
+	is_swinging = false
 
-	var dir := Vector3(velocity.x, 0.0, velocity.z).normalized()
-	if dir == Vector3.ZERO:
-		dir = -global_transform.basis.z
-	velocity.x = dir.x * slide_speed
-	velocity.z = dir.z * slide_speed
-
-
-func _process_slide_movement(delta: float) -> void:
-	var horiz := Vector2(velocity.x, velocity.z)
-	var speed_now: float = max(horiz.length() - slide_friction * delta, 0.0)
-	horiz = horiz.normalized() * speed_now if horiz.length() > 0.0 else Vector2.ZERO
-	velocity.x = horiz.x
-	velocity.z = horiz.y
-
-	if is_on_floor():
-		velocity.y = -1.0 # stick to the floor a bit mybe? so groundslide possible
+	if PickAxe:
+		PickAxe.top_level = true
+		pickaxe_pos = PickAxe.global_position
 	else:
-		velocity.y = max(velocity.y + gravity * delta, max_fall_speed)
+		pickaxe_pos = global_position
+
+	is_sliding = false
+	is_crouching = false
+	is_wall_running = false
+
+
+func _release_hook() -> void:
+	if hook_state == HookState.THROWING or hook_state == HookState.ATTACHED:
+		hook_state = HookState.RETRACTING
+	is_swinging = false
+
+
+func is_valid_hookspot(spot: Node3D) -> bool:
+	if spot.is_in_group("hookspot"):
+		return true
+	return false
+
+
+func _update_pickaxe_travel(delta: float) -> void:
+	match hook_state:
+		HookState.THROWING:
+			var to_target := hook_anchor - pickaxe_pos
+			var dist := to_target.length()
+			var step := pickaxe_throw_speed * delta
+			PickAxe.scale = Vector3(3,3,3);
+			PickAxe.rotation.z += 5;
+
+			if step >= dist:
+				pickaxe_pos = hook_anchor
+				_arrive_at_hook()
+			else:
+				pickaxe_pos += to_target.normalized() * step
+
+			if PickAxe:
+				PickAxe.global_position = pickaxe_pos
+
+		HookState.RETRACTING:
+			var target := _pickaxe_rest_global_position()
+			var to_target := target - pickaxe_pos
+			var dist := to_target.length()
+			var step := pickaxe_retract_speed * delta
+
+			if step >= dist:
+				_finish_retract()
+			else:
+				pickaxe_pos += to_target.normalized() * step
+				if PickAxe:
+					PickAxe.global_position = pickaxe_pos
+		_:
+			pass
+
+
+func _arrive_at_hook() -> void:
+	hook_state = HookState.ATTACHED
+	is_swinging = true
+	rope_length = clamp(global_position.distance_to(hook_anchor), min_rope_length, abs(hookray.target_position.z))
+
+
+func _finish_retract() -> void:
+	hook_state = HookState.IDLE
+	pickaxe_pos = Vector3.ZERO
+
+	if PickAxe:
+		PickAxe.top_level = false
+		PickAxe.transform = pickaxe_rest_transform
+
+
+func _pickaxe_rest_global_position() -> Vector3:
+	if pickaxe_original_parent:
+		return pickaxe_original_parent.global_transform * pickaxe_rest_transform.origin
+	return global_position
+
+
+func _update_rope_line() -> void:
+	if hook_mesh_parent == null:
+		return
+
+	var rope_visible := hook_state != HookState.IDLE
+	var end_point := hook_anchor if hook_state == HookState.ATTACHED else pickaxe_pos
+
+	hook_mesh_parent._update_rope_visual(rope_visible, global_position, end_point)
+
+
+func _process_swing_movement(delta: float, input_direction: Vector3) -> void:
+	velocity.y += swing_gravity * delta
+
+	if input_direction != Vector3.ZERO:
+		# dir change
+		velocity += input_direction * swing_pump_accel * delta
+
+	if rope_pull_in_speed > 0.0 and Input.is_action_pressed("up"):
+		rope_length = max(rope_length - rope_pull_in_speed * delta, min_rope_length)
+
+	velocity *= (1.0 - swing_air_damping * delta)
+
+	var to_player := global_position - hook_anchor
+	var distance := to_player.length()
+
+	if distance > rope_length and distance > 0.0:
+		var radial := to_player / distance
+
+		global_position = hook_anchor + radial * rope_length
+		# i really dont understand the math here but it works? a bit clunky
+		var radial_speed := velocity.dot(radial)
+		if radial_speed > 0.0:
+			velocity -= radial * radial_speed
+
+	if Input.is_action_just_pressed("jump"):
+		_release_hook()
+		velocity.y = jump_speed * 0.75
+
+
+#################### MISC STUFF ####################
+
+func _update_coyote_timer(delta: float) -> void:
+	if is_on_floor():
+		floor_jump_done = false;
+		coyote_timer = coyote_time
+	else:
+		coyote_timer -= delta
 
 
 func _can_stand() -> bool:
+	print(ceiling_check, ceiling_check.is_colliding())
 	if ceiling_check == null:
 		return true
 	return not ceiling_check.is_colliding()
 
 
-func _update_head_height(delta: float) -> void:
-	if not player_head:
-		return
-	var target_y := crouching_head_y if (is_crouching or is_sliding) else standing_head_y
-	var pos := player_head.position
-	pos.y = lerp(pos.y, target_y, clamp(head_height_smoothing * delta, 0.0, 1.0))
-	player_head.position = pos
 
-	var target_pitch := slide_pitch_amount if is_sliding else 0.0
-	slide_pitch = lerp(slide_pitch, target_pitch, clamp(head_height_smoothing * delta, 0.0, 1.0))
-	player_head.rotation.x = pitch + slide_pitch
+#### PICKBOOST
 
+func boost_off_surface():
 
-func _update_head_tilt(delta: float, input_dir: Vector3) -> void:
-	var target_tilt := 0.0
-	if is_wall_running:
-		target_tilt = wall_side * wallrun_tilt_amount
-	else:
-		target_tilt = -input_dir.x * strafe_tilt_amount
+	if !BoostRay.is_colliding():
+		return;
+	pickaxe_boost_anim.play("boost")
+	await get_tree().create_timer(0.2).timeout
 
-	mouse_tilt = lerp(mouse_tilt, 0.0, clamp(mouse_tilt_decay * delta, 0.0, 1.0))
-	target_tilt += mouse_tilt
+	var ray_origin = BoostRay.global_transform.origin
+	var ray_dir = (BoostRay.global_transform.basis * BoostRay.target_position).normalized()
 
-	current_tilt = lerp(current_tilt, target_tilt, clamp(tilt_smoothing * delta, 0.0, 1.0))
+	var distance = 10.0
+	var opposite_point = ray_origin - ray_dir * distance
 
-	if player_head:
-		player_head.rotation.z = current_tilt
+	var boost_vector = (opposite_point - global_transform.origin).normalized()
+	boost_vector.y *= 0.5
+	velocity = boost_vector * boost_str

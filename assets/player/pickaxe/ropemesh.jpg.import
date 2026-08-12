@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt8g22twvcd82"
-path="res://.godot/imported/concrete_13.jpg-17dbeb9c0fefc2986b9023ca2715ba7f.ctex"
+uid="uid://bjb2erx6mwqhd"
+path="res://.godot/imported/ropemesh.jpg-3859689446dcb60b5a4b295767c049f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures_tb/concrete_13.jpg"
-dest_files=["res://.godot/imported/concrete_13.jpg-17dbeb9c0fefc2986b9023ca2715ba7f.ctex"]
+source_file="res://assets/player/pickaxe/ropemesh.jpg"
+dest_files=["res://.godot/imported/ropemesh.jpg-3859689446dcb60b5a4b295767c049f1.ctex"]
 
 [params]
 

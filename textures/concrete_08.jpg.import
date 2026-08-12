@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vsvog77h3wrc"
-path="res://.godot/imported/concrete_11.jpg-7a9e7a65474156bcecc3b26afc282215.ctex"
+uid="uid://bsnh42v4n0017"
+path="res://.godot/imported/concrete_08.jpg-9c8fea1232ba33b1adda945cf3f5a4a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures_tb/concrete_11.jpg"
-dest_files=["res://.godot/imported/concrete_11.jpg-7a9e7a65474156bcecc3b26afc282215.ctex"]
+source_file="res://textures/concrete_08.jpg"
+dest_files=["res://.godot/imported/concrete_08.jpg-9c8fea1232ba33b1adda945cf3f5a4a8.ctex"]
 
 [params]
 

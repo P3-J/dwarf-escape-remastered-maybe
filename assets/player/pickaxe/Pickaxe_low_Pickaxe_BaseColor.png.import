@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3sef18dqakl6"
-path.s3tc="res://.godot/imported/concrete_13.png-74f778b505b6f0da6cd0094bad1c477b.s3tc.ctex"
+uid="uid://66e364ny1ax6"
+path.s3tc="res://.godot/imported/Pickaxe_low_Pickaxe_BaseColor.png-4b60681b67cc8b4f167c87b89165839c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures_tb/concrete_13.png"
-dest_files=["res://.godot/imported/concrete_13.png-74f778b505b6f0da6cd0094bad1c477b.s3tc.ctex"]
+source_file="res://assets/player/pickaxe/Pickaxe_low_Pickaxe_BaseColor.png"
+dest_files=["res://.godot/imported/Pickaxe_low_Pickaxe_BaseColor.png-4b60681b67cc8b4f167c87b89165839c.s3tc.ctex"]
 
 [params]
 

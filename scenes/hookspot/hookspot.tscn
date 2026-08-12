@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bhesqgyewgfnh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e68yd"]
+size = Vector3(1.5772095, 1.6964111, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wcnsj"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.54
+
+[sub_resource type="SphereMesh" id="SphereMesh_e68yd"]
+material = SubResource("StandardMaterial3D_wcnsj")
+
+[node name="hookspot" type="Area3D" unique_id=1143798251 groups=["hookspot"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=407467408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013092041, 0.047424316, 0)
+shape = SubResource("BoxShape3D_e68yd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=426222842]
+mesh = SubResource("SphereMesh_e68yd")

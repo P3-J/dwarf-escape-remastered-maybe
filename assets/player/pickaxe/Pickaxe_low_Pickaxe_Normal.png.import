@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf2hbin55f7oc"
-path.s3tc="res://.godot/imported/concrete_15.jpg-c1015380dcb63c0a2ab8cffde86cdc8d.s3tc.ctex"
+uid="uid://d4iu7au3otblo"
+path.s3tc="res://.godot/imported/Pickaxe_low_Pickaxe_Normal.png-74b533a871b655c81ce150b95e7ded5c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures_tb/concrete_15.jpg"
-dest_files=["res://.godot/imported/concrete_15.jpg-c1015380dcb63c0a2ab8cffde86cdc8d.s3tc.ctex"]
+source_file="res://assets/player/pickaxe/Pickaxe_low_Pickaxe_Normal.png"
+dest_files=["res://.godot/imported/Pickaxe_low_Pickaxe_Normal.png-74b533a871b655c81ce150b95e7ded5c.s3tc.ctex"]
 
 [params]
 
@@ -22,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/player/pickaxe/Pickaxe_low_Pickaxe_Normal.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
