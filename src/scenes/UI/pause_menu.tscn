@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bn5kewb311n14"]
+
+[ext_resource type="Script" uid="uid://b0ugnu1u8bit" path="res://src/scripts/pausemenu.gd" id="1_ojub6"]
+[ext_resource type="Texture2D" uid="uid://cvvjol7rjlqvx" path="res://src/assets/ui/basic/MainMenu.png" id="2_540rc"]
+[ext_resource type="Theme" uid="uid://ys24hk4rb1xo" path="res://src/assets/ui/theme.tres" id="2_lhlp2"]
+
+[node name="PauseMenu" type="Control" unique_id=2004380884]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ojub6")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=920890541]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -396.0
+offset_right = 256.0
+offset_bottom = 322.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_540rc")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="StartButton" type="Button" parent="TextureRect" unique_id=737293718]
+process_mode = 3
+layout_mode = 0
+offset_left = 48.0
+offset_top = 88.0
+offset_right = 450.41016
+offset_bottom = 206.0
+theme = ExtResource("2_lhlp2")
+theme_override_font_sizes/font_size = 50
+text = "RESUME"
+
+[node name="RespawnButton" type="Button" parent="TextureRect" unique_id=320988317]
+process_mode = 3
+layout_mode = 0
+offset_left = 52.00006
+offset_top = 244.0
+offset_right = 447.58984
+offset_bottom = 360.0
+theme = ExtResource("2_lhlp2")
+theme_override_font_sizes/font_size = 50
+text = "RESPAWN"
+
+[node name="SettingsButton" type="Button" parent="TextureRect" unique_id=1321151059]
+process_mode = 3
+layout_mode = 0
+offset_left = 50.0
+offset_top = 398.0
+offset_right = 449.17944
+offset_bottom = 515.0
+theme = ExtResource("2_lhlp2")
+theme_override_font_sizes/font_size = 50
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="TextureRect" unique_id=261590558]
+process_mode = 3
+layout_mode = 0
+offset_left = 52.5
+offset_top = 553.0
+offset_right = 451.5
+offset_bottom = 670.0
+theme = ExtResource("2_lhlp2")
+theme_override_font_sizes/font_size = 50
+text = "EXIT"
+
+[connection signal="pressed" from="TextureRect/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="TextureRect/RespawnButton" to="." method="_on_respawn_button_pressed"]
+[connection signal="pressed" from="TextureRect/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="TextureRect/QuitButton" to="." method="_on_quit_button_pressed"]

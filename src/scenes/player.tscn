@@ -1,0 +1,409 @@
+[gd_scene format=3 uid="uid://cwdgh5qpr51w6"]
+
+[ext_resource type="Script" uid="uid://cuxl7gpnlclld" path="res://src/scripts/player.gd" id="1_ve44u"]
+[ext_resource type="Texture2D" uid="uid://pl3m6lqs3330" path="res://src/assets/ui/basic/ControlsLeftClick.png" id="2_lsi8j"]
+[ext_resource type="PackedScene" uid="uid://c088naefj5my" path="res://src/assets/ui/pickaxe_button_slider_assets/pickaxe.tscn" id="2_xatcm"]
+[ext_resource type="Texture2D" uid="uid://c45gl6ohmoxd8" path="res://src/assets/ui/basic/Timer.png" id="4_4pcbe"]
+[ext_resource type="Texture2D" uid="uid://mn0dd71so87r" path="res://src/assets/ui/basic/ControlsRightClick.png" id="4_hhiii"]
+[ext_resource type="Texture2D" uid="uid://dqd3fuoa1qmde" path="res://src/assets/ui/pickaxe_button_slider_assets/crosshair_normal.png" id="4_lgdho"]
+[ext_resource type="PackedScene" uid="uid://b25o1440naild" path="res://src/scenes/death_screen.tscn" id="4_wjl4f"]
+[ext_resource type="Texture2D" uid="uid://dp57w4k18uqq3" path="res://src/assets/ui/basic/ControlsEmpty.png" id="5_wpkk7"]
+[ext_resource type="Theme" uid="uid://ys24hk4rb1xo" path="res://src/assets/ui/theme.tres" id="5_xvyn7"]
+[ext_resource type="Shader" uid="uid://3gvkchg2vp3b" path="res://src/shaders/speed_lines.gdshader" id="6_8v6aa"]
+[ext_resource type="Texture2D" uid="uid://dstbjbw1cbvrw" path="res://src/assets/ui/layout_references/MainMenuUIPrototo.png" id="7_0hlw3"]
+[ext_resource type="AudioStream" uid="uid://dsept5vtv4vvo" path="res://src/assets/sounds/SFX/walk_on_stone.wav" id="8_4pcbe"]
+[ext_resource type="FontFile" uid="uid://crcvk11dlvyuo" path="res://font/Sunantara.ttf" id="9_lsi8j"]
+[ext_resource type="PackedScene" uid="uid://dh6bt55m0insb" path="res://src/scenes/pause_ui.tscn" id="12_wpkk7"]
+[ext_resource type="Script" uid="uid://brvqpikjr5bsk" path="res://src/scripts/rope_meshy.gd" id="14_hhiii"]
+
+[sub_resource type="Animation" id="Animation_4pcbe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Crosshair:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xvyn7"]
+resource_name = "countdown"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9666667, 2, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["3", "2", "1", "GO!"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"unfreeze_player"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Crosshair:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hlw3"]
+_data = {
+&"RESET": SubResource("Animation_4pcbe"),
+&"countdown": SubResource("Animation_xvyn7")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8v6aa"]
+noise_type = 3
+frequency = 0.9
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4pcbe"]
+noise = SubResource("FastNoiseLite_8v6aa")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8v6aa"]
+shader = ExtResource("6_8v6aa")
+shader_parameter/noise = SubResource("NoiseTexture2D_4pcbe")
+shader_parameter/line_color = Color(0.8047426, 0.80474263, 0.8047425, 1)
+shader_parameter/line_count = 0.70000001043084
+shader_parameter/line_density = 0.50000002375
+shader_parameter/line_faloff = 0.70000003325
+shader_parameter/mask_size = 0.0
+shader_parameter/mask_edge = 0.450000021375
+shader_parameter/animation_speed = 11.000000475
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qy4j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hhiii"]
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v6aa"]
+transparency = 1
+albedo_color = Color(0.01, 0.005, 0, 0.795)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0qy4j"]
+material = SubResource("StandardMaterial3D_8v6aa")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_4pcbe"]
+_data = [Vector2(0.00645161, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="player" type="CharacterBody3D" unique_id=299372560 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "timer_text", "speed_lines_shader") groups=["player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_ve44u")
+boost_str = 30.0
+player_head = NodePath("head")
+hook_mesh_parent = NodePath("callables/RopeMeshy")
+wall_ray_right = NodePath("player_stand/right_wall")
+wall_ray_left = NodePath("player_stand/left_wall")
+standing_collision = NodePath("player_stand")
+crouching_collision = NodePath("player_crouch")
+ceiling_check = NodePath("player_crouch/head_check")
+hookray = NodePath("head/hookray")
+PickAxe = NodePath("head/Pickaxe")
+BoostRay = NodePath("head/boostray")
+timer_text = NodePath("UI/timer/timer_text")
+speed_lines_shader = NodePath("UI/SpeedLinesShader")
+
+[node name="UI" type="Control" parent="." unique_id=876507995]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1831490344]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -158.0
+offset_right = 237.0
+grow_vertical = 0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=1742458078]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/HBoxContainer" unique_id=417634141]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_lsi8j")
+expand_mode = 1
+
+[node name="RichTextLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer" unique_id=517750525]
+custom_minimum_size = Vector2(182.38, 0)
+layout_mode = 2
+theme = ExtResource("5_xvyn7")
+text = "Pickaxe Jump"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=569156773]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/HBoxContainer2" unique_id=469222537]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_hhiii")
+expand_mode = 1
+
+[node name="RichTextLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer2" unique_id=1228525673]
+custom_minimum_size = Vector2(182.38, 0)
+layout_mode = 2
+theme = ExtResource("5_xvyn7")
+text = "Hook"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=1016974091]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/HBoxContainer3" unique_id=202672107]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_wpkk7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer3/TextureRect" unique_id=203473323]
+layout_mode = 0
+anchor_left = 0.28
+anchor_top = 0.12
+anchor_right = 0.72
+anchor_bottom = 0.82
+theme = ExtResource("5_xvyn7")
+theme_override_font_sizes/font_size = 30
+text = "R"
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer3" unique_id=1588414788]
+custom_minimum_size = Vector2(182.38, 0)
+layout_mode = 2
+theme = ExtResource("5_xvyn7")
+text = "Restart"
+
+[node name="DeathScreen" parent="UI" unique_id=778328289 instance=ExtResource("4_wjl4f")]
+visible = false
+layout_mode = 1
+
+[node name="Crosshair" type="TextureRect" parent="UI" unique_id=1574223063]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+mouse_filter = 2
+texture = ExtResource("4_lgdho")
+metadata/_edit_use_anchors_ = true
+
+[node name="timer" type="TextureRect" parent="UI" unique_id=498766344]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_right = 0.57
+anchor_bottom = 0.063
+offset_top = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+texture = ExtResource("4_4pcbe")
+expand_mode = 1
+
+[node name="timer_text" type="RichTextLabel" parent="UI/timer" unique_id=1663079986]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -23.2
+offset_right = 100.0
+offset_bottom = 26.8
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_xvyn7")
+theme_override_font_sizes/normal_font_size = 32
+text = "00:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="countdownlabel" type="RichTextLabel" parent="UI" unique_id=1294284919]
+visible = false
+layout_mode = 0
+anchor_left = 0.35
+anchor_top = 0.34444445
+anchor_right = 0.65
+anchor_bottom = 0.7
+theme_override_colors/default_color = Color(0.85895056, 0.5216262, 0.18049765, 1)
+theme_override_fonts/normal_font = ExtResource("9_lsi8j")
+theme_override_font_sizes/normal_font_size = 128
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="countdownanim" type="AnimationPlayer" parent="UI/countdownlabel" unique_id=1791923121]
+libraries/ = SubResource("AnimationLibrary_0hlw3")
+autoplay = &"countdown"
+
+[node name="MainMenuUiPrototo" type="Sprite2D" parent="UI" unique_id=580101095]
+light_mask = 0
+visibility_layer = 0
+z_index = -2
+position = Vector2(1280, 720)
+texture = ExtResource("7_0hlw3")
+
+[node name="SpeedLinesShader" type="ColorRect" parent="UI" unique_id=2018719193]
+visible = false
+material = SubResource("ShaderMaterial_8v6aa")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pause_ui" parent="UI" unique_id=645484055 instance=ExtResource("12_wpkk7")]
+layout_mode = 1
+
+[node name="player_stand" type="CollisionShape3D" parent="." unique_id=600236814]
+shape = SubResource("CapsuleShape3D_0qy4j")
+
+[node name="right_wall" type="RayCast3D" parent="player_stand" unique_id=392501922]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="left_wall" type="RayCast3D" parent="player_stand" unique_id=1647437306]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="player_crouch" type="CollisionShape3D" parent="." unique_id=1090060776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288002, -0.26862895, -0.00873537)
+shape = SubResource("CapsuleShape3D_hhiii")
+
+[node name="head_check" type="RayCast3D" parent="player_crouch" unique_id=1834533356]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="head" type="Node3D" parent="." unique_id=589176600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013241, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=1864912865]
+fov = 80.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D" unique_id=798859695]
+transform = Transform3D(1, 0, 0, 0, 1, 0.000994906, 0, -0.000994906, 1, 0.0692149, 0.672473, -0.0515243)
+light_energy = 1.14
+spot_range = 6.852
+spot_angle = 28.6
+
+[node name="hookray" type="RayCast3D" parent="head" unique_id=900952226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.241377)
+target_position = Vector3(0, 0, -19)
+hit_back_faces = false
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="boostray" type="RayCast3D" parent="head" unique_id=1677012266]
+transform = Transform3D(1, 0, 0, 0, 2.0677965, 0.08325372, 0, -0.17275149, 0.9965283, 0, 0, -0.25808918)
+target_position = Vector3(0, 0, -3)
+
+[node name="Pickaxe" parent="head" unique_id=689752792 instance=ExtResource("2_xatcm")]
+transform = Transform3D(0.37277418, 0, 1.9649528, 0, 2, 0, -1.9649528, 0, 0.37277418, 0.407037, -0.391195, -0.559779)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=677576926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0785469, -1.13536, 0.00383642)
+amount = 32
+lifetime = 0.5
+mesh = SubResource("PlaneMesh_0qy4j")
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, -1, 0)
+initial_velocity_max = 0.2
+angular_velocity_min = 1.0
+angular_velocity_max = 4.0
+scale_amount_curve = SubResource("Curve_4pcbe")
+
+[node name="Audio" type="Node3D" parent="." unique_id=1446774357]
+
+[node name="Walk" type="AudioStreamPlayer3D" parent="Audio" unique_id=1139533422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96358967, 0)
+stream = ExtResource("8_4pcbe")
+volume_db = -20.0
+unit_size = 4.0
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="callables" type="Node" parent="." unique_id=254208813]
+
+[node name="RopeMeshy" type="Node" parent="callables" unique_id=1897900637]
+script = ExtResource("14_hhiii")

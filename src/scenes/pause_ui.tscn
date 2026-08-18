@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dh6bt55m0insb"]
+
+[ext_resource type="PackedScene" uid="uid://bn5kewb311n14" path="res://src/scenes/UI/pause_menu.tscn" id="1_segm4"]
+[ext_resource type="PackedScene" uid="uid://xsckw4ti5dgv" path="res://src/scenes/UI/settings_menu.tscn" id="2_7n1gy"]
+
+[node name="pause_ui" type="Control" unique_id=645484055]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenu" parent="." unique_id=637876149 node_paths=PackedStringArray("settings") instance=ExtResource("1_segm4")]
+layout_mode = 1
+settings = NodePath("../SettingsMenu")
+
+[node name="SettingsMenu" parent="." unique_id=593419197 instance=ExtResource("2_7n1gy")]
+visible = false
+layout_mode = 1
+
+[editable path="SettingsMenu"]

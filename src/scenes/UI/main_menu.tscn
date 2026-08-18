@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://br8ugoivcgshj"]
+
+[ext_resource type="VideoStream" uid="uid://b516dep8oca2r" path="res://src/assets/ui/mainmenu_back.ogv" id="1_5dsdd"]
+[ext_resource type="Script" uid="uid://c4edoenb2k3e1" path="res://src/scripts/mainmenu.gd" id="1_vmwyx"]
+[ext_resource type="FontFile" uid="uid://d4emxlewlrqaf" path="res://font/Karma Future.otf" id="2_asv1t"]
+[ext_resource type="Texture2D" uid="uid://bd2wcfpk55v83" path="res://src/assets/ui/basic/Game Logo.png" id="7_6r18w"]
+[ext_resource type="Theme" uid="uid://ys24hk4rb1xo" path="res://src/assets/ui/theme.tres" id="8_6wcb6"]
+[ext_resource type="PackedScene" uid="uid://cbvgm61qw2giq" path="res://src/scenes/UI/levelselector.tscn" id="8_ubq7q"]
+[ext_resource type="PackedScene" uid="uid://xsckw4ti5dgv" path="res://src/scenes/UI/settings_menu.tscn" id="10_5dsdd"]
+[ext_resource type="AudioStream" uid="uid://b8w7o1biiuvv2" path="res://src/assets/sounds/chillin_at_the_cave.mp3" id="18_ofngt"]
+
+[sub_resource type="Animation" id="Animation_y0iw5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i48r3"]
+resource_name = "fade_in"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.1, 4.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7p88j"]
+_data = {
+&"RESET": SubResource("Animation_y0iw5"),
+&"fade_in": SubResource("Animation_i48r3")
+}
+
+[node name="main_menu" type="Control" unique_id=1346338242]
+custom_minimum_size = Vector2(1080, 500)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=849389286]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_5dsdd")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Logo" type="TextureRect" parent="." unique_id=412201664]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = -476.0
+offset_right = 2424.0
+offset_bottom = 1812.0
+grow_vertical = 2
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("7_6r18w")
+
+[node name="MainMenu" type="Control" parent="." unique_id=578906259]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+script = ExtResource("1_vmwyx")
+
+[node name="Play" type="Button" parent="MainMenu" unique_id=329979661]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.108333334
+anchor_top = 0.34814814
+anchor_right = 0.26458332
+anchor_bottom = 0.43148148
+offset_left = 312.0
+offset_top = -20.0
+offset_right = 584.0
+offset_bottom = 47.0
+theme = ExtResource("8_6wcb6")
+text = "PLAY"
+
+[node name="Settings" type="Button" parent="MainMenu" unique_id=767868896]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.108333334
+anchor_top = 0.44444445
+anchor_right = 0.26458332
+anchor_bottom = 0.5277778
+offset_left = 312.0
+offset_top = 156.0
+offset_right = 584.0
+offset_bottom = 223.0
+theme = ExtResource("8_6wcb6")
+text = "SETTINGS"
+
+[node name="Quit" type="Button" parent="MainMenu" unique_id=1051480335]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.108333334
+anchor_top = 0.5407407
+anchor_right = 0.26458326
+anchor_bottom = 0.6240741
+offset_left = 312.0
+offset_top = 68.0
+offset_right = 584.0
+offset_bottom = 135.0
+theme = ExtResource("8_6wcb6")
+text = "QUIT"
+
+[node name="levelselector" parent="." unique_id=724956562 instance=ExtResource("8_ubq7q")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0018518518
+anchor_bottom = 1.0018518
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsMenu" parent="." unique_id=547418481 instance=ExtResource("10_5dsdd")]
+visible = false
+layout_mode = 1
+
+[node name="start" type="AnimationPlayer" parent="." unique_id=1502041780]
+active = false
+libraries/ = SubResource("AnimationLibrary_7p88j")
+
+[node name="ColorRect" type="ColorRect" parent="start" unique_id=627866153]
+visible = false
+modulate = Color(1, 1, 1, 0.9030624)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="start/ColorRect" unique_id=1177272195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 9.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_asv1t")
+theme_override_font_sizes/font_size = 120
+text = "Team Mõmmid"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=304791920]
+stream = ExtResource("18_ofngt")
+
+[connection signal="pressed" from="MainMenu/Play" to="MainMenu" method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenu/Settings" to="MainMenu" method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenu/Quit" to="MainMenu" method="_on_quit_pressed"]

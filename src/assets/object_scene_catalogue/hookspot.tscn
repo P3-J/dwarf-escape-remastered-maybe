@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b2exdliucx2qg"]
+
+[ext_resource type="Script" uid="uid://bkfwk156dge2a" path="res://src/scripts/hookspot.gd" id="1_i0tbm"]
+[ext_resource type="PackedScene" uid="uid://dkfbtvxfwq2ov" path="res://src/assets/object_scene_catalogue/hook_spot.tscn" id="2_dg221"]
+[ext_resource type="Material" uid="uid://chiwt1b2w84yj" path="res://src/materials/hookspot_particle_effects.tres" id="3_11os5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a70su"]
+size = Vector3(3.63525, 4.88758, 1.89172)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plgsd"]
+transparency = 1
+albedo_color = Color(0.5882353, 0.29411766, 0, 0.78431374)
+emission_enabled = true
+emission = Color(0.5882353, 0.29411766, 0, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_repeat = false
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_osvxt"]
+material = SubResource("StandardMaterial3D_plgsd")
+
+[node name="hookspot" type="Area3D" unique_id=1591514908 groups=["hook", "hookspot"]]
+collision_mask = 3
+script = ExtResource("1_i0tbm")
+
+[node name="hookshape" type="CollisionShape3D" parent="." unique_id=877519056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596905, 0.0957642)
+shape = SubResource("BoxShape3D_a70su")
+
+[node name="Hook_Spot" parent="." unique_id=609442408 instance=ExtResource("2_dg221")]
+transform = Transform3D(-0.505044, 0, 19.9936, 0, 20, 0, -19.9936, 0, -0.505044, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1865917841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.403494, 0)
+amount = 16
+lifetime = 0.75
+process_material = ExtResource("3_11os5")
+draw_pass_1 = SubResource("QuadMesh_osvxt")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1727505433]
+light_color = Color(0.590156, 0.293521, 1.34766e-06, 1)
+light_energy = 3.492
+omni_range = 9.614
+omni_attenuation = 1.436
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

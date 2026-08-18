@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://cbvgm61qw2giq"]
+
+[ext_resource type="Theme" uid="uid://ys24hk4rb1xo" path="res://src/assets/ui/theme.tres" id="1_0s7kf"]
+[ext_resource type="Texture2D" uid="uid://cyutfnr4ol5x" path="res://src/assets/ui/settings/CloseButton.png" id="2_purqi"]
+[ext_resource type="Texture2D" uid="uid://cw1u02xxef24" path="res://src/assets/ui/level_selection/MainButton.png" id="3_877dj"]
+[ext_resource type="PackedScene" uid="uid://dusgog1jtdc0d" path="res://src/scenes/UI/loading_screen.tscn" id="6_y6hlq"]
+[ext_resource type="Texture2D" uid="uid://bmoyx51oqubng" path="res://src/assets/ui/level_selection/LevelSelectionBackground.png" id="8_ca0it"]
+
+[sub_resource type="GDScript" id="GDScript_8ya1i"]
+script/source = "extends Control
+
+@export var loading_screen: LevelLoader
+
+func _on_button_pressed() -> void:
+	MenuManager.back()
+
+
+func _on_tutorial_pressed() -> void:
+	# Implement!
+	pass
+
+
+func _on_lvl_2_pressed() -> void:
+	loading_screen.next_scene_path = \"res://src/levels/lv2.tscn\"
+	loading_screen.load_next_scene_async()
+	loading_screen.visible = true
+	hide()
+
+
+func _on_texture_button_pressed() -> void:
+	MenuManager.back()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6hlq"]
+atlas = ExtResource("2_purqi")
+
+[node name="levelselector" type="Control" unique_id=293096507 node_paths=PackedStringArray("loading_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_8ya1i")
+loading_screen = NodePath("loading_screen")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1728617087]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -252.0
+offset_right = 344.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_ca0it")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect2" unique_id=1467868091]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 359.99994
+offset_top = -235.99997
+offset_right = 542.99994
+offset_bottom = -53.99997
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.83, 0.83)
+texture_normal = SubResource("AtlasTexture_y6hlq")
+texture_pressed = ExtResource("2_purqi")
+texture_hover = ExtResource("2_purqi")
+texture_disabled = ExtResource("2_purqi")
+texture_focused = ExtResource("2_purqi")
+
+[node name="Label" type="Label" parent="TextureRect2" unique_id=890984522]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.037623763
+anchor_top = 0.13280213
+anchor_right = 0.9643564
+anchor_bottom = 0.28286853
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0s7kf")
+theme_override_font_sizes/font_size = 60
+text = "CHOOSE A LEVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="lvl2" type="TextureButton" parent="TextureRect2" unique_id=1845130936]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 144.0
+offset_right = -76.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("3_877dj")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="TextureRect2/lvl2" unique_id=249030346]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -37.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0s7kf")
+theme_override_font_sizes/font_size = 40
+text = "CASTLE"
+vertical_alignment = 1
+
+[node name="loading_screen" parent="." unique_id=1582058390 instance=ExtResource("6_y6hlq")]
+visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="TextureRect2/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureRect2/lvl2" to="." method="_on_lvl_2_pressed"]

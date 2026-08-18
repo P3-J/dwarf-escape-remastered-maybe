@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://daw58duiyn3qu"]
+
+[ext_resource type="Script" uid="uid://bkfwk156dge2a" path="res://src/scripts/hookspot.gd" id="1_evpdx"]
+[ext_resource type="PackedScene" uid="uid://c2nxfwcsg685m" path="res://src/assets/object_scene_catalogue/objects_without_collisions/crystall_hook.tscn" id="2_evpdx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a70su"]
+size = Vector3(3.63525, 4.88758, 1.89172)
+
+[sub_resource type="Curve" id="Curve_myar2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25102884, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_evpdx"]
+curve = SubResource("Curve_myar2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s2h4k"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 7.0
+linear_accel_max = 7.0
+radial_accel_min = 0.999998
+radial_accel_max = 2.0
+scale_min = 0.02
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_evpdx")
+hue_variation_min = -0.100000024
+hue_variation_max = 0.09999997
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxvq8"]
+transparency = 1
+albedo_color = Color(0.1169344, 0.41635215, 0.5601117, 0.78431374)
+emission_enabled = true
+emission = Color(0.121067725, 0.40644106, 0.6031225, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_repeat = false
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_akrrd"]
+material = SubResource("StandardMaterial3D_sxvq8")
+
+[node name="hookspot" type="Area3D" unique_id=57119242 groups=["hook", "hookspot"]]
+collision_mask = 3
+script = ExtResource("1_evpdx")
+boosts = true
+
+[node name="hookshape" type="CollisionShape3D" parent="." unique_id=533506412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596905, 0.0957642)
+shape = SubResource("BoxShape3D_a70su")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1949763624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013160348, 0)
+amount = 16
+lifetime = 0.75
+process_material = SubResource("ParticleProcessMaterial_s2h4k")
+draw_pass_1 = SubResource("QuadMesh_akrrd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=347120844]
+light_color = Color(0.18860975, 0.36381978, 0.7194309, 1)
+light_energy = 4.14
+omni_range = 21.697
+omni_attenuation = 1.436
+
+[node name="crystall_hook" parent="." unique_id=142645340 instance=ExtResource("2_evpdx")]
+transform = Transform3D(-6.129219e-08, 0, -1.4022019, 0, 1.4022019, 0, 1.4022019, 0, -6.129219e-08, 0, 0, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
