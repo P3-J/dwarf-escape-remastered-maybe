@@ -25,7 +25,9 @@ func _setup_rope_visual() -> void:
 	#mat.albedo_color = rope_color
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
 	mat.albedo_texture = rope_tex
-	mat.uv2_scale = Vector3(0.25,0.25,0.25);
+
+	mat.texture_repeat = BaseMaterial3D.FLAG_USE_TEXTURE_REPEAT
+	mat.uv1_scale = Vector3(1.0, 10.0, 1.0)
 	rope_cylinder.material = mat
 
 	rope_mesh_instance = MeshInstance3D.new()

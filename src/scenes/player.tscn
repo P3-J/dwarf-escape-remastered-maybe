@@ -15,8 +15,11 @@
 [ext_resource type="FontFile" uid="uid://crcvk11dlvyuo" path="res://font/Sunantara.ttf" id="9_lsi8j"]
 [ext_resource type="PackedScene" uid="uid://dh6bt55m0insb" path="res://src/scenes/pause_ui.tscn" id="12_wpkk7"]
 [ext_resource type="Script" uid="uid://brvqpikjr5bsk" path="res://src/scripts/rope_meshy.gd" id="14_hhiii"]
+[ext_resource type="AudioStream" uid="uid://vo10xy86dfh6" path="res://src/assets/sounds/SFX/woosh.mp3" id="15_5h06g"]
+[ext_resource type="Texture2D" uid="uid://cql4ja7c6p6gk" path="res://textures/128x128/Brick/Brick_04-128x128.png" id="16_5acq0"]
 [ext_resource type="Script" uid="uid://dkj5ir1t46l4x" path="res://src/scripts/yard.gd" id="16_myy50"]
 [ext_resource type="PackedScene" uid="uid://dgr2fdi84ubyo" path="res://src/scenes/ghostcube.tscn" id="17_usugt"]
+[ext_resource type="Texture2D" uid="uid://r4h083wkk1un" path="res://src/textures/player_misc/ground_shadow.png" id="18_3qshy"]
 
 [sub_resource type="Animation" id="Animation_4pcbe"]
 length = 0.001
@@ -154,15 +157,19 @@ size = Vector2(0.1, 0.1)
 _data = [Vector2(0.00645161, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="player" type="CharacterBody3D" unique_id=299372560 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "yardman", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "timer_text", "speed_lines_shader") groups=["player"]]
+[node name="player" type="CharacterBody3D" unique_id=299372560 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "yardman", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "slide_sound", "timer_text", "speed_lines_shader") groups=["player"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_ve44u")
 player_head = NodePath("head")
 hook_mesh_parent = NodePath("callables/RopeMeshy")
 yardman = NodePath("callables/yard")
+speed = 11.0
 air_speed = 9.0
-mouse_tilt_amount = 0.1
+accel = 3.0
+strafe_tilt_amount = 0.04
+mouse_tilt_amount = 0.07
+tilt_smoothing = 12.0
 wall_ray_right = NodePath("player_stand/right_wall")
 wall_ray_left = NodePath("player_stand/left_wall")
 standing_collision = NodePath("player_stand")
@@ -171,13 +178,16 @@ ceiling_check = NodePath("player_crouch/head_check")
 standing_head_y = 0.739
 crouching_head_y = 0.231
 slide_speed = 12.0
-slide_pitch_amount = 0.205
+slide_min_speed = 5.0
+slide_max_duration = 1.3
+slide_pitch_amount = 0.4
 hookray = NodePath("head/hookray")
 swing_pump_accel = 15.0
 pickaxe_throw_speed = 45.0
 PickAxe = NodePath("head/Pickaxe")
 BoostRay = NodePath("head/boostray")
 boost_str = 30.0
+slide_sound = NodePath("Audio/slide_sound")
 timer_text = NodePath("UI/timer/timer_text")
 speed_lines_shader = NodePath("UI/SpeedLinesShader")
 
@@ -373,10 +383,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7385268, 0.0055938065)
 fov = 80.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D" unique_id=798859695]
-transform = Transform3D(1, 0, 0, 0, 1, 0.000994906, 0, -0.000994906, 1, 0.0692149, 0.672473, -0.0515243)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000994906, 0, -0.000994906, 1, 0, 0, 0)
 light_energy = 1.14
-spot_range = 6.852
-spot_angle = 28.6
+spot_range = 14.342
+spot_angle = 50.14
 
 [node name="hookray" type="RayCast3D" parent="head" unique_id=900952226]
 target_position = Vector3(0, 0, -19)
@@ -391,6 +401,34 @@ target_position = Vector3(0, 0, -3)
 [node name="Pickaxe" parent="head" unique_id=689752792 instance=ExtResource("2_xatcm")]
 transform = Transform3D(0.37277418, 0, 1.9649528, 0, 2, 0, -1.9649528, 0, 0.37277418, 0.407037, -0.391195, -0.559779)
 
+[node name="Audio" type="Node3D" parent="." unique_id=1446774357]
+
+[node name="Walk" type="AudioStreamPlayer3D" parent="Audio" unique_id=1139533422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96358967, 0)
+stream = ExtResource("8_4pcbe")
+volume_db = -20.0
+unit_size = 4.0
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="slide_sound" type="AudioStreamPlayer" parent="Audio" unique_id=1300037818]
+stream = ExtResource("15_5h06g")
+
+[node name="callables" type="Node" parent="." unique_id=254208813]
+
+[node name="RopeMeshy" type="Node" parent="callables" unique_id=1897900637]
+script = ExtResource("14_hhiii")
+rope_tex = ExtResource("16_5acq0")
+
+[node name="yard" type="Node" parent="callables" unique_id=1291061944 node_paths=PackedStringArray("player_node")]
+script = ExtResource("16_myy50")
+player_node = NodePath("../..")
+
+[node name="ghostcube" parent="." unique_id=112604108 node_paths=PackedStringArray("yarddata") instance=ExtResource("17_usugt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.228012)
+top_level = true
+yarddata = NodePath("../callables/yard")
+
 [node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=677576926]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0785469, -1.13536, 0.00383642)
 amount = 32
@@ -404,26 +442,10 @@ angular_velocity_min = 1.0
 angular_velocity_max = 4.0
 scale_amount_curve = SubResource("Curve_4pcbe")
 
-[node name="Audio" type="Node3D" parent="." unique_id=1446774357]
-
-[node name="Walk" type="AudioStreamPlayer3D" parent="Audio" unique_id=1139533422]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96358967, 0)
-stream = ExtResource("8_4pcbe")
-volume_db = -20.0
-unit_size = 4.0
-pitch_scale = 1.5
-bus = &"SFX"
-
-[node name="callables" type="Node" parent="." unique_id=254208813]
-
-[node name="RopeMeshy" type="Node" parent="callables" unique_id=1897900637]
-script = ExtResource("14_hhiii")
-
-[node name="yard" type="Node" parent="callables" unique_id=1291061944 node_paths=PackedStringArray("player_node")]
-script = ExtResource("16_myy50")
-player_node = NodePath("../..")
-
-[node name="ghostcube" parent="." unique_id=112604108 node_paths=PackedStringArray("yarddata") instance=ExtResource("17_usugt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.228012)
-top_level = true
-yarddata = NodePath("../callables/yard")
+[node name="player_shadow" type="Decal" parent="." unique_id=1257865229]
+transform = Transform3D(0.99992144, 0.0060610166, 0.010971993, -0.005714435, 0.99949217, -0.03134884, -0.011156423, 0.031283677, 0.9994483, 0, -0.9763094, 0.023325026)
+size = Vector3(1, 5, 1)
+texture_albedo = ExtResource("18_3qshy")
+modulate = Color(0, 0, 0, 1)
+albedo_mix = 0.84
+distance_fade_begin = 0.0
