@@ -85,6 +85,9 @@ class_name PlayerDwarf
 @export var boost_str: float = 5.0
 @export var boost_delay: float = 0.2
 
+@export_group("Sound callables")
+@export var slide_sound: AudioStreamPlayer;
+
 enum HookState { IDLE, THROWING, ATTACHED, RETRACTING }
 var hook_state: HookState = HookState.IDLE
 
@@ -120,6 +123,7 @@ var has_died: bool = false
 @onready var walk_sfx: AudioStreamPlayer3D = $Audio/Walk
 
 #time
+@export_group("time stuff")
 var start_time: int = 0
 var is_stopwatch_running: bool = false
 @export var timer_text: RichTextLabel
@@ -300,6 +304,7 @@ func _start_slide() -> void:
 	is_sliding = true
 	is_crouching = true
 	slide_timer = 0.0
+	if not slide_sound.playing: slide_sound.play()
 
 	var dir := Vector3(velocity.x, 0.0, velocity.z).normalized()
 	if dir == Vector3.ZERO:
@@ -309,6 +314,7 @@ func _start_slide() -> void:
 
 
 func _process_slide_movement(delta: float) -> void:
+	PickAxe.play_idle_animation()
 	var horiz := Vector2(velocity.x, velocity.z)
 	var speed_now: float = max(horiz.length() - slide_friction * delta, 0.0)
 	horiz = horiz.normalized() * speed_now if horiz.length() > 0.0 else Vector2.ZERO
@@ -602,7 +608,7 @@ func _player_in_boost(state: bool) -> void:
 
 @export var speed_lines_shader: ColorRect;
 func _should_show_speed_lines(vel: Vector3) -> void:
-	if vel.length() > 17:
+	if Vector2(vel.x, vel.y).length() > 11:
 		speed_lines_shader.visible = true
 	else:
 		speed_lines_shader.visible = false

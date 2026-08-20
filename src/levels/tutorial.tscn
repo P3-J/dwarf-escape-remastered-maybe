@@ -130,6 +130,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.294383, 8.469334, -22.7911
 [node name="entity_27_hookspot_var2" parent="objects" unique_id=1358222857 instance=ExtResource("4_7hu6p")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8.171181, 13.137269, -12.503824)
 
+[node name="entity_27_hookspot_var3" parent="objects" unique_id=808216681 instance=ExtResource("4_7hu6p")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8.171181, 13.137269, 55.309486)
+
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1176188646]
 script = ExtResource("7_p0j4l")
 local_map_file = "uid://bnop8btn0f7s5"
