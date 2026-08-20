@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddk73t8n4ysd6"]
+[gd_scene format=3 uid="uid://ddk73t8n4ysd6"]
 
 [ext_resource type="Script" uid="uid://bnb42goqcvb3y" path="res://src/scripts/lava.gd" id="1_u7ucl"]
 [ext_resource type="Shader" uid="uid://77d7ml8amjt1" path="res://src/shaders/water.gdshader" id="3_8q6l0"]
@@ -52,23 +52,24 @@ turbulence_noise_scale = 1.0
 turbulence_noise_speed = Vector3(0, 20, 0)
 turbulence_influence_min = 0.030000001
 
-[node name="Lava" type="Area3D" groups=["lava"]]
+[node name="Lava" type="Area3D" unique_id=388630991 groups=["lava"]]
 collision_mask = 3
 script = ExtResource("1_u7ucl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=167300565]
 mesh = SubResource("PlaneMesh_652k1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1228142798]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.8987186, 0)
 shape = SubResource("BoxShape3D_k2oyh")
 disabled = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=842461161]
 
-[node name="ParticleEffects" type="Node3D" parent="."]
+[node name="ParticleEffects" type="Node3D" parent="." unique_id=748331945]
+visible = false
 
-[node name="LavaPE" type="GPUParticles3D" parent="ParticleEffects"]
+[node name="LavaPE" type="GPUParticles3D" parent="ParticleEffects" unique_id=28661149]
 amount = 3000
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_iwrnh")

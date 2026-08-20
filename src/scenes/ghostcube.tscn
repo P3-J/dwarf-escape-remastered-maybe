@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dgr2fdi84ubyo"]
+
+[ext_resource type="Script" uid="uid://b2yp6l06ql3f4" path="res://src/scripts/ghostcube.gd" id="1_s54l8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s54l8"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e68yd"]
+material = SubResource("StandardMaterial3D_s54l8")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kskia"]
+
+[node name="ghostcube" type="StaticBody3D" unique_id=112604108]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_s54l8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1810991894]
+mesh = SubResource("SphereMesh_e68yd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1908190416]
+shape = SubResource("SphereShape3D_kskia")

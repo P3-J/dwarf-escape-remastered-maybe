@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://d1d4k3xtpgdwr"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" format=3 uid="uid://d1d4k3xtpgdwr"]
 
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_dedm8"]
 [ext_resource type="PackedScene" uid="uid://btj6yqh65mqu0" path="res://src/assets/meshbackup/h_terrain_full_mesh.tscn" id="1_pswfc"]
-[ext_resource type="Script" uid="uid://blvdvv75tyajv" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_dedm8"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_dedm8"]
 
 [resource]
 script = ExtResource("2_dedm8")
@@ -9,9 +10,9 @@ target_map_editor = 1
 models_sub_folder = "models"
 scene_file = ExtResource("1_pswfc")
 classname = "mapmesh"
-meta_properties = {
+meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"models/mapmesh.glb\"",
+"model": "{\"path\": \"models/mapmesh.glb\", \"scale\": 32.0 }",
 "size": AABB(-8, -8, -8, 8, 8, 8)
-}
+})
 metadata/_custom_type_script = "uid://blvdvv75tyajv"

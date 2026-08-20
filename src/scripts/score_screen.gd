@@ -1,7 +1,7 @@
 extends Control
 
 var main_menu_scene =  ResourceLoader.load("res://src/scenes/UI/main_menu.tscn") as PackedScene
-var lv2 = ResourceLoader.load("res://src/levels/lv2.tscn") as PackedScene
+#var lv2 = ResourceLoader.load("res://src/levels/lv2.tscn") as PackedScene
 
 var time_text: RichTextLabel
 var list: ItemList
@@ -24,7 +24,7 @@ func _ready() -> void:
 	var millisecond_str = str(Signalbus.milliseconds).pad_zeros(3)
 	time_text.text = minute_str + ":" + second_str + ":" + millisecond_str
 	Signalbus.connect("play_dwarf_laugh_win_sound", _on_dwarf_laugh_win_sound)
-	refresh()
+	#refresh()
 
 
 
@@ -35,8 +35,8 @@ func int_to_time(total_mils: int):
 
 	var total_milliseconds = abs(total_mils)
 	var minutes = total_milliseconds / 60000
-	var seconds = (total_milliseconds % 60000) / 1000 
-	var milliseconds = total_milliseconds % 1000  
+	var seconds = (total_milliseconds % 60000) / 1000
+	var milliseconds = total_milliseconds % 1000
 
 	var minute_str = str(minutes ).pad_zeros(2)
 	var second_str = str(seconds).pad_zeros(2)
@@ -51,6 +51,7 @@ func submit():
 	timer.start()
 
 func refresh():
+	return
 	print("getting")
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores().sw_get_scores_complete
 	add_to_list(sw_result.scores)
@@ -104,4 +105,5 @@ func save_score(username: String, time_sec: float) -> void:
 
 
 func _on_restart_pressed() -> void:
-	get_tree().change_scene_to_packed(lv2)
+	return
+	#get_tree().change_scene_to_packed(lv2)

@@ -1,10 +1,11 @@
 extends CharacterBody3D
-#class_name PlayerDwarf
+class_name PlayerDwarf
 
 @export var player_head: Node3D
 
 @export_group("Callables")
 @export var hook_mesh_parent: RopeMesh
+@export var yardman: YARDMAN
 
 @export_group("Movement")
 @export var speed: float = 10.0
@@ -82,6 +83,7 @@ extends CharacterBody3D
 @export_group("Pickaxe Boost")
 @export var BoostRay: RayCast3D
 @export var boost_str: float = 5.0
+@export var boost_delay: float = 0.2
 
 enum HookState { IDLE, THROWING, ATTACHED, RETRACTING }
 var hook_state: HookState = HookState.IDLE
@@ -89,6 +91,7 @@ var hook_state: HookState = HookState.IDLE
 var is_swinging: bool = false
 var hook_anchor: Vector3 = Vector3.ZERO
 var rope_length: float = 0.0
+var is_pickaxe_boosting: bool = false
 
 var pickaxe_pos: Vector3 = Vector3.ZERO
 var pickaxe_original_parent: Node = null
@@ -130,7 +133,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_sensitivity = Globalsettings.mouse_sensitivity
 	_signal_setup()
-	
+	yardman.get_fastest_run()
 	if PickAxe:
 		pickaxe_original_parent = PickAxe.get_parent()
 		pickaxe_rest_transform = PickAxe.transform
@@ -139,7 +142,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var input_dir := _get_input_direction()
 	var direction := (global_transform.basis * input_dir).normalized()
-	
+
 	if player_frozen: return
 
 	_update_wallrun(delta)
@@ -147,7 +150,7 @@ func _physics_process(delta: float) -> void:
 	_update_rope_line()
 	_update_crouch_and_slide(delta)
 	_should_show_speed_lines(velocity)
-	
+
 	if in_boost_area: velocity.y += 2
 
 	if is_sliding:
@@ -184,8 +187,9 @@ func _input(event: InputEvent) -> void:
 			mouse_tilt - event.relative.x * mouse_tilt_sensitivity,
 			-mouse_tilt_amount, mouse_tilt_amount
 		)
-	
+
 	if event.is_action_pressed("restart"):
+		yardman.finish_run(false)
 		get_tree().reload_current_scene()
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -235,14 +239,14 @@ func _get_input_direction() -> Vector3:
 		direction.x += 1
 	if Input.is_action_pressed("rmb"):
 		_try_attach_hook()
-	
+
 	var on_floor: bool = is_on_floor()
 	if direction == Vector3.ZERO or !on_floor:
 		walk_sfx.stop()
 	else:
 		if !walk_sfx.playing and on_floor:
 			walk_sfx.play()
-	
+
 	return direction.normalized()
 
 
@@ -424,7 +428,9 @@ func _try_attach_hook() -> void:
 	if spot == null or not is_valid_hookspot(spot):
 		return
 
-	hook_anchor = hookray.get_collision_point()
+	spot = spot as Node3D
+	#hook_anchor = hookray.get_collision_point()
+	hook_anchor = spot.global_position;
 
 	hook_state = HookState.THROWING
 	is_swinging = false
@@ -490,6 +496,7 @@ func _arrive_at_hook() -> void:
 	hook_state = HookState.ATTACHED
 	is_swinging = true
 	rope_length = clamp(global_position.distance_to(hook_anchor), min_rope_length, abs(hookray.target_position.z))
+	PickAxe.rotation.z = 0;
 
 
 func _finish_retract() -> void:
@@ -568,11 +575,13 @@ func _can_stand() -> bool:
 
 func boost_off_surface():
 
-	if !BoostRay.is_colliding():
+	if !BoostRay.is_colliding() or is_pickaxe_boosting:
 		return;
+
+	is_pickaxe_boosting = true;
 	PickAxe.play_boost_animation()
 	Signalbus.emit_signal('play_pickaxe_boost_sound')
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(boost_delay).timeout
 
 	var ray_origin = BoostRay.global_transform.origin
 	var ray_dir = (BoostRay.global_transform.basis * BoostRay.target_position).normalized()
@@ -583,7 +592,9 @@ func boost_off_surface():
 	var boost_vector = (opposite_point - global_transform.origin).normalized()
 	boost_vector.y *= 0.5
 	velocity = boost_vector * boost_str
-	
+	await get_tree().create_timer(boost_delay).timeout
+	is_pickaxe_boosting = false;
+
 func _player_in_boost(state: bool) -> void:
 	in_boost_area = state
 	if in_boost_area:
@@ -595,21 +606,21 @@ func _should_show_speed_lines(vel: Vector3) -> void:
 		speed_lines_shader.visible = true
 	else:
 		speed_lines_shader.visible = false
-		
-		
+
+
 func update_time():
 	if is_stopwatch_running:
 		var current_time = Time.get_ticks_msec()
 		var elapsed_time = (current_time - start_time) / 1000.0
 		timer_text.text = format_time(elapsed_time)
-		
+
 func check_lava_level():
 	Signalbus.emit_signal('play_lava_rise_sound', global_position.y - lava.global_position.y)
 	Signalbus.emit_signal('play_lava_hiss_sound', global_position.y - lava.global_position.y)
 	if (lava.global_position.y > global_position.y):
 		Signalbus.emit_signal('kill_player');
 		Signalbus.emit_signal('play_dwarf_death_sound')
-		
+
 func format_time(elapsed_time: float) -> String:
 	minutes = int(elapsed_time / 60)
 	seconds = int(elapsed_time) % 60
@@ -619,33 +630,36 @@ func format_time(elapsed_time: float) -> String:
 	var second_str = str(seconds).pad_zeros(2)
 	var millisecond_str = str(milliseconds).pad_zeros(3)
 	return minute_str + ":" + second_str + ":" + millisecond_str
-	
+
 func reached_end():
 	Signalbus.minutes = minutes
 	Signalbus.milliseconds = milliseconds
 	Signalbus.seconds = seconds
+	yardman.finish_run(true)
 	get_tree().change_scene_to_file("res://src/scenes/score_screen.tscn")
-	
+
 func _signal_setup():
 	Signalbus.connect('kill_player', _on_player_kill)
 	Signalbus.connect('game_starts', _on_game_start)
 	Signalbus.connect('player_in_boost', _player_in_boost)
 	Signalbus.player_wins.connect(reached_end)
-	
+
 func _on_game_start() -> void:
-	start_speedrun_timer()
-	
-func unfreeze_player() -> void:
 	player_frozen = false;
 	start_speedrun_timer();
+	yardman.start_new_run()
 	Signalbus.emit_signal('make_lava_rise')
-	
+
+func unfreeze_player() -> void:
+	Signalbus.emit_signal("game_starts")
+
 func start_speedrun_timer():
 	start_time = Time.get_ticks_msec()
 	is_stopwatch_running = true
-	
+
 func _on_player_kill() -> void:
 	if !has_died:
+		yardman.finish_run(false)
 		speed_lines_shader.visible = false
 		has_died = true
 		Signalbus.kill_player.emit()
