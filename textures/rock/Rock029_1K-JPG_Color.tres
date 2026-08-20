@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b5ax4sqkn1dlh"]
+
+[ext_resource type="Texture2D" uid="uid://wygs8vsu5uq5" path="res://textures/rock/Rock029_1K-JPG_Color.jpg" id="1_w3bv2"]
+[ext_resource type="Texture2D" uid="uid://c0fgngecgyxbv" path="res://textures/rock/Rock029_1K-JPG_NormalDX.jpg" id="2_jf1w6"]
+[ext_resource type="Texture2D" uid="uid://dixm6pys077s1" path="res://textures/rock/Rock029_1K-JPG_Roughness.jpg" id="3_erjra"]
+
+[resource]
+albedo_texture = ExtResource("1_w3bv2")
+metallic_specular = 0.0
+roughness_texture = ExtResource("3_erjra")
+normal_enabled = true
+normal_texture = ExtResource("2_jf1w6")
+texture_filter = 2

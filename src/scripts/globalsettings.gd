@@ -10,8 +10,8 @@ var music_volume: float
 const SETTINGS_PATH = "user://settings.cfg"
 
 func _ready() -> void:
-	load_settings()  
-	_setup_leaderboard_connection()
+	load_settings()
+	#_setup_leaderboard_connection()
 	Signalbus.settings_changed.connect(_on_settings_changed)
 
 
@@ -41,6 +41,6 @@ func load_settings() -> void:
 		mouse_sensitivity = config.get_value("Settings", "mouse_sensitivity", 0.001)
 		audio_volume = config.get_value("Settings", "audio_volume", 100)
 		music_volume = config.get_value("Settings", "music_volume", 100)
-		
+
 func _on_settings_changed() -> void:
 	mouse_sensitivity = Globalsettings.mouse_sensitivity

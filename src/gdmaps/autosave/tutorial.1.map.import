@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cdmigrt00m5xd"
+path="res://.godot/imported/tutorial.1.map-8a918d6704aafe075a58ef689fc78677.tres"
+
+[deps]
+
+source_file="res://src/gdmaps/autosave/tutorial.1.map"
+dest_files=["res://.godot/imported/tutorial.1.map-8a918d6704aafe075a58ef689fc78677.tres"]
+
+[params]
+

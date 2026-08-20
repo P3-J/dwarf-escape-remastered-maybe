@@ -15,6 +15,8 @@
 [ext_resource type="FontFile" uid="uid://crcvk11dlvyuo" path="res://font/Sunantara.ttf" id="9_lsi8j"]
 [ext_resource type="PackedScene" uid="uid://dh6bt55m0insb" path="res://src/scenes/pause_ui.tscn" id="12_wpkk7"]
 [ext_resource type="Script" uid="uid://brvqpikjr5bsk" path="res://src/scripts/rope_meshy.gd" id="14_hhiii"]
+[ext_resource type="Script" uid="uid://dkj5ir1t46l4x" path="res://src/scripts/yard.gd" id="16_myy50"]
+[ext_resource type="PackedScene" uid="uid://dgr2fdi84ubyo" path="res://src/scenes/ghostcube.tscn" id="17_usugt"]
 
 [sub_resource type="Animation" id="Animation_4pcbe"]
 length = 0.001
@@ -152,21 +154,30 @@ size = Vector2(0.1, 0.1)
 _data = [Vector2(0.00645161, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="player" type="CharacterBody3D" unique_id=299372560 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "timer_text", "speed_lines_shader") groups=["player"]]
+[node name="player" type="CharacterBody3D" unique_id=299372560 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "yardman", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "timer_text", "speed_lines_shader") groups=["player"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_ve44u")
-boost_str = 30.0
 player_head = NodePath("head")
 hook_mesh_parent = NodePath("callables/RopeMeshy")
+yardman = NodePath("callables/yard")
+air_speed = 9.0
+mouse_tilt_amount = 0.1
 wall_ray_right = NodePath("player_stand/right_wall")
 wall_ray_left = NodePath("player_stand/left_wall")
 standing_collision = NodePath("player_stand")
 crouching_collision = NodePath("player_crouch")
 ceiling_check = NodePath("player_crouch/head_check")
+standing_head_y = 0.739
+crouching_head_y = 0.231
+slide_speed = 12.0
+slide_pitch_amount = 0.205
 hookray = NodePath("head/hookray")
+swing_pump_accel = 15.0
+pickaxe_throw_speed = 45.0
 PickAxe = NodePath("head/Pickaxe")
 BoostRay = NodePath("head/boostray")
+boost_str = 30.0
 timer_text = NodePath("UI/timer/timer_text")
 speed_lines_shader = NodePath("UI/SpeedLinesShader")
 
@@ -352,10 +363,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288002, -0.26862895, -0.00
 shape = SubResource("CapsuleShape3D_hhiii")
 
 [node name="head_check" type="RayCast3D" parent="player_crouch" unique_id=1834533356]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0.13035601, 0)
+target_position = Vector3(0, -1.2, 0)
 
 [node name="head" type="Node3D" parent="." unique_id=589176600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013241, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7385268, 0.0055938065)
 
 [node name="Camera3D" type="Camera3D" parent="head" unique_id=1864912865]
 fov = 80.0
@@ -367,14 +379,13 @@ spot_range = 6.852
 spot_angle = 28.6
 
 [node name="hookray" type="RayCast3D" parent="head" unique_id=900952226]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.241377)
 target_position = Vector3(0, 0, -19)
 hit_back_faces = false
 collide_with_areas = true
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="boostray" type="RayCast3D" parent="head" unique_id=1677012266]
-transform = Transform3D(1, 0, 0, 0, 2.0677965, 0.08325372, 0, -0.17275149, 0.9965283, 0, 0, -0.25808918)
+transform = Transform3D(1, 0, 0, 0, 2.0677965, 0.08325372, 0, -0.17275149, 0.9965283, 0, 0, 0)
 target_position = Vector3(0, 0, -3)
 
 [node name="Pickaxe" parent="head" unique_id=689752792 instance=ExtResource("2_xatcm")]
@@ -407,3 +418,12 @@ bus = &"SFX"
 
 [node name="RopeMeshy" type="Node" parent="callables" unique_id=1897900637]
 script = ExtResource("14_hhiii")
+
+[node name="yard" type="Node" parent="callables" unique_id=1291061944 node_paths=PackedStringArray("player_node")]
+script = ExtResource("16_myy50")
+player_node = NodePath("../..")
+
+[node name="ghostcube" parent="." unique_id=112604108 node_paths=PackedStringArray("yarddata") instance=ExtResource("17_usugt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.228012)
+top_level = true
+yarddata = NodePath("../callables/yard")
