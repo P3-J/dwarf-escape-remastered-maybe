@@ -11,7 +11,7 @@ func _death_called():
 	animation_player.active = true
 	get_tree().paused = true
 	animation_player.play("DeathScreenAnimation")
-	#animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
+	animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	
 
 func _on_animation_finished(anim_name: String):
