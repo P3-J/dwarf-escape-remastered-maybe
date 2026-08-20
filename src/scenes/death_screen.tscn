@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b25o1440naild"]
+[gd_scene format=3 uid="uid://b25o1440naild"]
 
 [ext_resource type="Script" uid="uid://dyuhsux5eswm5" path="res://src/scripts/death_screen.gd" id="1_fcakh"]
 [ext_resource type="Texture2D" uid="uid://cj18ha4vnitfw" path="res://src/assets/ui/basic/DeathScreen.png" id="2_061gu"]
@@ -219,7 +219,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.194805, 0.194805, 0.194805, 0.805195, 1,
 noise = SubResource("FastNoiseLite_mmrv1")
 color_ramp = SubResource("Gradient_ytq02")
 
-[node name="DeathScreen" type="Control"]
+[node name="DeathScreen" type="Control" unique_id=1299494661]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -229,24 +229,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcakh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1176071207]
 active = false
-libraries = {
-&"": SubResource("AnimationLibrary_t0o1x")
-}
+libraries/ = SubResource("AnimationLibrary_t0o1x")
 movie_quit_on_finish = true
 
-[node name="TextureRect2" type="TextureRect" parent="AnimationPlayer"]
+[node name="TextureRect2" type="TextureRect" parent="AnimationPlayer" unique_id=997371672]
 visible = false
 z_index = 1
-offset_left = 767.99994
-offset_top = 568.0
-offset_right = 1718.0
-offset_bottom = 800.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -475.0
+offset_top = -116.0
+offset_right = 475.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.0732648, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("2_061gu")
 
-[node name="Label" type="Label" parent="AnimationPlayer/TextureRect2"]
+[node name="Label" type="Label" parent="AnimationPlayer/TextureRect2" unique_id=768864209]
 layout_mode = 0
 offset_left = 267.40845
 offset_top = 66.0
@@ -257,10 +264,9 @@ theme_override_fonts/font = ExtResource("3_pb4i4")
 theme_override_font_sizes/font_size = 78
 text = "YOU DIED"
 
-[node name="TextureRect" type="TextureRect" parent="AnimationPlayer"]
+[node name="TextureRect" type="TextureRect" parent="AnimationPlayer" unique_id=1773079836]
 process_mode = 3
 modulate = Color(1, 1, 1, 0.0326087)
-layout_direction = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -268,5 +274,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+layout_direction = 1
 mouse_filter = 2
 texture = SubResource("NoiseTexture2D_4574f")
