@@ -110,7 +110,7 @@ points = PackedVector3Array(26.5, -6.5, 83.75, 26.5, -20, 83.75, -21.25, -6.5, 8
 [node name="defaults" type="Node3D" parent="." unique_id=109346642]
 
 [node name="Lava" parent="defaults" unique_id=1846293932 instance=ExtResource("1_sy73v")]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 26.108738, 0, 0)
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 7.321249, 0, 30.20779)
 collision_layer = 3
 rise_per_sec = 0.01
 

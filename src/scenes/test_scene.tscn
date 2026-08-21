@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmu7yd3ktqlcd"]
+
+[node name="test_scene" type="Node3D" unique_id=1327832915]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1755660850]
+transform = Transform3D(-0.058625843, 0.99828005, 0, -0.99828005, -0.058625843, 0, 0, 0, 1, 0, 0, 0)

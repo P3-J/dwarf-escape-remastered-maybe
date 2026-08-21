@@ -95,6 +95,7 @@ var is_swinging: bool = false
 var hook_anchor: Vector3 = Vector3.ZERO
 var rope_length: float = 0.0
 var is_pickaxe_boosting: bool = false
+var has_pickaxe_boosted_air: bool = false
 
 var pickaxe_pos: Vector3 = Vector3.ZERO
 var pickaxe_original_parent: Node = null
@@ -564,6 +565,7 @@ func _process_swing_movement(delta: float, input_direction: Vector3) -> void:
 func _update_coyote_timer(delta: float) -> void:
 	if is_on_floor():
 		floor_jump_done = false;
+		has_pickaxe_boosted_air = false;
 		coyote_timer = coyote_time
 	else:
 		coyote_timer -= delta
@@ -581,10 +583,11 @@ func _can_stand() -> bool:
 
 func boost_off_surface():
 
-	if !BoostRay.is_colliding() or is_pickaxe_boosting:
+	if !BoostRay.is_colliding() or is_pickaxe_boosting or has_pickaxe_boosted_air:
 		return;
 
 	is_pickaxe_boosting = true;
+	has_pickaxe_boosted_air = true;
 	PickAxe.play_boost_animation()
 	Signalbus.emit_signal('play_pickaxe_boost_sound')
 	await get_tree().create_timer(boost_delay).timeout
