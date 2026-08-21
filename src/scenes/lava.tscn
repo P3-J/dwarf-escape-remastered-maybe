@@ -2,22 +2,27 @@
 
 [ext_resource type="Script" uid="uid://bnb42goqcvb3y" path="res://src/scripts/lava.gd" id="1_u7ucl"]
 [ext_resource type="Shader" uid="uid://77d7ml8amjt1" path="res://src/shaders/water.gdshader" id="3_8q6l0"]
+[ext_resource type="Texture2D" uid="uid://yobghhc5us53" path="res://src/assets/Shaders/TilableShaderBase/lava_tilable_Base_color.png" id="3_iwrnh"]
 [ext_resource type="QuadMesh" uid="uid://cfbdof6t2j1g1" path="res://src/materials/lava_particles_material.tres" id="3_sdre5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sdre5"]
 render_priority = 0
 shader = ExtResource("3_8q6l0")
-shader_parameter/dark_lava_color = Color(7.182, 0, 0, 1)
-shader_parameter/light_lava_color = Color(15.676548, 14.075557, 1.3614633, 1)
-shader_parameter/speed = 0.335
-shader_parameter/scale = 300.00001424674014
-shader_parameter/sharpness = 2.898
-shader_parameter/emission_intensity = 0.1
-shader_parameter/pixel_size = 5.00000019
+shader_parameter/base_texture = ExtResource("3_iwrnh")
+shader_parameter/cool_color = Color(0.21107593, 0.087143965, 4.813075e-08, 1)
+shader_parameter/hot_color = Color(0.96554226, 0, 0.14149359, 1)
+shader_parameter/emission_strength = 6.23
+shader_parameter/emission_flicker_speed = 2.0
+shader_parameter/base_texture_scale = Vector2(7, 7)
+shader_parameter/wave_speed = 0.415
+shader_parameter/wave_strength = 0.02
+shader_parameter/flow_strength = 0.105
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_652k1"]
 material = SubResource("ShaderMaterial_sdre5")
-size = Vector2(10, 10)
+size = Vector2(5, 5)
+subdivide_width = 30
+subdivide_depth = 30
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k2oyh"]
 size = Vector3(25, 5, 25)

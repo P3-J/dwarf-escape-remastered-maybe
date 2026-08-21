@@ -1,52 +1,70 @@
 shader_type spatial;
-render_mode shadows_disabled;
+// unshaded означает, что свет и отражения НЕ влияют на материал. 
+// Он всегда будет выглядеть ярко и правильно, даже в полной темноте.
+render_mode unshaded, depth_draw_opaque, cull_back;
 
-uniform vec4 dark_lava_color : source_color;
-uniform vec4 light_lava_color : source_color;
-uniform float speed : hint_range(0.0, 5.0);
-uniform float scale : hint_range(0.1, 500.0) = 10;
-uniform float sharpness : hint_range(1.0, 100.0);
-uniform float emission_intensity : hint_range(0.0, 10.0);
-uniform float pixel_size : hint_range(1.0, 64.0) = 8.0; // NEW
+// === ТЕКСТУРЫ ===
+uniform sampler2D normal_map : source_color;      // анимированная normal map (рябь)
+uniform sampler2D flow_map : source_color;        // направление течения (R=X, G=Y)
+uniform sampler2D base_texture : source_color;    // текстура лавы (светлые части будут светиться)
 
-vec2 random2D(vec2 p) {
-    return fract(sin(vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)))) * 43758.5453);
+// === ПАРАМЕТРЫ ===
+uniform vec3 cool_color : source_color = vec3(0.05, 0.01, 0.0);  // цвет остывшей корки (почти черный)
+uniform vec3 hot_color : source_color = vec3(1.0, 0.4, 0.0);     // цвет раскаленной лавы (оранжевый/желтый)
+uniform float emission_strength = 3.0;                           // общая сила свечения
+uniform float emission_flicker_speed = 2.0;                      // скорость мерцания лавы
+uniform vec2 base_texture_scale = vec2(4.0, 4.0);                // масштаб повторения текстуры
+
+uniform float wave_speed = 0.3;
+uniform float wave_strength = 0.05;
+uniform float flow_strength = 0.5;
+
+// === ВЕРШИННЫЕ ВОЛНЫ ===
+void vertex() {
+    vec2 uv_flow = UV + TIME * wave_speed * 0.1;
+    float wave = sin(UV.x * 20.0 + TIME * 2.0) * cos(UV.y * 15.0 + TIME * 1.5);
+    VERTEX.y += wave * wave_strength;
 }
 
-float voronoiIQ(vec2 _pos) {
-    float _time = TIME * speed;
-    _pos.y += _time;
-    _pos.x += sin(_time);
-
-    vec2 p = floor(_pos);
-    vec2 f = fract(_pos);
-    float res = 0.0;
-
-    float sharp = clamp(sharpness, 1.0, 50.0);
-
-    for (int j = -1; j <= 1; j++) {
-        for (int i = -1; i <= 1; i++) {
-            vec2 b = vec2(float(i), float(j));
-            vec2 pnt = random2D(p + b);
-            pnt = 0.5 + 0.5 * sin(_time + 6.2831 * pnt);
-            vec2 r = vec2(b) - f + pnt;
-            float d = dot(r, r);
-            res += exp(-sharp * d);
-        }
-    }
-
-    res = max(res, 1e-6);
-    float result = -(1.0 / sharp) * log(res);
-    return clamp(result, 0.0, 1.0);
-}
-
+// === ФРАГМЕНТ ===
 void fragment() {
-    // Quantize UVs to simulate nearest-pixel look
-    vec2 uv = floor(UV * scale * pixel_size) / pixel_size;
+    // --- Flow map (течение) ---
+    vec2 flow_dir = texture(flow_map, UV).rg * 2.0 - 1.0;
+    vec2 uv1 = UV + flow_dir * flow_strength * TIME * 0.05;
+    vec2 uv2 = UV + flow_dir * flow_strength * (TIME * 0.05 + 0.5);
 
-    float voronoi_value = voronoiIQ(uv);
-    vec4 final_color = mix(dark_lava_color, light_lava_color, voronoi_value);
+    // --- Анимированная normal map ---
+    vec3 n1 = texture(normal_map, uv1).rgb;
+    vec3 n2 = texture(normal_map, uv2).rgb;
+    vec3 blended_normal = normalize(n1 + n2 - vec3(1.0));
+    NORMAL_MAP = blended_normal;
+    NORMAL_MAP_DEPTH = 1.0;
 
-    ALBEDO = final_color.rgb;
-    EMISSION = final_color.rgb * emission_intensity;
+    // --- Base texture с повторением и течением ---
+    vec2 tiled_uv = UV * base_texture_scale;
+    vec2 final_uv = tiled_uv + flow_dir * flow_strength * TIME * 0.05;
+    vec4 base = texture(base_texture, final_uv);
+
+    // --- Цвет и Свечение (Emission) на основе текстуры ---
+    // Вычисляем яркость текстуры (0.0 = черный, 1.0 = белый)
+    float brightness = dot(base.rgb, vec3(0.299, 0.587, 0.114));
+    
+    // Смешиваем холодный и горячий цвет на основе яркости текстуры
+    // smoothstep делает переход более резким, как у реальной корки лавы
+    vec3 final_color = mix(cool_color, hot_color, smoothstep(0.2, 0.7, brightness));
+    
+    // Добавляем легкое мерцание для живости
+    float flicker = sin(TIME * emission_flicker_speed + UV.x * 10.0 + UV.y * 5.0) * 0.1 + 0.9;
+    
+    // Свечение напрямую зависит от яркости текстуры
+    vec3 emission = hot_color * emission_strength * brightness * flicker;
+
+    // --- Настройки материала ---
+    ALBEDO = final_color;
+    EMISSION = emission;
+    
+    // Эти параметры не влияют на unshaded, но оставлены для совместимости
+    ROUGHNESS = 0.1;
+    METALLIC = 0.0;
+    ALPHA = 1.0; // Абсолютно непрозрачный, сквозь него ничего не видно
 }

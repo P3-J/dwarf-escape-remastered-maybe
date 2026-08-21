@@ -40,9 +40,7 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
 
 [dotnet]
 
@@ -140,6 +138,8 @@ crouch={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+scaling_3d/mode=5
+scaling_3d/scale=0.75
 
 [shader_globals]
 
