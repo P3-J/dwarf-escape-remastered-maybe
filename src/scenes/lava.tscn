@@ -9,11 +9,11 @@
 render_priority = 0
 shader = ExtResource("3_8q6l0")
 shader_parameter/base_texture = ExtResource("3_iwrnh")
-shader_parameter/cool_color = Color(0.21107593, 0.087143965, 4.813075e-08, 1)
-shader_parameter/hot_color = Color(0.96554226, 0, 0.14149359, 1)
-shader_parameter/emission_strength = 6.23
+shader_parameter/cool_color = Color(0.05, 0.01, 0, 1)
+shader_parameter/hot_color = Color(0.95686275, 0.05882353, 0, 1)
+shader_parameter/emission_strength = 275.08
 shader_parameter/emission_flicker_speed = 2.0
-shader_parameter/base_texture_scale = Vector2(7, 7)
+shader_parameter/base_texture_scale = Vector2(15, 15)
 shader_parameter/wave_speed = 0.415
 shader_parameter/wave_strength = 0.02
 shader_parameter/flow_strength = 0.105
@@ -72,10 +72,9 @@ disabled = true
 [node name="Timer" type="Timer" parent="." unique_id=842461161]
 
 [node name="ParticleEffects" type="Node3D" parent="." unique_id=748331945]
-visible = false
 
 [node name="LavaPE" type="GPUParticles3D" parent="ParticleEffects" unique_id=28661149]
-amount = 3000
+amount = 300
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_iwrnh")
 draw_pass_1 = ExtResource("3_sdre5")

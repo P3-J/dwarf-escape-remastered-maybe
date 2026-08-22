@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dji81ajvnxhfx"
+path="res://.godot/imported/tutorial.map-f07a70867dab30546425be39a92868e2.tres"
+
+[deps]
+
+source_file="res://src/levels/tutorial.map"
+dest_files=["res://.godot/imported/tutorial.map-f07a70867dab30546425be39a92868e2.tres"]
+
+[params]
+
