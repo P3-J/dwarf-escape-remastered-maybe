@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cys8x4y7y5fkm"]
+[gd_scene format=3 uid="uid://cys8x4y7y5fkm"]
 
 [ext_resource type="PackedScene" uid="uid://dprjpmdrdvm6t" path="res://src/assets/objects/dwarf_statue/DwarfStatue.fbx" id="1_jc4vj"]
 
@@ -6,19 +6,19 @@
 size = Vector3(5.768982, 2.0750122, 5.5770264)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lu185"]
-size = Vector3(5.157028, 9.505768, 3.2591248)
+size = Vector3(4.388012, 9.505768, 3.2591248)
 
-[node name="DwarfStatue" instance=ExtResource("1_jc4vj")]
+[node name="DwarfStatue" unique_id=547432251 instance=ExtResource("1_jc4vj")]
 
-[node name="DwarfStatue" parent="." index="0"]
+[node name="DwarfStatue" parent="." index="0" unique_id=583270315]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1460696109]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=666167669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00015258789, 0.015045166, 0.0072631836)
 shape = SubResource("BoxShape3D_jc4vj")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026725769, 5.758347, 0.006942749)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1552464654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003129959, 5.758347, 0.006942749)
 shape = SubResource("BoxShape3D_lu185")
