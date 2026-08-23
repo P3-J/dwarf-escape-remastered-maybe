@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://t6jpoek0vjnu"]
+
+[ext_resource type="PackedScene" uid="uid://bf1atwf2qrqdy" path="res://src/assets/object_scene_catalogue/tablet.tscn" id="1_8e8i5"]
+[ext_resource type="Script" uid="uid://cfkmv43gbs70n" path="res://src/scripts/sign_display.gd" id="1_scgno"]
+[ext_resource type="FontFile" uid="uid://crcvk11dlvyuo" path="res://font/Sunantara.ttf" id="2_f0ybe"]
+[ext_resource type="Texture2D" uid="uid://pl3m6lqs3330" path="res://src/assets/ui/basic/ControlsLeftClick.png" id="4_yq26q"]
+[ext_resource type="Texture2D" uid="uid://mn0dd71so87r" path="res://src/assets/ui/basic/ControlsRightClick.png" id="5_jhc1x"]
+
+[node name="sign_display" type="Node3D" unique_id=874029018]
+script = ExtResource("1_scgno")
+
+[node name="tablet" parent="." unique_id=1226465259 instance=ExtResource("1_8e8i5")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1.7987831, 0)
+
+[node name="spacebar" type="Label3D" parent="." unique_id=1565084183]
+unique_name_in_owner = true
+transform = Transform3D(-0.0123749375, 0, 0.9999236, 0, 1, 0, -0.9999236, 0, -0.0123749375, 0.1599552, 0, 0)
+visible = false
+texture_filter = 2
+outline_modulate = Color(0.89060944, 0.46937835, 3.85046e-07, 1)
+text = " [SPACE]
+to jump"
+font = ExtResource("2_f0ybe")
+font_size = 39
+
+[node name="pickboost" type="Label3D" parent="." unique_id=1976391995]
+unique_name_in_owner = true
+transform = Transform3D(0.007815762, 0, 0.99996954, 0, 1, 0, -0.99996954, 0, 0.007815762, 0.1599552, 0.06771007, 0.018155783)
+visible = false
+texture_filter = 2
+outline_modulate = Color(0.89060944, 0.46937835, 3.85046e-07, 1)
+text = " [LMB]
+Pickaxe boost
+off a surface"
+font = ExtResource("2_f0ybe")
+font_size = 28
+
+[node name="Sprite3D" type="Sprite3D" parent="pickboost" unique_id=1469808895]
+transform = Transform3D(0.1000001, 0, 0, 0, 0.1, 0, 0, 0, 0.1000001, 0.4834567, 0.17770246, -0.003778696)
+texture_filter = 0
+texture = ExtResource("4_yq26q")
+
+[node name="crouch" type="Label3D" parent="." unique_id=499245361]
+unique_name_in_owner = true
+transform = Transform3D(-0.0123749375, 0, 0.9999236, 0, 1, 0, -0.9999236, 0, -0.0123749375, 0.1599552, 0, 0)
+visible = false
+texture_filter = 2
+outline_modulate = Color(0.89060944, 0.46937835, 3.85046e-07, 1)
+text = "[SHIFT]
+to crouch"
+font = ExtResource("2_f0ybe")
+font_size = 39
+
+[node name="hook" type="Label3D" parent="." unique_id=1642600987]
+unique_name_in_owner = true
+transform = Transform3D(-0.0123749375, 0, 0.9999236, 0, 1, 0, -0.9999236, 0, -0.0123749375, 0.1599552, -0.011587352, 0.13350758)
+visible = false
+texture_filter = 2
+outline_modulate = Color(0.89060944, 0.46937835, 3.85046e-07, 1)
+text = "HOLD [RMB]
+on the hook
+to swing"
+font = ExtResource("2_f0ybe")
+
+[node name="Sprite3D" type="Sprite3D" parent="hook" unique_id=1628629031]
+transform = Transform3D(0.09999994, 0, 6.9849193e-10, 0, 0.1, 0, -6.9849193e-10, 0, 0.09999994, 0.6239802, 0.1760818, 0.0077223033)
+texture_filter = 0
+texture = ExtResource("5_jhc1x")

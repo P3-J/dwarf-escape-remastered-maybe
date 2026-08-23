@@ -183,7 +183,9 @@ slide_max_duration = 1.3
 slide_pitch_amount = 0.4
 hookray = NodePath("head/hookray")
 swing_pump_accel = 15.0
+rope_pull_in_speed = 1.0
 pickaxe_throw_speed = 45.0
+pickaxe_retract_speed = 30.0
 PickAxe = NodePath("head/Pickaxe")
 BoostRay = NodePath("head/boostray")
 boost_str = 30.0
@@ -192,6 +194,8 @@ timer_text = NodePath("UI/timer/timer_text")
 speed_lines_shader = NodePath("UI/SpeedLinesShader")
 
 [node name="UI" type="Control" parent="." unique_id=876507995]
+unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -336,8 +340,8 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="countdownanim" type="AnimationPlayer" parent="UI/countdownlabel" unique_id=1791923121]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_0hlw3")
-autoplay = &"countdown"
 
 [node name="MainMenuUiPrototo" type="Sprite2D" parent="UI" unique_id=580101095]
 light_mask = 0
@@ -379,10 +383,11 @@ target_position = Vector3(0, -1.2, 0)
 [node name="head" type="Node3D" parent="." unique_id=589176600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7385268, 0.0055938065)
 
-[node name="Camera3D" type="Camera3D" parent="head" unique_id=1864912865]
+[node name="playercam" type="Camera3D" parent="head" unique_id=1864912865]
+unique_name_in_owner = true
 fov = 80.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D" unique_id=798859695]
+[node name="SpotLight3D" type="SpotLight3D" parent="head/playercam" unique_id=798859695]
 transform = Transform3D(1, 0, 0, 0, 1, 0.000994906, 0, -0.000994906, 1, 0, 0, 0)
 light_energy = 1.14
 spot_range = 14.342

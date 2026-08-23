@@ -143,6 +143,7 @@ func _ready() -> void:
 		pickaxe_original_parent = PickAxe.get_parent()
 		pickaxe_rest_transform = PickAxe.transform
 
+	start_countdown()
 
 func _physics_process(delta: float) -> void:
 	var input_dir := _get_input_direction()
@@ -267,7 +268,7 @@ func jump() -> void:
 	elif is_on_floor() or coyote_timer > 0.0 and !floor_jump_done:
 		PickAxe.play_jump_animation()
 		velocity.y = jump_speed
-		floor_jump_done = true;
+		floor_jump_done = true
 		coyote_timer = 0.0
 		is_sliding = false
 		is_crouching = false
@@ -661,6 +662,17 @@ func _on_game_start() -> void:
 
 func unfreeze_player() -> void:
 	Signalbus.emit_signal("game_starts")
+
+func intro_anim_unfreeze(intro_nr: int) -> void:
+	match intro_nr:
+		0:
+			Globalsettings.first_boot_tutorial = false
+			start_countdown()
+
+func start_countdown() -> void:
+	if Globalsettings.first_boot_tutorial: return
+	%UI.visible = true
+	%countdownanim.play("countdown")
 
 func start_speedrun_timer():
 	start_time = Time.get_ticks_msec()

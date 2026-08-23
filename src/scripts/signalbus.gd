@@ -27,6 +27,7 @@ signal play_jump_sound()
 signal play_dwarf_death_sound()
 signal play_dwarf_laugh_win_sound()
 signal dont_play_sounds_on_reload()
+signal tutorial_anim_start
 #endregion
 
 # Others
