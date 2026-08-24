@@ -1,7 +1,7 @@
 extends Node
 class_name YARDMAN
 
-@export var sample_interval: float = 0.25
+@export var sample_interval: float = 0.5
 @export var player_node: Node3D
 
 var current_run: YARDDATA
@@ -17,6 +17,7 @@ func start_new_run() -> void:
 	current_run.run_id = "run_" + str(Time.get_unix_time_from_system())
 	current_run.positions.clear()
 	current_run.timestamps.clear()
+	current_run.current_level = Globalsettings.current_level
 
 	time_elapsed = 0.0
 	sample_timer = 0.0
@@ -82,7 +83,7 @@ func get_fastest_run() -> YARDDATA:
 		if file_name.ends_with(".tres"):
 			var full_path = save_dir + file_name
 			var run: YARDDATA = load(full_path)
-			if run and run.final_time < fastest_time:
+			if run and run.current_level == Globalsettings.current_level and run.final_time < fastest_time:
 				fastest_time = run.final_time
 				fastest_run = run
 		file_name = dir.get_next()

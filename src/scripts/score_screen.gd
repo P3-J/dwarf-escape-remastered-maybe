@@ -105,5 +105,4 @@ func save_score(username: String, time_sec: float) -> void:
 
 
 func _on_restart_pressed() -> void:
-	return
-	#get_tree().change_scene_to_packed(lv2)
+	get_tree().change_scene_to_file("res://src/scenes/UI/main_menu.tscn")

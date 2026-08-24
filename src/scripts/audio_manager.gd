@@ -1,19 +1,19 @@
 extends Node
 
-@onready var main_music = $MainMusic
-@onready var death_sound = $DeathSound
-@onready var pickaxe_sound = $PickAxeGrab
-@onready var pickaxe_throw: AudioStreamPlayer = $PickaxeThrow
-@onready var pickaxe_hooked: AudioStreamPlayer = $PickaxeHooked
-@onready var pickaxe_boost_hit: AudioStreamPlayer = $PickaxeBoostHit
-@onready var rope_pull: AudioStreamPlayer = $RopePull
-@onready var background_music: AudioStreamPlayer = $BackgroundMusic
-@onready var geyser_woosh: AudioStreamPlayer = $GeyserWoosh
-@onready var boiling_lava: AudioStreamPlayer = $BoilingLava
-@onready var lava_hiss: AudioStreamPlayer = $LavaHiss
-@onready var dwarf_death: AudioStreamPlayer = $DwarfDeath
-@onready var jump: AudioStreamPlayer = $Jump
-@onready var ring_boost: AudioStreamPlayer = $RingBoost
+@export var main_music: AudioStreamPlayer
+@export var death_sound: AudioStreamPlayer
+@export var pickaxe_sound: AudioStreamPlayer
+@export var pickaxe_throw: AudioStreamPlayer
+@export var pickaxe_hooked: AudioStreamPlayer
+@export var pickaxe_boost_hit: AudioStreamPlayer
+@export var rope_pull: AudioStreamPlayer
+@export var background_music: AudioStreamPlayer
+@export var geyser_woosh: AudioStreamPlayer
+@export var boiling_lava: AudioStreamPlayer
+@export var lava_hiss: AudioStreamPlayer
+@export var dwarf_death: AudioStreamPlayer
+@export var jump: AudioStreamPlayer
+@export var ring_boost: AudioStreamPlayer
 
 @export var _lava_hiss_interval: float = 2.0
 
@@ -57,20 +57,25 @@ func _process(delta: float) -> void:
 				lava_hiss.play()
 
 func _start_main_music() -> void:
-	main_music.play()
+	return
+	if not main_music.playing:
+		main_music.play()
 
 func _play_death_sound() -> void:
-	death_sound.play()
+	if not death_sound.playing:
+		death_sound.play()
 
 func _play_pickaxe_grab_sound(is_grabbed: bool) -> void:
-	pickaxe_hooked.playing = is_grabbed
+	pickaxe_hooked.playing = is_grabbed	
 
 func _play_pickaxe_throw_sound() -> void:
 	pickaxe_throw.pitch_scale = randf_range(0.8, 1.2)
 	pickaxe_throw.play()
 
 func _play_pickaxe_hooked_sound() -> void:
-	pickaxe_hooked.playing = true
+	print("hooked		")
+	if not pickaxe_hooked.playing:
+		pickaxe_hooked.play()
 
 func _play_pickaxe_boost_hit_sound() -> void:
 	pickaxe_boost_hit.pitch_scale = randf_range(0.8, 1.2)
@@ -82,6 +87,7 @@ func _play_rope_pull_sound(is_pulling: bool) -> void:
 		is_rope_pull_playing = is_pulling
 
 func _play_background_music() -> void:
+	return
 	background_music.playing = true
 
 func _on_rope_pull_finished() -> void:

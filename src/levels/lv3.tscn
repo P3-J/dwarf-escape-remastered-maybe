@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://btejl8jcyxe6b"]
+
+[ext_resource type="PackedScene" uid="uid://ddk73t8n4ysd6" path="res://src/scenes/lava.tscn" id="1_nmpub"]
+[ext_resource type="PackedScene" uid="uid://cwdgh5qpr51w6" path="res://src/scenes/player.tscn" id="2_h33yd"]
+[ext_resource type="Environment" uid="uid://cbfxn8yoprrvk" path="res://src/assets/env.tres" id="3_vivos"]
+[ext_resource type="PackedScene" uid="uid://d2fflt0dmlqmk" path="res://src/scenes/boostspot.tscn" id="4_77g68"]
+[ext_resource type="PackedScene" uid="uid://bmdbt45de3e3r" path="res://src/scenes/winning_zone.tscn" id="5_h33yd"]
+[ext_resource type="PackedScene" uid="uid://cqw0ccga86fo2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tscn" id="5_oslvj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpkk7"]
+albedo_color = Color(0.27137348, 0, 0.05368244, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e68yd"]
+material = SubResource("StandardMaterial3D_wpkk7")
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dads"]
+size = Vector3(50, 1, 50)
+
+[node name="Lv3_tscn" type="Node3D" unique_id=924920995]
+
+[node name="defaults" type="Node3D" parent="." unique_id=1498478716]
+
+[node name="Lava" parent="defaults" unique_id=1849340564 instance=ExtResource("1_nmpub")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, -37.934605, 0)
+collision_layer = 3
+rise_per_sec = 0.01
+
+[node name="player" parent="defaults" unique_id=299372560 node_paths=PackedStringArray("lava") instance=ExtResource("2_h33yd")]
+transform = Transform3D(-0.034322947, 0, 0.9994105, 0, 1, 0, -0.9994105, 0, -0.034322947, -16.96101, 12.732803, 0)
+lava = NodePath("../Lava")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="defaults" unique_id=868652649]
+environment = ExtResource("3_vivos")
+
+[node name="entity_8_boostspot" parent="defaults" unique_id=2130305985 instance=ExtResource("4_77g68")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 5.9875135, 0)
+
+[node name="WinningZone" parent="defaults" unique_id=984008320 instance=ExtResource("5_h33yd")]
+transform = Transform3D(0.048832923, 0, -0.998807, 0, 1, 0, 0.998807, 0, 0.048832923, 16.530968, 8.678521, 0)
+
+[node name="entity_2_hookspot_var2" parent="." unique_id=1358222857 instance=ExtResource("5_oslvj")]
+transform = Transform3D(1, 0, 5.563627e-08, 0, 1, 0, -5.563627e-08, 0, 1, -7, 19, -17)
+
+[node name="map_terrain" type="Node3D" parent="." unique_id=580884850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.43762, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map_terrain" unique_id=1663248959]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map_terrain/StaticBody3D" unique_id=387805347]
+mesh = SubResource("BoxMesh_e68yd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map_terrain/StaticBody3D" unique_id=1781919550]
+shape = SubResource("BoxShape3D_7dads")
+
+[editable path="defaults/WinningZone"]

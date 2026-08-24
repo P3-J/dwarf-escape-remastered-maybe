@@ -267,6 +267,7 @@ func jump() -> void:
 		wallrun_cooldown_timer = wallrun_cooldown
 	elif is_on_floor() or coyote_timer > 0.0 and !floor_jump_done:
 		PickAxe.play_jump_animation()
+		Signalbus.emit_signal("play_jump_sound")
 		velocity.y = jump_speed
 		floor_jump_done = true
 		coyote_timer = 0.0
@@ -432,6 +433,7 @@ func _try_attach_hook() -> void:
 	if not hookray.is_colliding():
 		return
 
+	Signalbus.emit_signal("play_pickaxe_throw_sound")
 	var spot := hookray.get_collider()
 	if spot == null or not is_valid_hookspot(spot):
 		return
@@ -485,6 +487,7 @@ func _update_pickaxe_travel(delta: float) -> void:
 				PickAxe.global_position = pickaxe_pos
 
 		HookState.RETRACTING:
+			Signalbus.emit_signal("play_rope_pull_sound", true)
 			var target := _pickaxe_rest_global_position()
 			var to_target := target - pickaxe_pos
 			var dist := to_target.length()
@@ -505,6 +508,7 @@ func _arrive_at_hook() -> void:
 	is_swinging = true
 	rope_length = clamp(global_position.distance_to(hook_anchor), min_rope_length, abs(hookray.target_position.z))
 	PickAxe.rotation.z = 0;
+	Signalbus.emit_signal("play_pickaxe_hooked_sound")
 
 
 func _finish_retract() -> void:
@@ -612,7 +616,14 @@ func _player_in_boost(state: bool) -> void:
 
 @export var speed_lines_shader: ColorRect;
 func _should_show_speed_lines(vel: Vector3) -> void:
-	if Vector2(vel.x, vel.y).length() > 11:
+	var total_speed = Vector2(vel.x, vel.y).length()
+
+	if not %windblow.playing:
+		%windblow.play()
+	else:
+		%windblow.volume_db = -40 + total_speed
+
+	if total_speed > 10:
 		speed_lines_shader.visible = true
 	else:
 		speed_lines_shader.visible = false
@@ -670,7 +681,7 @@ func intro_anim_unfreeze(intro_nr: int) -> void:
 			start_countdown()
 
 func start_countdown() -> void:
-	if Globalsettings.first_boot_tutorial: return
+	if Globalsettings.first_boot_tutorial and Globalsettings.current_level == 0: return
 	%UI.visible = true
 	%countdownanim.play("countdown")
 
