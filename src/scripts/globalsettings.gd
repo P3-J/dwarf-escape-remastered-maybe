@@ -7,6 +7,7 @@ var audio_volume: float
 var music_volume: float
 
 var first_boot_tutorial: bool = true;
+var first_boot_lv3: bool = true;
 var current_level: int = 0   # 0 - tutorial, 1 - new level
 
 

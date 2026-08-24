@@ -3,15 +3,24 @@
 [ext_resource type="Script" uid="uid://b2yp6l06ql3f4" path="res://src/scripts/ghostcube.gd" id="1_s54l8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s54l8"]
-albedo_color = Color(0, 1, 1, 1)
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.11764706)
 
 [sub_resource type="SphereMesh" id="SphereMesh_e68yd"]
 material = SubResource("StandardMaterial3D_s54l8")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kskia"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_mmxxm"]
+material = SubResource("StandardMaterial3D_s54l8")
+radius = 0.125
+height = 0.25
+
+[sub_resource type="Curve" id="Curve_s54l8"]
+_data = [Vector2(0, 0.99408287), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="ghostcube" type="StaticBody3D" unique_id=112604108]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_s54l8")
@@ -21,3 +30,13 @@ mesh = SubResource("SphereMesh_e68yd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1908190416]
 shape = SubResource("SphereShape3D_kskia")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1524299782]
+mesh = SubResource("SphereMesh_mmxxm")
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -9.26
+linear_accel_max = 14.82
+damping_max = 9.259
+scale_amount_curve = SubResource("Curve_s54l8")

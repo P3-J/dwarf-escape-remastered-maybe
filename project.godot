@@ -31,6 +31,7 @@ Signalbus="*res://src/scripts/signalbus.gd"
 Globalsettings="*res://src/scripts/globalsettings.gd"
 SilentWolf="*uid://ci5022pdp45ed"
 MenuManager="*res://src/scenes/UI/menu_manager.gd"
+AudioManager="*uid://bwjc8lhq044v0"
 
 [debug]
 

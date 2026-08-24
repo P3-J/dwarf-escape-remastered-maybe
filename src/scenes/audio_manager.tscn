@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwjc8lhq044v0"]
+[gd_scene format=3 uid="uid://bwjc8lhq044v0"]
 
 [ext_resource type="Script" uid="uid://c7yks3tsro0xy" path="res://src/scripts/audio_manager.gd" id="1_wdger"]
 [ext_resource type="AudioStream" uid="uid://vnymgvhcn2wt" path="res://src/assets/sounds/SFX/oudukas_cut.wav" id="2_nvaun"]
@@ -16,67 +16,79 @@
 [ext_resource type="AudioStream" uid="uid://b2x0otrtyjdc7" path="res://src/assets/sounds/SFX/jump.wav" id="13_vt8aq"]
 [ext_resource type="AudioStream" uid="uid://dqo6vpmv3jb8p" path="res://src/assets/sounds/SFX/ring_woosh.wav" id="14_ojpeg"]
 
-[node name="AudioManager" type="Node"]
+[node name="AudioManager" type="Node" unique_id=471948994 node_paths=PackedStringArray("main_music", "death_sound", "pickaxe_throw", "pickaxe_hooked", "pickaxe_boost_hit", "rope_pull", "background_music", "geyser_woosh", "boiling_lava", "lava_hiss", "dwarf_death", "jump")]
 script = ExtResource("1_wdger")
+main_music = NodePath("MainMusic")
+death_sound = NodePath("DeathSound")
+pickaxe_throw = NodePath("PickaxeThrow")
+pickaxe_hooked = NodePath("PickaxeHooked")
+pickaxe_boost_hit = NodePath("PickaxeBoostHit")
+rope_pull = NodePath("RopePull")
+background_music = NodePath("BackgroundMusic")
+geyser_woosh = NodePath("GeyserWoosh")
+boiling_lava = NodePath("BoilingLava")
+lava_hiss = NodePath("LavaHiss")
+dwarf_death = NodePath("DwarfDeath")
+jump = NodePath("Jump")
 
-[node name="MainMusic" type="AudioStreamPlayer" parent="."]
+[node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=866784740]
 stream = ExtResource("2_nvaun")
 bus = &"Music"
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=401812867]
 stream = ExtResource("3_ckoot")
 bus = &"SFX"
 
-[node name="PickAxeGrab" type="AudioStreamPlayer" parent="."]
+[node name="PickAxeGrab" type="AudioStreamPlayer" parent="." unique_id=891205826]
 stream = ExtResource("4_1xe7u")
 bus = &"SFX"
 
-[node name="PickaxeThrow" type="AudioStreamPlayer" parent="."]
+[node name="PickaxeThrow" type="AudioStreamPlayer" parent="." unique_id=256140416]
 stream = ExtResource("5_0d3i6")
 bus = &"SFX"
 
-[node name="PickaxeHooked" type="AudioStreamPlayer" parent="."]
+[node name="PickaxeHooked" type="AudioStreamPlayer" parent="." unique_id=891826339]
 stream = ExtResource("6_1nd4j")
 pitch_scale = 2.56
 bus = &"SFX"
 
-[node name="PickaxeBoostHit" type="AudioStreamPlayer" parent="."]
+[node name="PickaxeBoostHit" type="AudioStreamPlayer" parent="." unique_id=1770865101]
 stream = ExtResource("7_ccaga")
 bus = &"SFX"
 
-[node name="RopePull" type="AudioStreamPlayer" parent="."]
+[node name="RopePull" type="AudioStreamPlayer" parent="." unique_id=920884999]
 stream = ExtResource("8_hwudm")
 bus = &"SFX"
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1238735275]
 stream = ExtResource("2_vt8aq")
 volume_db = -10.0
 bus = &"Music"
 
-[node name="GeyserWoosh" type="AudioStreamPlayer" parent="."]
+[node name="GeyserWoosh" type="AudioStreamPlayer" parent="." unique_id=881779776]
 stream = ExtResource("10_hwudm")
 volume_db = -5.0
 pitch_scale = 2.0
 bus = &"SFX"
 
-[node name="BoilingLava" type="AudioStreamPlayer" parent="."]
+[node name="BoilingLava" type="AudioStreamPlayer" parent="." unique_id=277567826]
 stream = ExtResource("10_ccaga")
 autoplay = true
 bus = &"SFX"
 
-[node name="LavaHiss" type="AudioStreamPlayer" parent="."]
+[node name="LavaHiss" type="AudioStreamPlayer" parent="." unique_id=498354043]
 stream = ExtResource("12_cldsc")
 bus = &"SFX"
 
-[node name="DwarfDeath" type="AudioStreamPlayer" parent="."]
+[node name="DwarfDeath" type="AudioStreamPlayer" parent="." unique_id=1022018971]
 stream = ExtResource("12_upv5m")
 bus = &"SFX"
 
-[node name="Jump" type="AudioStreamPlayer" parent="."]
+[node name="Jump" type="AudioStreamPlayer" parent="." unique_id=228222201]
 stream = ExtResource("13_vt8aq")
 bus = &"SFX"
 
-[node name="RingBoost" type="AudioStreamPlayer" parent="."]
+[node name="RingBoost" type="AudioStreamPlayer" parent="." unique_id=195917103]
 stream = ExtResource("14_ojpeg")
 bus = &"SFX"
 

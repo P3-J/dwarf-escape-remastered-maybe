@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://vo10xy86dfh6" path="res://src/assets/sounds/SFX/woosh.mp3" id="15_5h06g"]
 [ext_resource type="Texture2D" uid="uid://cql4ja7c6p6gk" path="res://textures/128x128/Brick/Brick_04-128x128.png" id="16_5acq0"]
 [ext_resource type="Script" uid="uid://dkj5ir1t46l4x" path="res://src/scripts/yard.gd" id="16_myy50"]
+[ext_resource type="AudioStream" uid="uid://b8b4kp44kg8h6" path="res://src/assets/sounds/windblow2.mp3" id="16_twf7n"]
 [ext_resource type="PackedScene" uid="uid://dgr2fdi84ubyo" path="res://src/scenes/ghostcube.tscn" id="17_usugt"]
 [ext_resource type="Texture2D" uid="uid://r4h083wkk1un" path="res://src/textures/player_misc/ground_shadow.png" id="18_3qshy"]
 
@@ -418,6 +419,12 @@ bus = &"SFX"
 
 [node name="slide_sound" type="AudioStreamPlayer" parent="Audio" unique_id=1300037818]
 stream = ExtResource("15_5h06g")
+volume_db = -10.0
+
+[node name="windblow" type="AudioStreamPlayer" parent="Audio" unique_id=1155837108]
+unique_name_in_owner = true
+stream = ExtResource("16_twf7n")
+volume_db = -40.0
 
 [node name="callables" type="Node" parent="." unique_id=254208813]
 
