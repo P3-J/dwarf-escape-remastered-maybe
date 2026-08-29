@@ -664,6 +664,10 @@ func _signal_setup():
 	Signalbus.connect('game_starts', _on_game_start)
 	Signalbus.connect('player_in_boost', _player_in_boost)
 	Signalbus.player_wins.connect(reached_end)
+	Signalbus.settings_changed.connect(_on_settings_changed)
+
+func _on_settings_changed() -> void:
+	mouse_sensitivity = Globalsettings.mouse_sensitivity
 
 func _on_game_start() -> void:
 	player_frozen = false;
