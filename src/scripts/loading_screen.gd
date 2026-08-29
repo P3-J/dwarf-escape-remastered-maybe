@@ -10,6 +10,9 @@ func _ready() -> void:
 	#load_next_scene_async()
 
 func load_next_scene_async() -> void:
+	progress_bar.value = 0
+	label.text = "Loading..."
+
 	# Start threaded loading
 	ResourceLoader.load_threaded_request(next_scene_path)
 

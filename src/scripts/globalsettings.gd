@@ -9,6 +9,7 @@ var music_volume: float
 var first_boot_tutorial: bool = true;
 var first_boot_lv3: bool = true;
 var current_level: int = 0   # 0 - tutorial, 1 - new level
+var intro_playing: bool = false
 
 
 const SETTINGS_PATH = "user://settings.cfg"
@@ -16,7 +17,6 @@ const SETTINGS_PATH = "user://settings.cfg"
 func _ready() -> void:
 	load_settings()
 	#_setup_leaderboard_connection()
-	Signalbus.settings_changed.connect(_on_settings_changed)
 
 
 func _setup_leaderboard_connection():
@@ -45,6 +45,3 @@ func load_settings() -> void:
 		mouse_sensitivity = config.get_value("Settings", "mouse_sensitivity", 0.001)
 		audio_volume = config.get_value("Settings", "audio_volume", 100)
 		music_volume = config.get_value("Settings", "music_volume", 100)
-
-func _on_settings_changed() -> void:
-	mouse_sensitivity = Globalsettings.mouse_sensitivity
