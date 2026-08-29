@@ -114,6 +114,7 @@ var wallrun_timer: float = 0.0
 var wallrun_cooldown_timer: float = 0.0
 var floor_jump_done: bool = false;
 var in_boost_area: bool = false
+var hook_target_in_range: bool = false
 
 var is_crouching: bool = false
 var is_sliding: bool = false
@@ -122,6 +123,10 @@ var player_frozen : bool = true;
 var has_died: bool = false
 
 @onready var walk_sfx: AudioStreamPlayer3D = $Audio/Walk
+
+@onready var crosshair: TextureRect = $UI/Crosshair
+const CROSSHAIR_NORMAL_TEX: Texture2D = preload("res://src/assets/ui/pickaxe_button_slider_assets/crosshair_normal.png")
+const CROSSHAIR_HOOK_TEX: Texture2D = preload("res://src/assets/ui/pickaxe_button_slider_assets/crosshair_highlighted.png")
 
 #time
 @export_group("time stuff")
@@ -156,6 +161,7 @@ func _physics_process(delta: float) -> void:
 	_update_rope_line()
 	_update_crouch_and_slide(delta)
 	_should_show_speed_lines(velocity)
+	_update_hook_target_indicator()
 
 	if in_boost_area: velocity.y += 2
 
@@ -467,6 +473,17 @@ func is_valid_hookspot(spot: Node3D) -> bool:
 		return true
 	return false
 
+func _update_hook_target_indicator() -> void:
+	var in_range := false
+	if hookray and hook_state == HookState.IDLE:
+		hookray.force_raycast_update()
+		if hookray.is_colliding():
+			var spot := hookray.get_collider()
+			in_range = spot != null and is_valid_hookspot(spot)
+
+	if in_range != hook_target_in_range:
+		hook_target_in_range = in_range
+		Signalbus.emit_signal('player_in_hook_area', in_range)
 
 func _update_pickaxe_travel(delta: float) -> void:
 	match hook_state:
@@ -663,11 +680,16 @@ func _signal_setup():
 	Signalbus.connect('kill_player', _on_player_kill)
 	Signalbus.connect('game_starts', _on_game_start)
 	Signalbus.connect('player_in_boost', _player_in_boost)
+	Signalbus.connect('player_in_hook_area', _on_player_in_hook_area)
 	Signalbus.player_wins.connect(reached_end)
 	Signalbus.settings_changed.connect(_on_settings_changed)
 
 func _on_settings_changed() -> void:
 	mouse_sensitivity = Globalsettings.mouse_sensitivity
+
+func _on_player_in_hook_area(in_range: bool) -> void:
+	if crosshair:
+		crosshair.texture = CROSSHAIR_HOOK_TEX if in_range else CROSSHAIR_NORMAL_TEX
 
 func _on_game_start() -> void:
 	player_frozen = false;

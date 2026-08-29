@@ -18,7 +18,6 @@ func _on_area_exited(area: Area3D) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.name == 'player':
-		Signalbus.emit_signal('player_in_hook_area', boosts)
 		if boosts:
 			Signalbus.emit_signal('play_ring_boost_sound')
 			self.queue_free()
