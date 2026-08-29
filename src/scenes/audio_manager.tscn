@@ -16,10 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://b2x0otrtyjdc7" path="res://src/assets/sounds/SFX/jump.wav" id="13_vt8aq"]
 [ext_resource type="AudioStream" uid="uid://dqo6vpmv3jb8p" path="res://src/assets/sounds/SFX/ring_woosh.wav" id="14_ojpeg"]
 
-[node name="AudioManager" type="Node" unique_id=471948994 node_paths=PackedStringArray("main_music", "death_sound", "pickaxe_throw", "pickaxe_hooked", "pickaxe_boost_hit", "rope_pull", "background_music", "geyser_woosh", "boiling_lava", "lava_hiss", "dwarf_death", "jump")]
+[node name="AudioManager" type="Node" unique_id=471948994 node_paths=PackedStringArray("main_music", "death_sound", "pickaxe_sound", "pickaxe_throw", "pickaxe_hooked", "pickaxe_boost_hit", "rope_pull", "background_music", "geyser_woosh", "boiling_lava", "lava_hiss", "dwarf_death", "jump", "ring_boost")]
 script = ExtResource("1_wdger")
 main_music = NodePath("MainMusic")
 death_sound = NodePath("DeathSound")
+pickaxe_sound = NodePath("PickaxeThrow")
 pickaxe_throw = NodePath("PickaxeThrow")
 pickaxe_hooked = NodePath("PickaxeHooked")
 pickaxe_boost_hit = NodePath("PickaxeBoostHit")
@@ -30,6 +31,7 @@ boiling_lava = NodePath("BoilingLava")
 lava_hiss = NodePath("LavaHiss")
 dwarf_death = NodePath("DwarfDeath")
 jump = NodePath("Jump")
+ring_boost = NodePath("RingBoost")
 
 [node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=866784740]
 stream = ExtResource("2_nvaun")
