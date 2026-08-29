@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://dh6bt55m0insb" path="res://src/scenes/pause_ui.tscn" id="12_wpkk7"]
 [ext_resource type="Script" uid="uid://brvqpikjr5bsk" path="res://src/scripts/rope_meshy.gd" id="14_hhiii"]
 [ext_resource type="AudioStream" uid="uid://vo10xy86dfh6" path="res://src/assets/sounds/SFX/woosh.mp3" id="15_5h06g"]
-[ext_resource type="Texture2D" uid="uid://cql4ja7c6p6gk" path="res://textures/128x128/Brick/Brick_04-128x128.png" id="16_5acq0"]
 [ext_resource type="Script" uid="uid://dkj5ir1t46l4x" path="res://src/scripts/yard.gd" id="16_myy50"]
 [ext_resource type="AudioStream" uid="uid://b8b4kp44kg8h6" path="res://src/assets/sounds/windblow2.mp3" id="16_twf7n"]
 [ext_resource type="PackedScene" uid="uid://dgr2fdi84ubyo" path="res://src/scenes/ghostcube.tscn" id="17_usugt"]
 [ext_resource type="Texture2D" uid="uid://r4h083wkk1un" path="res://src/textures/player_misc/ground_shadow.png" id="18_3qshy"]
+[ext_resource type="Texture2D" uid="uid://bpscfjwhi5nqq" path="res://textures/t2/F1/CNAR9.png" id="18_twf7n"]
 
 [sub_resource type="Animation" id="Animation_4pcbe"]
 length = 0.001
@@ -430,7 +430,7 @@ volume_db = -40.0
 
 [node name="RopeMeshy" type="Node" parent="callables" unique_id=1897900637]
 script = ExtResource("14_hhiii")
-rope_tex = ExtResource("16_5acq0")
+rope_tex = ExtResource("18_twf7n")
 
 [node name="yard" type="Node" parent="callables" unique_id=1291061944 node_paths=PackedStringArray("player_node")]
 script = ExtResource("16_myy50")
@@ -443,6 +443,7 @@ yarddata = NodePath("../callables/yard")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=677576926]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0785469, -1.13536, 0.00383642)
+visible = false
 amount = 32
 lifetime = 0.5
 mesh = SubResource("PlaneMesh_0qy4j")

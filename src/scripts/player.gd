@@ -638,7 +638,7 @@ func _should_show_speed_lines(vel: Vector3) -> void:
 	if not %windblow.playing:
 		%windblow.play()
 	else:
-		%windblow.volume_db = -40 + total_speed
+		%windblow.volume_db = -55 + total_speed
 
 	if total_speed > 10:
 		speed_lines_shader.visible = true

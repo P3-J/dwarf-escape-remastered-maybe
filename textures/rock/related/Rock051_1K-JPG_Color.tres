@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bw8gjjuv5xfni"]
+
+[ext_resource type="Texture2D" uid="uid://cd8qigc04q5ww" path="res://textures/rock/related/Rock051_1K-JPG_Color.jpg" id="1_36wgo"]
+[ext_resource type="Texture2D" uid="uid://cmpe0qs4mf3h8" path="res://textures/rock/related/Rock051_1K-JPG_AmbientOcclusion.jpg" id="2_sl5vh"]
+[ext_resource type="Texture2D" uid="uid://d2x2k1nfl3t23" path="res://textures/rock/related/Rock051_1K-JPG_Metalness.jpg" id="3_o55fk"]
+[ext_resource type="Texture2D" uid="uid://556ww0vr2xn8" path="res://textures/rock/related/Rock051_1K-JPG_NormalDX.jpg" id="4_q338e"]
+[ext_resource type="Texture2D" uid="uid://c7ly03x0jk8tc" path="res://textures/rock/related/Rock051_1K-JPG_Roughness.jpg" id="5_miaes"]
+
+[resource]
+albedo_texture = ExtResource("1_36wgo")
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = ExtResource("3_o55fk")
+roughness_texture = ExtResource("5_miaes")
+normal_enabled = true
+normal_scale = 1.45
+normal_texture = ExtResource("4_q338e")
+ao_enabled = true
+ao_texture = ExtResource("2_sl5vh")
+texture_filter = 2
