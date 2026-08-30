@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://cse18aa5wsg46" path="res://src/assets/object_scene_catalogue/floor_torch.tscn" id="22_e2faa"]
 [ext_resource type="Script" uid="uid://cwqodyxexs4un" path="res://src/scripts/tutorial_boot.gd" id="23_7upbt"]
 [ext_resource type="PackedScene" uid="uid://cys8x4y7y5fkm" path="res://src/assets/object_scene_catalogue/dwarf_statue.tscn" id="23_jlaup"]
+[ext_resource type="PackedScene" uid="uid://bwjc8lhq044v0" path="res://src/scenes/audio_manager.tscn" id="25_78avc"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lsdrn"]
 _surfaces = [{
@@ -1180,5 +1181,9 @@ transform = Transform3D(-0.66214556, 0, 0.7493752, 0, 1, 0, -0.7493752, 0, -0.66
 [node name="tutorial_boot" type="AnimationPlayer" parent="ini_anim" unique_id=22759653]
 libraries/ = SubResource("AnimationLibrary_av687")
 script = ExtResource("23_7upbt")
+
+[node name="Managers" type="Node" parent="." unique_id=1431852203]
+
+[node name="AudioManager" parent="Managers" unique_id=471948994 instance=ExtResource("25_78avc")]
 
 [editable path="defaults/WinningZone"]
