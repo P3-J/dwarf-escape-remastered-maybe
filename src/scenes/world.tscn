@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://whay3h2iy0oj" path="res://src/assets/object_scene_catalogue/brown_mushroom.tscn" id="13_ogawa"]
 [ext_resource type="PackedScene" uid="uid://b5jrkxftgh5bo" path="res://src/assets/object_scene_catalogue/blue_mushroom.tscn" id="14_bslib"]
 [ext_resource type="PackedScene" uid="uid://cse18aa5wsg46" path="res://src/assets/object_scene_catalogue/floor_torch.tscn" id="15_0nppk"]
-[ext_resource type="PackedScene" uid="uid://bwjc8lhq044v0" path="res://src/scenes/audio_manager.tscn" id="15_uwbxw"]
 [ext_resource type="PackedScene" uid="uid://cf5xp2n1tr7e3" path="res://src/scenes/dust.tscn" id="16_xisyl"]
 [ext_resource type="PackedScene" uid="uid://dgobv856rt6fb" path="res://src/scenes/tavern_door.tscn" id="17_tyrj2"]
 [ext_resource type="PackedScene" uid="uid://2dspr6xg6ey" path="res://src/assets/object_scene_catalogue/crystall_1.tscn" id="17_v0ngd"]
@@ -380,8 +379,6 @@ fov = 55.0
 [node name="Lava" parent="." instance=ExtResource("12_tthp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27.4386, 0)
 rise_per_sec = 0.6
-
-[node name="AudioManager" parent="." instance=ExtResource("15_uwbxw")]
 
 [node name="FallingRock" parent="." node_paths=PackedStringArray("trigger_area") instance=ExtResource("30_gmcew")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9377, 30.634, -29.0428)

@@ -448,11 +448,11 @@ func _try_attach_hook() -> void:
 	if not hookray.is_colliding():
 		return
 
-	Signalbus.emit_signal("play_pickaxe_throw_sound")
 	var spot := hookray.get_collider()
 	if spot == null or not is_valid_hookspot(spot):
 		return
 
+	Signalbus.emit_signal("play_pickaxe_throw_sound")
 	spot = spot as Node3D
 	#hook_anchor = hookray.get_collision_point()
 	hook_anchor = spot.global_position;
@@ -648,18 +648,25 @@ func _player_in_boost(state: bool) -> void:
 		Signalbus.emit_signal('play_geyser_woosh')
 
 @export var speed_lines_shader: ColorRect;
+@export var speed_lines_max_speed: float = 10.0
+var speed_lines_material: ShaderMaterial
+
 func _should_show_speed_lines(vel: Vector3) -> void:
-	var total_speed = Vector2(vel.x, vel.y).length()
+	var total_speed: float = Vector2(vel.x, vel.y).length()
 
 	if not %windblow.playing:
 		%windblow.play()
 	else:
 		%windblow.volume_db = -55 + total_speed
 
-	if total_speed > 10:
-		speed_lines_shader.visible = true
-	else:
-		speed_lines_shader.visible = false
+	if speed_lines_material == null and speed_lines_shader:
+		speed_lines_material = speed_lines_shader.material as ShaderMaterial
+
+	var should_show_lines: bool = is_sliding or not is_on_floor()
+	var intensity: float = clamp(total_speed / speed_lines_max_speed, 0.0, 1.0) if should_show_lines else 0.0
+	if speed_lines_material:
+		speed_lines_material.set_shader_parameter("intensity", intensity)
+	speed_lines_shader.visible = intensity > 0.0
 
 
 func update_time():

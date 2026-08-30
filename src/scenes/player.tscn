@@ -140,6 +140,7 @@ shader_parameter/line_faloff = 0.70000003325
 shader_parameter/mask_size = 0.0
 shader_parameter/mask_edge = 0.450000021375
 shader_parameter/animation_speed = 11.000000475
+shader_parameter/intensity = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qy4j"]
 

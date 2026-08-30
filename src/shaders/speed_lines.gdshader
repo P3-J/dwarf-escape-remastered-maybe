@@ -9,6 +9,7 @@ uniform float line_faloff: hint_range(0.0, 1.0) = 0.25;
 uniform float mask_size: hint_range(0.0, 1.0) = 0.1;
 uniform float mask_edge: hint_range(0.0, 1.0) = 0.5;
 uniform float animation_speed: hint_range(1.0, 20.0) = 0.5;
+uniform float intensity: hint_range(0.0, 1.0) = 1.0;
 
 
 
@@ -55,5 +56,5 @@ void fragment(){
 	result = smoothstep(result, result + line_faloff, lines.r);
 
 	COLOR.rgb = vec3(line_color.rgb);
-	COLOR.a = min(line_color.a, result);
+	COLOR.a = min(line_color.a, result) * intensity;
 }
