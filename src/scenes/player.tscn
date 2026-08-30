@@ -412,7 +412,6 @@ transform = Transform3D(0.37277418, 0, 1.9649528, 0, 2, 0, -1.9649528, 0, 0.3727
 [node name="Walk" type="AudioStreamPlayer3D" parent="Audio" unique_id=1139533422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96358967, 0)
 stream = ExtResource("8_4pcbe")
-volume_db = -20.0
 unit_size = 4.0
 pitch_scale = 1.5
 bus = &"SFX"
