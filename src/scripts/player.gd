@@ -96,6 +96,7 @@ var hook_anchor: Vector3 = Vector3.ZERO
 var rope_length: float = 0.0
 var is_pickaxe_boosting: bool = false
 var has_pickaxe_boosted_air: bool = false
+var has_ground_boosted: bool = false
 
 var pickaxe_pos: Vector3 = Vector3.ZERO
 var pickaxe_original_parent: Node = null
@@ -221,7 +222,10 @@ func _process_ground_movement(delta: float, direction: Vector3) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
 		velocity.z = lerp(velocity.z, 0.0, friction * delta)
-		PickAxe.play_idle_animation()
+		if has_ground_boosted:
+			PickAxe.show_boost_unavailable()
+		else:
+			PickAxe.play_idle_animation()
 
 
 func _process_air_movement(delta: float, direction: Vector3) -> void:
@@ -237,6 +241,11 @@ func _process_air_movement(delta: float, direction: Vector3) -> void:
 	velocity.z = horiz_vel.z
 
 	velocity.y = max(velocity.y + gravity * delta, max_fall_speed)
+
+	if has_pickaxe_boosted_air:
+		PickAxe.show_boost_unavailable()
+	else:
+		PickAxe.play_idle_animation()
 
 
 func _get_input_direction() -> Vector3:
@@ -439,11 +448,11 @@ func _try_attach_hook() -> void:
 	if not hookray.is_colliding():
 		return
 
-	Signalbus.emit_signal("play_pickaxe_throw_sound")
 	var spot := hookray.get_collider()
 	if spot == null or not is_valid_hookspot(spot):
 		return
 
+	Signalbus.emit_signal("play_pickaxe_throw_sound")
 	spot = spot as Node3D
 	#hook_anchor = hookray.get_collision_point()
 	hook_anchor = spot.global_position;
@@ -588,6 +597,7 @@ func _update_coyote_timer(delta: float) -> void:
 	if is_on_floor():
 		floor_jump_done = false;
 		has_pickaxe_boosted_air = false;
+		has_ground_boosted = false;
 		coyote_timer = coyote_time
 	else:
 		coyote_timer -= delta
@@ -605,11 +615,17 @@ func _can_stand() -> bool:
 
 func boost_off_surface():
 
-	if !BoostRay.is_colliding() or is_pickaxe_boosting or has_pickaxe_boosted_air:
+	var grounded := is_on_floor()
+	var charge_already_used := has_ground_boosted if grounded else has_pickaxe_boosted_air
+
+	if !BoostRay.is_colliding() or is_pickaxe_boosting or charge_already_used:
 		return;
 
 	is_pickaxe_boosting = true;
-	has_pickaxe_boosted_air = true;
+	if grounded:
+		has_ground_boosted = true;
+	else:
+		has_pickaxe_boosted_air = true;
 	PickAxe.play_boost_animation()
 	Signalbus.emit_signal('play_pickaxe_boost_sound')
 	await get_tree().create_timer(boost_delay).timeout
@@ -632,18 +648,25 @@ func _player_in_boost(state: bool) -> void:
 		Signalbus.emit_signal('play_geyser_woosh')
 
 @export var speed_lines_shader: ColorRect;
+@export var speed_lines_max_speed: float = 10.0
+var speed_lines_material: ShaderMaterial
+
 func _should_show_speed_lines(vel: Vector3) -> void:
-	var total_speed = Vector2(vel.x, vel.y).length()
+	var total_speed: float = Vector2(vel.x, vel.y).length()
 
 	if not %windblow.playing:
 		%windblow.play()
 	else:
 		%windblow.volume_db = -55 + total_speed
 
-	if total_speed > 10:
-		speed_lines_shader.visible = true
-	else:
-		speed_lines_shader.visible = false
+	if speed_lines_material == null and speed_lines_shader:
+		speed_lines_material = speed_lines_shader.material as ShaderMaterial
+
+	var should_show_lines: bool = is_sliding or not is_on_floor()
+	var intensity: float = clamp(total_speed / speed_lines_max_speed, 0.0, 1.0) if should_show_lines else 0.0
+	if speed_lines_material:
+		speed_lines_material.set_shader_parameter("intensity", intensity)
+	speed_lines_shader.visible = intensity > 0.0
 
 
 func update_time():

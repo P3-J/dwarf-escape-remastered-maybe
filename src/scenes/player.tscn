@@ -140,6 +140,7 @@ shader_parameter/line_faloff = 0.70000003325
 shader_parameter/mask_size = 0.0
 shader_parameter/mask_edge = 0.450000021375
 shader_parameter/animation_speed = 11.000000475
+shader_parameter/intensity = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qy4j"]
 
@@ -412,7 +413,6 @@ transform = Transform3D(0.37277418, 0, 1.9649528, 0, 2, 0, -1.9649528, 0, 0.3727
 [node name="Walk" type="AudioStreamPlayer3D" parent="Audio" unique_id=1139533422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96358967, 0)
 stream = ExtResource("8_4pcbe")
-volume_db = -20.0
 unit_size = 4.0
 pitch_scale = 1.5
 bus = &"SFX"
