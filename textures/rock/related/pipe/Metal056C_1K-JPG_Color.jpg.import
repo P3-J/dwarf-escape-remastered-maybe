@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://isyufo6puiir"
-path.s3tc="res://.godot/imported/CNBA2_2.png-d0e65f21bbf0d16f5fee07302d4220bf.s3tc.ctex"
+uid="uid://beq1v7xpmaqgi"
+path.s3tc="res://.godot/imported/Metal056C_1K-JPG_Color.jpg-1fbfea67fbb590fab5d6482d4e5bb178.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/t2/F1/CNBA2_2.png"
-dest_files=["res://.godot/imported/CNBA2_2.png-d0e65f21bbf0d16f5fee07302d4220bf.s3tc.ctex"]
+source_file="res://textures/rock/related/pipe/Metal056C_1K-JPG_Color.jpg"
+dest_files=["res://.godot/imported/Metal056C_1K-JPG_Color.jpg-1fbfea67fbb590fab5d6482d4e5bb178.s3tc.ctex"]
 
 [params]
 
