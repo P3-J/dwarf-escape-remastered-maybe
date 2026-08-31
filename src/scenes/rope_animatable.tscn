@@ -1,56 +1,16 @@
 [gd_scene format=3 uid="uid://bucp31p4ww3c0"]
 
 [ext_resource type="PackedScene" uid="uid://ckqhnqud0ppq8" path="res://src/assets/object_scene_catalogue/wooden_platform_central_rope.tscn" id="1_p36jw"]
+[ext_resource type="Script" uid="uid://bg8hknrrgd34s" path="res://src/scripts/rope_animatable.gd" id="1_tfky6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e68yd"]
 size = Vector3(5.1482544, 0.546875, 5.313278)
 
-[sub_resource type="Animation" id="Animation_p36jw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_tfky6"]
-resource_name = "swing"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.5, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.5235988, 0, 0), Vector3(0.5235988, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0dp2"]
-_data = {
-&"RESET": SubResource("Animation_p36jw"),
-&"swing": SubResource("Animation_tfky6")
-}
-
 [node name="rope_animatable" type="AnimatableBody3D" unique_id=659935673]
+script = ExtResource("1_tfky6")
 
 [node name="WoodenPlatformCentralRope" parent="." unique_id=1550159911 instance=ExtResource("1_p36jw")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=805461735]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17339563, -17.022055, -0.008171082)
 shape = SubResource("BoxShape3D_e68yd")
-
-[node name="swing" type="AnimationPlayer" parent="." unique_id=853967646]
-libraries/ = SubResource("AnimationLibrary_b0dp2")
-autoplay = &"swing"

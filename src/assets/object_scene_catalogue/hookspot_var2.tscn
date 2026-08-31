@@ -6,14 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://vtnij47baem1" path="res://src/assets/object_scene_catalogue/hook.tscn" id="3_h2ycr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a70su"]
-size = Vector3(3.5221548, 3.5785556, 1.89172)
+size = Vector3(3.5221548, 4.386812, 1.89172)
 
 [node name="hookspot" type="Area3D" unique_id=1358222857 groups=["hook", "hookspot"]]
 collision_mask = 3
 script = ExtResource("1_hsqni")
+boosts = null
 
 [node name="hookshape" type="CollisionShape3D" parent="." unique_id=371056119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008025646, 1.2514172, 0.0957642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008025646, 1.6555455, 0.0957642)
 shape = SubResource("BoxShape3D_a70su")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=555929685]
@@ -30,7 +31,7 @@ light_energy = 1.372
 omni_range = 120.738
 
 [node name="Hook" parent="." unique_id=441632900 instance=ExtResource("3_h2ycr")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.07692003, 0)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.07692003, 0)
 
 [node name="StaticBody3D" parent="Hook" index="2"]
 collision_layer = 0
