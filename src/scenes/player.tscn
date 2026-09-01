@@ -403,7 +403,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="boostray" type="RayCast3D" parent="head" unique_id=1677012266]
 transform = Transform3D(1, 0, 0, 0, 2.0677965, 0.08325372, 0, -0.17275149, 0.9965283, 0, 0, 0)
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -3.2)
 
 [node name="Pickaxe" parent="head" unique_id=689752792 instance=ExtResource("2_xatcm")]
 transform = Transform3D(0.37277418, 0, 1.9649528, 0, 2, 0, -1.9649528, 0, 0.37277418, 0.407037, -0.391195, -0.559779)
