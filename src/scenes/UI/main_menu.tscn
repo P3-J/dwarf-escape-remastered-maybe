@@ -47,6 +47,63 @@ _data = {
 &"fade_in": SubResource("Animation_i48r3")
 }
 
+[sub_resource type="Animation" id="Animation_q5ok3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer/Logo:offset_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(130, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoStreamPlayer/MainMenu:offset_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(150, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_4xweg"]
+resource_name = "Start"
+length = 1.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer/Logo:offset_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0),
+"points": PackedFloat32Array(-500, 0, 0, 0.1, -106.080505, 130, 0, 0, 0.09986805, 0, 130, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.60079175, 1.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoStreamPlayer/MainMenu:offset_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(2000, 0, 0, 0.09986805, -308.33334, 150, -0.100000024, 774.97815, 0.21961105, -1701.9373),
+"times": PackedFloat32Array(0.60079175, 1.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4v121"]
+_data = {
+&"RESET": SubResource("Animation_q5ok3"),
+&"Start": SubResource("Animation_4xweg")
+}
+
 [node name="main_menu" type="Control" unique_id=1346338242]
 custom_minimum_size = Vector2(1080, 500)
 layout_mode = 3
@@ -197,6 +254,10 @@ vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=304791920]
 stream = ExtResource("18_ofngt")
+
+[node name="StartAnimation" type="AnimationPlayer" parent="." unique_id=422239419]
+libraries/ = SubResource("AnimationLibrary_4v121")
+autoplay = &"Start"
 
 [connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer/Play" to="VideoStreamPlayer/MainMenu" method="_on_play_pressed"]
 [connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer/Settings" to="VideoStreamPlayer/MainMenu" method="_on_settings_pressed"]
