@@ -2,11 +2,11 @@ extends Control
 
 #var settings_scene = ResourceLoader.load("res://src/scenes/settings_menu_main.tscn") as PackedScene
 
-@onready var animation = $"../start"
-@onready var animation_colorect = $"../start/ColorRect"
-@onready var animation_label = $"../start/ColorRect/Label"
-@onready var settings = $"../SettingsMenu"
-@onready var level_selector: Control = $"../levelselector"
+@onready var animation: AnimationPlayer = %start
+@onready var animation_colorect: ColorRect = %ColorRect
+@onready var animation_label: Label = %Label
+@onready var level_selector: Control = %levelselector
+@onready var settings: Control = %SettingsMenu
 
 
 # Called when the node enters the scene tree for the first time.

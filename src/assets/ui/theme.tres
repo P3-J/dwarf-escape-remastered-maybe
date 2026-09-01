@@ -25,14 +25,20 @@ texture = ExtResource("2_b06wh")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x31ag"]
 content_margin_bottom = 10.0
 texture = ExtResource("3_h64qy")
+expand_margin_left = 28.0
+expand_margin_right = 28.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s8qip"]
 content_margin_bottom = 10.0
 texture = ExtResource("3_0so4u")
+expand_margin_left = 28.0
+expand_margin_right = 28.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_io5f3"]
 content_margin_bottom = 10.0
 texture = ExtResource("2_b06wh")
+expand_margin_left = 28.0
+expand_margin_right = 28.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7xjr"]
 
@@ -98,7 +104,7 @@ Button/colors/icon_pressed_color = Color(0.8392157, 0.5647059, 0.29411766, 1)
 Button/constants/align_to_largest_stylebox = 0
 Button/constants/h_separation = 300
 Button/constants/outline_size = 5
-Button/font_sizes/font_size = 50
+Button/font_sizes/font_size = 42
 Button/fonts/font = ExtResource("1_me7jw")
 Button/styles/disabled = SubResource("StyleBoxTexture_1fb32")
 Button/styles/focus = SubResource("StyleBoxTexture_x6mre")
