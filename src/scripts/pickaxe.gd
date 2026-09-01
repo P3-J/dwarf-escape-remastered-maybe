@@ -1,6 +1,6 @@
 extends Node3D
 @onready var pickaxe_animation_player: AnimationPlayer = $PickaxeAnimationPlayer
-var boost_anim_playing = false
+@export var boost_anim_playing = false
 var jump_anim_playing = false
 var boost_spent_pose_active = false
 @onready var boost_particles: GPUParticles3D = $BoostParticles
@@ -9,18 +9,18 @@ func _ready() -> void:
 	play_idle_animation()
 
 func play_idle_animation() -> void:
-	if not boost_anim_playing and not jump_anim_playing:
+	if not boost_anim_playing:
 		boost_spent_pose_active = false
 		pickaxe_animation_player.play("idle")
 
 func play_run_animation() -> void:
-	if not boost_anim_playing and not jump_anim_playing:
+	if not boost_anim_playing:
 		boost_spent_pose_active = false
 		pickaxe_animation_player.play("run")
 
 func play_jump_animation() -> void:
 	if not boost_anim_playing:
-		jump_anim_playing = true
+		#jump_anim_playing = true
 		boost_spent_pose_active = false
 		pickaxe_animation_player.play("jump")
 
