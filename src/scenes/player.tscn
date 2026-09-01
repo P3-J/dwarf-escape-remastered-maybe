@@ -197,7 +197,6 @@ speed_lines_shader = NodePath("UI/SpeedLinesShader")
 
 [node name="UI" type="Control" parent="." unique_id=876507995]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -297,32 +296,26 @@ metadata/_edit_use_anchors_ = true
 [node name="timer" type="TextureRect" parent="UI" unique_id=498766344]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.43
-anchor_right = 0.57
-anchor_bottom = 0.063
-offset_top = -16.0
-offset_bottom = -16.0
+anchor_left = 0.5
+anchor_top = -0.02
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 60.0
 grow_horizontal = 2
 texture = ExtResource("4_4pcbe")
 expand_mode = 1
+stretch_mode = 4
 
 [node name="timer_text" type="RichTextLabel" parent="UI/timer" unique_id=1663079986]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -23.2
-offset_right = 100.0
-offset_bottom = 26.8
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_xvyn7")
-theme_override_font_sizes/normal_font_size = 32
-text = "00:00:00"
+theme_override_font_sizes/normal_font_size = 18
+text = "00:00:000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -363,6 +356,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="pause_ui" parent="UI" unique_id=645484055 instance=ExtResource("12_wpkk7")]
+visible = false
 layout_mode = 1
 
 [node name="player_stand" type="CollisionShape3D" parent="." unique_id=600236814]
