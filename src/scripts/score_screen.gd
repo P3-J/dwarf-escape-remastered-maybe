@@ -4,26 +4,29 @@ var main_menu_scene =  ResourceLoader.load("res://src/scenes/UI/main_menu.tscn")
 #var lv2 = ResourceLoader.load("res://src/levels/lv2.tscn") as PackedScene
 
 var time_text: RichTextLabel
-var list: ItemList
 var text_edit: TextEdit
 var has_submit: bool
 
+@onready var list: ItemList = %ItemList
 @onready var timer = $Timer2
 @onready var win_laugh: AudioStreamPlayer = $WinLaugh
 
 func _ready() -> void:
 	time_text = get_node("TextureRect/banner/timer_text")
-	list = get_node("TextureRect/ItemList")
 	text_edit = get_node("TextureRect/TextEdit")
 
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	var minute_str = str(Signalbus.minutes).pad_zeros(2)
-	var second_str = str(Signalbus.seconds).pad_zeros(2)
-	var millisecond_str = str(Signalbus.milliseconds).pad_zeros(3)
-	time_text.text = minute_str + ":" + second_str + ":" + millisecond_str
+	#var minute_str = str(Signalbus.minutes).pad_zeros(2)
+	#var second_str = str(Signalbus.seconds).pad_zeros(2)
+	#var millisecond_str = str(Signalbus.milliseconds).pad_zeros(3)
+	#time_text.text = minute_str + ":" + second_str + ":" + millisecond_str
 	Signalbus.connect("play_dwarf_laugh_win_sound", _on_dwarf_laugh_win_sound)
+	
+	# TEST line for mocked scores
+	#add_to_list([{"player_name": "Liruta", "score": 9999999}, {"player_name": "reew", "score": 9999999}, {"player_name": "reew", "score": 9999999}, {"player_name": "reew", "score": 9999999}])
+	
 	#refresh()
 
 
