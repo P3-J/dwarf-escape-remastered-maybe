@@ -11,7 +11,6 @@ enum Animations {
 
 
 func _ready() -> void:
-	return
 	match (current_anim):
 		Animations.swing:
 			%swing.play("swing")
