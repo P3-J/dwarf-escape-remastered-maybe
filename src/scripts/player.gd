@@ -78,7 +78,7 @@ class_name PlayerDwarf
 @export var pickaxe_retract_speed: float = 45.0
 
 @export_group("Player stuff")
-@export var PickAxe: Node3D
+@export var PickAxe: PickaxeManager
 
 @export_group("Pickaxe Boost")
 @export var BoostRay: RayCast3D
@@ -121,6 +121,7 @@ var is_sliding: bool = false
 var slide_timer: float = 0.0
 var player_frozen : bool = true;
 var has_died: bool = false
+var is_jumping: bool = false
 
 @onready var walk_sfx: AudioStreamPlayer3D = $Audio/Walk
 
@@ -180,12 +181,16 @@ func _physics_process(delta: float) -> void:
 	_update_coyote_timer(delta)
 	_update_head_tilt(delta, input_dir)
 	_update_head_height(delta)
+	_process_pickaxe_state(direction)
 
 func _process(delta: float) -> void:
 	update_time()
 	check_lava_level()
 
 func _input(event: InputEvent) -> void:
+	if player_frozen:
+		return
+
 	if event.is_action_pressed("jump"):
 		jump()
 
@@ -217,11 +222,10 @@ func _process_ground_movement(delta: float, direction: Vector3) -> void:
 	if direction != Vector3.ZERO:
 		velocity.x = lerp(velocity.x, direction.x * current_speed, accel * delta)
 		velocity.z = lerp(velocity.z, direction.z * current_speed, accel * delta)
-		PickAxe.play_run_animation()
+
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
 		velocity.z = lerp(velocity.z, 0.0, friction * delta)
-		PickAxe.play_idle_animation()
 
 
 func _process_air_movement(delta: float, direction: Vector3) -> void:
@@ -238,8 +242,6 @@ func _process_air_movement(delta: float, direction: Vector3) -> void:
 
 	velocity.y = max(velocity.y + gravity * delta, max_fall_speed)
 
-	if has_pickaxe_boosted_air:
-		PickAxe.show_boost_unavailable()
 
 
 func _get_input_direction() -> Vector3:
@@ -256,11 +258,10 @@ func _get_input_direction() -> Vector3:
 		_try_attach_hook()
 
 	var on_floor: bool = is_on_floor()
-	if direction == Vector3.ZERO or !on_floor:
+	if direction == Vector3.ZERO or !on_floor or is_sliding:
 		walk_sfx.stop()
-	else:
-		if !walk_sfx.playing and on_floor:
-			walk_sfx.play()
+	elif !walk_sfx.playing:
+		walk_sfx.play()
 
 	return direction.normalized()
 
@@ -268,19 +269,19 @@ func _get_input_direction() -> Vector3:
 func jump() -> void:
 	if hook_state == HookState.ATTACHED:
 		velocity.y = wallrun_jump_speed
-		PickAxe.play_jump_animation()
+		is_jumping = true
 	if is_wall_running:
 		velocity.y = wallrun_jump_speed
 		velocity += wall_normal * wallrun_jump_push
 		_end_wallrun()
 		wallrun_cooldown_timer = wallrun_cooldown
 	elif is_on_floor() or coyote_timer > 0.0 and !floor_jump_done:
-		PickAxe.play_jump_animation()
 		Signalbus.emit_signal("play_jump_sound")
 		velocity.y = jump_speed
 		floor_jump_done = true
 		coyote_timer = 0.0
 		is_sliding = false
+		is_jumping = true
 		is_crouching = false
 
 
@@ -326,7 +327,7 @@ func _start_slide() -> void:
 
 
 func _process_slide_movement(delta: float) -> void:
-	PickAxe.play_idle_animation()
+	#PickAxe.c_state = PickaxeManager.PickaxeState.IDLE
 	var horiz := Vector2(velocity.x, velocity.z)
 	var speed_now: float = max(horiz.length() - slide_friction * delta, 0.0)
 	horiz = horiz.normalized() * speed_now if horiz.length() > 0.0 else Vector2.ZERO
@@ -613,10 +614,9 @@ func boost_off_surface():
 	if !BoostRay.is_colliding() or is_pickaxe_boosting or charge_already_used:
 		return;
 
-	is_pickaxe_boosting = true;
 	has_pickaxe_boosted_air = true;
-	PickAxe.play_boost_animation()
 	Signalbus.emit_signal('play_pickaxe_boost_sound')
+	is_pickaxe_boosting = true
 	await get_tree().create_timer(boost_delay).timeout
 
 	var ray_origin = BoostRay.global_transform.origin
@@ -628,8 +628,9 @@ func boost_off_surface():
 	var boost_vector = (opposite_point - global_transform.origin).normalized()
 	boost_vector.y *= 0.5
 	velocity = boost_vector * boost_str
+
 	await get_tree().create_timer(boost_delay).timeout
-	is_pickaxe_boosting = false;
+	is_pickaxe_boosting = false
 
 func _player_in_boost(state: bool) -> void:
 	in_boost_area = state
@@ -733,3 +734,16 @@ func _on_player_kill() -> void:
 		speed_lines_shader.visible = false
 		has_died = true
 		Signalbus.kill_player.emit()
+
+
+func _process_pickaxe_state(dir: Vector3) -> void:
+	if is_on_floor():
+		if dir != Vector3.ZERO and !is_sliding:
+			PickAxe.c_state = PickaxeManager.PickaxeState.RUN
+		else:
+			PickAxe.c_state = PickaxeManager.PickaxeState.IDLE
+	if is_pickaxe_boosting:
+		PickAxe.c_state = PickaxeManager.PickaxeState.BOOST
+	if is_jumping:
+		PickAxe.c_state = PickaxeManager.PickaxeState.JUMP
+		is_jumping = !is_jumping
