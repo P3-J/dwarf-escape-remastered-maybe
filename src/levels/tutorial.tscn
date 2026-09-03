@@ -569,10 +569,9 @@ transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 7.321249, 4.0884776, 30.20
 collision_layer = 3
 rise_per_sec = 0.001
 
-[node name="player" parent="defaults" unique_id=299372560 node_paths=PackedStringArray("lava") instance=ExtResource("2_k2swy")]
+[node name="player" parent="defaults" unique_id=299372560 instance=ExtResource("2_k2swy")]
 transform = Transform3D(0.99668664, 0, 0.08133472, 0, 1, 0, -0.08133472, 0, 0.99668664, 9.884571, 6.1004086, 71.171364)
 pickaxe_throw_speed = 30.0
-lava = NodePath("../Lava")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="defaults" unique_id=2045341262]
 environment = ExtResource("3_s4utg")
