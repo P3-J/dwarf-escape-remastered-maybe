@@ -133,6 +133,7 @@ const DEBUG_TELEPORT_POSITIONS := {
 }
 
 @onready var walk_sfx: AudioStreamPlayer3D = $Audio/Walk
+@onready var ghostcube: StaticBody3D = $ghostcube
 
 @onready var crosshair: TextureRect = $UI/Crosshair
 const CROSSHAIR_NORMAL_TEX: Texture2D = preload("res://src/assets/ui/pickaxe_button_slider_assets/crosshair_normal.png")
@@ -203,6 +204,8 @@ func _input(event: InputEvent) -> void:
 		elif debug_mode and DEBUG_TELEPORT_POSITIONS.has(event.keycode):
 			velocity = Vector3.ZERO
 			global_position = DEBUG_TELEPORT_POSITIONS[event.keycode]
+		elif event.keycode == KEY_G:
+			ghostcube.visible = !ghostcube.visible
 
 	if player_frozen:
 		return
