@@ -247,7 +247,8 @@ func _process_ground_movement(delta: float, direction: Vector3) -> void:
 
 func _process_air_movement(delta: float, direction: Vector3) -> void:
 	var horiz_vel := Vector3(velocity.x, 0.0, velocity.z)
-	var desired := direction * air_speed
+	var target_speed: float = max(air_speed, horiz_vel.length())
+	var desired := direction * target_speed
 	var add_vel := desired - horiz_vel
 
 	if add_vel.length() > air_accel * delta:
