@@ -114,7 +114,6 @@ var wallrun_timer: float = 0.0
 var wallrun_cooldown_timer: float = 0.0
 var floor_jump_done: bool = false;
 var in_boost_area: bool = false
-var hook_target_in_range: bool = false
 
 var is_crouching: bool = false
 var is_sliding: bool = false
@@ -138,6 +137,7 @@ const DEBUG_TELEPORT_POSITIONS := {
 @onready var crosshair: TextureRect = $UI/Crosshair
 const CROSSHAIR_NORMAL_TEX: Texture2D = preload("res://src/assets/ui/pickaxe_button_slider_assets/crosshair_normal.png")
 const CROSSHAIR_HOOK_TEX: Texture2D = preload("res://src/assets/ui/pickaxe_button_slider_assets/crosshair_highlighted.png")
+const CROSSHAIR_HOOK_ATTACHED_TEX: Texture2D = preload("res://src/assets/ui/pickaxe_button_slider_assets/crosshair_attached.png")
 
 #time
 @export_group("time stuff")
@@ -506,9 +506,7 @@ func _update_hook_target_indicator() -> void:
 			var spot := hookray.get_collider()
 			in_range = spot != null and is_valid_hookspot(spot)
 
-	if in_range != hook_target_in_range:
-		hook_target_in_range = in_range
-		Signalbus.emit_signal('player_in_hook_area', in_range)
+	Signalbus.emit_signal('player_in_hook_area', in_range)
 
 func _update_pickaxe_travel(delta: float) -> void:
 	match hook_state:
@@ -744,8 +742,15 @@ func _on_settings_changed() -> void:
 	mouse_sensitivity = Globalsettings.mouse_sensitivity
 
 func _on_player_in_hook_area(in_range: bool) -> void:
-	if crosshair:
-		crosshair.texture = CROSSHAIR_HOOK_TEX if in_range else CROSSHAIR_NORMAL_TEX
+
+	if !crosshair:
+		return
+
+	if hook_state == HookState.ATTACHED:
+		crosshair.texture = CROSSHAIR_HOOK_ATTACHED_TEX
+		return
+
+	crosshair.texture = CROSSHAIR_HOOK_TEX if in_range else CROSSHAIR_NORMAL_TEX
 
 func _on_game_start() -> void:
 	player_frozen = false;

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bkvlee1ky3y3s"]
+
+[ext_resource type="Texture2D" uid="uid://d2x2k1nfl3t23" path="res://textures/rock/related/Rock051_1K-JPG_Metalness.jpg" id="1_63usr"]
+
+[resource]
+albedo_texture = ExtResource("1_63usr")
+metallic_specular = 0.0
+texture_filter = 2
