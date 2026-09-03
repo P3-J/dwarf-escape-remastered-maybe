@@ -122,7 +122,17 @@ var player_frozen : bool = true;
 var has_died: bool = false
 var is_jumping: bool = false
 
+# debug
+var debug_mode: bool = false
+const DEBUG_TELEPORT_POSITIONS := {
+	KEY_1: Vector3(-11.34, 17.215, -16.747),
+	KEY_2: Vector3(-2.736, 74.719, 111.878),
+	KEY_3: Vector3(-2.736, 102.13, 161.084),
+	KEY_4: Vector3(14.945, 155.497, 295.056),
+}
+
 @onready var walk_sfx: AudioStreamPlayer3D = $Audio/Walk
+@onready var ghostcube: StaticBody3D = $ghostcube
 
 @onready var crosshair: TextureRect = $UI/Crosshair
 const CROSSHAIR_NORMAL_TEX: Texture2D = preload("res://src/assets/ui/pickaxe_button_slider_assets/crosshair_normal.png")
@@ -134,7 +144,6 @@ const CROSSHAIR_HOOK_ATTACHED_TEX: Texture2D = preload("res://src/assets/ui/pick
 var start_time: int = 0
 var is_stopwatch_running: bool = false
 @export var timer_text: RichTextLabel
-@export var lava: Area3D
 var minutes : int = 0
 var seconds : int = 0
 var milliseconds : int = 0
@@ -188,6 +197,16 @@ func _process(delta: float) -> void:
 	check_lava_level()
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_0:
+			debug_mode = !debug_mode
+			print("Debug mode: ", "ON" if debug_mode else "OFF")
+		elif debug_mode and DEBUG_TELEPORT_POSITIONS.has(event.keycode):
+			velocity = Vector3.ZERO
+			global_position = DEBUG_TELEPORT_POSITIONS[event.keycode]
+		elif event.keycode == KEY_G:
+			ghostcube.visible = !ghostcube.visible
+
 	if player_frozen:
 		return
 
@@ -207,6 +226,7 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("restart"):
 		yardman.finish_run(false)
+		Signalbus.emit_signal("dont_play_sounds_on_reload")
 		get_tree().reload_current_scene()
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -230,7 +250,8 @@ func _process_ground_movement(delta: float, direction: Vector3) -> void:
 
 func _process_air_movement(delta: float, direction: Vector3) -> void:
 	var horiz_vel := Vector3(velocity.x, 0.0, velocity.z)
-	var desired := direction * air_speed
+	var target_speed: float = max(air_speed, horiz_vel.length())
+	var desired := direction * target_speed
 	var add_vel := desired - horiz_vel
 
 	if add_vel.length() > air_accel * delta:
@@ -664,11 +685,23 @@ func update_time():
 		timer_text.text = format_time(elapsed_time)
 
 func check_lava_level():
-	Signalbus.emit_signal('play_lava_rise_sound', global_position.y - lava.global_position.y)
-	Signalbus.emit_signal('play_lava_hiss_sound', global_position.y - lava.global_position.y)
-	if (lava.global_position.y > global_position.y):
-		Signalbus.emit_signal('kill_player');
-		Signalbus.emit_signal('play_dwarf_death_sound')
+	# Lava pools sit at independent, level-specific elevations (they're local
+	# hazards, not one synchronized flood height), so only the nearest pool
+	# is relevant here. Actual death-by-lava is handled by each pool's own
+	# Area3D collision (see lava.gd) — this just drives the proximity audio.
+	var lava_pools := get_tree().get_nodes_in_group('lava')
+	if lava_pools.is_empty():
+		return
+	var nearest_pool: Node3D = lava_pools[0]
+	var nearest_horizontal_dist := Vector2(global_position.x, global_position.z).distance_to(Vector2(nearest_pool.global_position.x, nearest_pool.global_position.z))
+	for pool in lava_pools:
+		var horizontal_dist = Vector2(global_position.x, global_position.z).distance_to(Vector2(pool.global_position.x, pool.global_position.z))
+		if horizontal_dist < nearest_horizontal_dist:
+			nearest_horizontal_dist = horizontal_dist
+			nearest_pool = pool
+	var vertical_distance = global_position.y - nearest_pool.global_position.y
+	Signalbus.emit_signal('play_lava_rise_sound', vertical_distance)
+	Signalbus.emit_signal('play_lava_hiss_sound', vertical_distance)
 
 func format_time(elapsed_time: float) -> String:
 	minutes = int(elapsed_time / 60)
@@ -694,6 +727,16 @@ func _signal_setup():
 	Signalbus.connect('player_in_hook_area', _on_player_in_hook_area)
 	Signalbus.player_wins.connect(reached_end)
 	Signalbus.settings_changed.connect(_on_settings_changed)
+	Signalbus.connect('dont_play_sounds_on_reload', _on_dont_play_sounds_on_reload)
+
+func _on_dont_play_sounds_on_reload() -> void:
+	# These are owned/controlled directly by the player, so audio_manager's
+	# own stop-list (which only covers its own exported players) can't reach
+	# them — without this they keep playing for a frame or two into the
+	# scene reload (most noticeable with windblow, since it plays continuously).
+	walk_sfx.stop()
+	slide_sound.stop()
+	%windblow.stop()
 
 func _on_settings_changed() -> void:
 	mouse_sensitivity = Globalsettings.mouse_sensitivity

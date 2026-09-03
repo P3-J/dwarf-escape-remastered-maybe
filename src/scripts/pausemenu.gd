@@ -31,6 +31,7 @@ func _close_pause_menu() -> void:
 func _reset_game_state() -> void:
 	Globalsettings.input_disabled = false
 	get_tree().paused = false
+	Signalbus.emit_signal("dont_play_sounds_on_reload")
 	get_tree().reload_current_scene()
 
 
@@ -49,4 +50,5 @@ func _on_quit_button_pressed() -> void:
 func _on_respawn_button_pressed() -> void:
 	get_tree().paused = false
 	MenuManager.reset()
+	Signalbus.emit_signal("dont_play_sounds_on_reload")
 	get_tree().reload_current_scene()

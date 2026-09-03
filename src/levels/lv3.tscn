@@ -3493,9 +3493,8 @@ transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 4.860691, 117.05072)
 collision_layer = 3
 rise_per_sec = 0.01
 
-[node name="player" parent="defaults" unique_id=299372560 node_paths=PackedStringArray("lava") instance=ExtResource("2_h33yd")]
-transform = Transform3D(-0.034322947, 0, 0.9994105, 0, 1, 0, -0.9994105, 0, -0.034322947, 10.256805, 119.79319, 165.0533)
-lava = NodePath("../Lava")
+[node name="player" parent="defaults" unique_id=299372560 instance=ExtResource("2_h33yd")]
+transform = Transform3D(-0.6225144, 0, -0.7826079, 0, 1, 0, 0.7826079, 0, -0.6225144, -13.463941, 17.215221, -19.313278)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="defaults" unique_id=868652649]
 environment = ExtResource("3_vivos")
@@ -3505,6 +3504,11 @@ transform = Transform3D(-0.9999915, 0, 0.004138358, 0, 1, 0, -0.004138358, 0, -0
 
 [node name="Lava2" parent="defaults" unique_id=388630991 instance=ExtResource("1_nmpub")]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 13.92708, 27.384155)
+collision_layer = 3
+rise_per_sec = 0.01
+
+[node name="Lava5" parent="defaults" unique_id=708362321 instance=ExtResource("1_nmpub")]
+transform = Transform3D(25, 0, 0, 0, 24.78173, -3.296335, 0, 3.296335, 24.78173, 0, 5.4726543, 151.2851)
 collision_layer = 3
 rise_per_sec = 0.01
 

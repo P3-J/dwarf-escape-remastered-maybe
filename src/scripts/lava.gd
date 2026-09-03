@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group('player'):
 		Signalbus.emit_signal('kill_player')
+		Signalbus.emit_signal('play_dwarf_death_sound')
 
 func _on_lava_start_rising() -> void:
 	is_rising = true

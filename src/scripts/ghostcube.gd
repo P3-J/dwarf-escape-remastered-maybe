@@ -11,6 +11,7 @@ var replay_index: int = 0
 func _ready() -> void:
 	Signalbus.connect('game_starts', _on_game_start)
 	replay_run = yarddata.get_fastest_run()
+	visible = false
 
 
 func _on_game_start():
@@ -21,7 +22,6 @@ func _on_game_start():
 	if replay_run.positions.size() < 2:
 		print("Replay run does not contain enough pos")
 		return
-	visible = true
 	replaying = true
 	replay_time = 0.0
 	replay_index = 0
