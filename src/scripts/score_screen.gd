@@ -3,31 +3,37 @@ extends Control
 var main_menu_scene =  ResourceLoader.load("res://src/scenes/UI/main_menu.tscn") as PackedScene
 #var lv2 = ResourceLoader.load("res://src/levels/lv2.tscn") as PackedScene
 
-var time_text: RichTextLabel
-var text_edit: TextEdit
+@export var time_text: RichTextLabel
+@export var text_edit: TextEdit
 var has_submit: bool
 
 @onready var list: ItemList = %ItemList
 @onready var timer = $Timer2
 @onready var win_laugh: AudioStreamPlayer = $WinLaugh
 
+var ldboard_name: String = ""
+
 func _ready() -> void:
-	time_text = get_node("TextureRect/banner/timer_text")
-	text_edit = get_node("TextureRect/TextEdit")
+
+	match (Globalsettings.current_level):
+		0:
+			ldboard_name = "tutorial"
+		1:
+			ldboard_name = "lv3"
 
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	#var minute_str = str(Signalbus.minutes).pad_zeros(2)
-	#var second_str = str(Signalbus.seconds).pad_zeros(2)
-	#var millisecond_str = str(Signalbus.milliseconds).pad_zeros(3)
-	#time_text.text = minute_str + ":" + second_str + ":" + millisecond_str
+	var minute_str = str(Signalbus.minutes).pad_zeros(2)
+	var second_str = str(Signalbus.seconds).pad_zeros(2)
+	var millisecond_str = str(Signalbus.milliseconds).pad_zeros(3)
+	time_text.text = minute_str + ":" + second_str + ":" + millisecond_str
 	Signalbus.connect("play_dwarf_laugh_win_sound", _on_dwarf_laugh_win_sound)
-	
+
 	# TEST line for mocked scores
 	#add_to_list([{"player_name": "Liruta", "score": 9999999}, {"player_name": "reew", "score": 9999999}, {"player_name": "reew", "score": 9999999}, {"player_name": "reew", "score": 9999999}])
-	
-	#refresh()
+
+	refresh()
 
 
 
@@ -50,13 +56,12 @@ func submit():
 	print("sending_data")
 
 	save_score(text_edit.text, -time_to_int(Signalbus.minutes, Signalbus.seconds, Signalbus.milliseconds))
-	SilentWolf.Scores.save_score(text_edit.text, -time_to_int(Signalbus.minutes, Signalbus.seconds, Signalbus.milliseconds))
+	SilentWolf.Scores.save_score(text_edit.text, -time_to_int(Signalbus.minutes, Signalbus.seconds, Signalbus.milliseconds), ldboard_name)
 	timer.start()
 
 func refresh():
-	return
 	print("getting")
-	var sw_result: Dictionary = await SilentWolf.Scores.get_scores().sw_get_scores_complete
+	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(20, ldboard_name).sw_get_scores_complete
 	add_to_list(sw_result.scores)
 
 

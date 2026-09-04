@@ -718,7 +718,7 @@ func reached_end():
 	Signalbus.milliseconds = milliseconds
 	Signalbus.seconds = seconds
 	yardman.finish_run(true)
-	get_tree().change_scene_to_file("res://src/scenes/score_screen.tscn")
+	get_tree().call_deferred("change_scene_to_file","res://src/scenes/score_screen.tscn")
 
 func _signal_setup():
 	Signalbus.connect('kill_player', _on_player_kill)
