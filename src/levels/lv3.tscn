@@ -6702,7 +6702,7 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.023011245, 0, -0.9997351, 0, 1, 0, 0.99973506, 0, -0.023011245, 3.6414132, 114.88611, 174.81941)
+transform = Transform3D(-0.023011243, 0, -0.99973506, 0, 1, 0, 0.999735, 0, -0.023011245, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")
