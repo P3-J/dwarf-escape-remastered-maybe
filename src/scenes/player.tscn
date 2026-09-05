@@ -356,7 +356,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="pause_ui" parent="UI" unique_id=645484055 instance=ExtResource("12_wpkk7")]
-visible = false
 layout_mode = 1
 
 [node name="player_stand" type="CollisionShape3D" parent="." unique_id=600236814]
@@ -400,7 +399,7 @@ transform = Transform3D(1, 0, 0, 0, 2.0677965, 0.08325372, 0, -0.17275149, 0.996
 target_position = Vector3(0, 0, -3.2)
 
 [node name="Pickaxe" parent="head" unique_id=689752792 instance=ExtResource("2_xatcm")]
-transform = Transform3D(0.37277418, 0, 1.9649528, 0, 2, 0, -1.9649528, 0, 0.37277418, 0.407037, -0.391195, -0.559779)
+transform = Transform3D(0.18638709, 0, 0.9824764, 0, 1, 0, -0.9824764, 0, 0.18638709, 0.1756073, -0.22893149, -0.29213384)
 
 [node name="Audio" type="Node3D" parent="." unique_id=1446774357]
 

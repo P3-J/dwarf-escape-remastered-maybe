@@ -279,4 +279,5 @@ text = "Back"
 
 [connection signal="value_changed" from="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="toggled" from="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer4/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="item_selected" from="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer5/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="TextureRect/VBoxContainer2/AspectRatioContainer/Back" to="." method="_on_back_pressed"]

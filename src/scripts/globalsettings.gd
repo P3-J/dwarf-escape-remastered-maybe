@@ -16,7 +16,7 @@ const SETTINGS_PATH = "user://settings.cfg"
 
 func _ready() -> void:
 	load_settings()
-	#_setup_leaderboard_connection()
+	_setup_leaderboard_connection()
 
 
 func _setup_leaderboard_connection():

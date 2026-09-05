@@ -97,6 +97,8 @@ func _play_geyser_woosh() -> void:
 	geyser_woosh.play()
 
 func _play_lava_rise_sound(distance: float) -> void:
+	if not boiling_lava.playing:
+		boiling_lava.play()
 	var volume_db = clamp(-distance, -40, 0)
 	boiling_lava.volume_db = map_0_100_to_minus50_0(Globalsettings.audio_volume) + volume_db
 

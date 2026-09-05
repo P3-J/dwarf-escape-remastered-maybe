@@ -5,12 +5,16 @@ const ScoreItem = preload("ScoreItem.tscn")
 const SWLogger = preload("res://addons/silent_wolf/utils/SWLogger.gd")
 
 var list_index = 0
-# Replace the leaderboard name if you're not using the default leaderboard
 var ld_name = "main"
 var max_scores = 10
 
 
+
 func _ready():
+	setup_board_based_on_lb_name()
+
+
+func setup_board_based_on_lb_name():
 	print("SilentWolf.Scores.leaderboards: " + str(SilentWolf.Scores.leaderboards))
 	print("SilentWolf.Scores.ldboard_config: " + str(SilentWolf.Scores.ldboard_config))
 	var scores = SilentWolf.Scores.scores
@@ -18,8 +22,8 @@ func _ready():
 	if ld_name in SilentWolf.Scores.leaderboards:
 		scores = SilentWolf.Scores.leaderboards[ld_name]
 	var local_scores = SilentWolf.Scores.local_scores
-	
-	if len(scores) > 0: 
+
+	if len(scores) > 0:
 		render_board(scores, local_scores)
 	else:
 		# use a signal to notify when the high scores have been returned, and show a "loading" animation until it's the case...
@@ -28,6 +32,7 @@ func _ready():
 		scores = sw_result.scores
 		hide_message()
 		render_board(scores, local_scores)
+
 
 
 func render_board(scores: Array, local_scores: Array) -> void:
