@@ -3476,8 +3476,10 @@ _data = {
 script = ExtResource("1_gn8i6")
 level_nr = 1
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=719646103]
-transform = Transform3D(-0.72537446, -0.6176318, 0.30391255, 0, 0.44150588, 0.89725834, -0.6883545, 0.65084827, -0.3202571, 0, 0, 0)
+[node name="Environment" type="Node3D" parent="." unique_id=1305140854]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=719646103]
+transform = Transform3D(-0.72537446, -0.61763185, 0.30391255, 0, 0.4415059, 0.89725834, -0.6883545, 0.6508483, -0.3202571, 0, 0, 0)
 light_indirect_energy = 6.938
 shadow_enabled = true
 directional_shadow_split_1 = 0.12
@@ -3486,18 +3488,157 @@ directional_shadow_split_3 = 0.497
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 386.9
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=868652649]
+environment = ExtResource("3_vivos")
+
+[node name="Lights" type="Node3D" parent="Environment" unique_id=378971484]
+
+[node name="Torches" type="Node3D" parent="Environment/Lights" unique_id=761405975]
+
+[node name="FloorTorch" parent="Environment/Lights/Torches" unique_id=1851058920 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3461223, 16.15413, -15.124996)
+
+[node name="FloorTorch2" parent="Environment/Lights/Torches" unique_id=2047848832 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5762997, 19.638132, -8.681028)
+
+[node name="FloorTorch3" parent="Environment/Lights/Torches" unique_id=1729755704 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.697313, 30.498846, -4.101489)
+
+[node name="FloorTorch4" parent="Environment/Lights/Torches" unique_id=559920285 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.412758, 27.247904, -17.149319)
+
+[node name="FloorTorch5" parent="Environment/Lights/Torches" unique_id=424522331 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.33803, 22.693731, 19.642641)
+
+[node name="FloorTorch6" parent="Environment/Lights/Torches" unique_id=1635329156 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.490044, 31.46036, 36.803078)
+
+[node name="FloorTorch25" parent="Environment/Lights/Torches" unique_id=1770456295 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.382824, 45.422882, 67.529305)
+
+[node name="FloorTorch7" parent="Environment/Lights/Torches" unique_id=1970749476 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.82306, 31.46036, 40.29914)
+
+[node name="FloorTorch8" parent="Environment/Lights/Torches" unique_id=1318447149 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.706556, 52.875652, 48.764805)
+
+[node name="FloorTorch9" parent="Environment/Lights/Torches" unique_id=1759878987 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.119003, 54.460888, 97.85344)
+
+[node name="FloorTorch10" parent="Environment/Lights/Torches" unique_id=863982529 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.453154, 91.652054, 92.54116)
+
+[node name="FloorTorch11" parent="Environment/Lights/Torches" unique_id=6618986 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.627655, 67.2487, 119.06631)
+
+[node name="FloorTorch12" parent="Environment/Lights/Torches" unique_id=1679108512 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.371815, 77.67354, 153.72937)
+
+[node name="FloorTorch13" parent="Environment/Lights/Torches" unique_id=73140865 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3461223, 16.15413, -15.124996)
+
+[node name="FloorTorch14" parent="Environment/Lights/Torches" unique_id=1227789865 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5762997, 19.638132, -8.681028)
+
+[node name="FloorTorch15" parent="Environment/Lights/Torches" unique_id=1809076142 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.697313, 30.498846, -4.101489)
+
+[node name="FloorTorch16" parent="Environment/Lights/Torches" unique_id=151373839 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.412758, 27.247904, -17.149319)
+
+[node name="FloorTorch17" parent="Environment/Lights/Torches" unique_id=1734322139 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.33803, 22.693731, 19.642641)
+
+[node name="FloorTorch18" parent="Environment/Lights/Torches" unique_id=1312810030 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.490044, 31.46036, 36.803078)
+
+[node name="FloorTorch19" parent="Environment/Lights/Torches" unique_id=1379989931 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.82306, 31.46036, 40.29914)
+
+[node name="FloorTorch20" parent="Environment/Lights/Torches" unique_id=1887510540 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.706556, 52.875652, 48.764805)
+
+[node name="FloorTorch21" parent="Environment/Lights/Torches" unique_id=1182766200 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.119003, 54.460888, 97.85344)
+
+[node name="FloorTorch26" parent="Environment/Lights/Torches" unique_id=1653352276 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.83193, 51.397224, 115.75745)
+
+[node name="FloorTorch27" parent="Environment/Lights/Torches" unique_id=29860851 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5217, 85.611824, 82.47026)
+
+[node name="FloorTorch28" parent="Environment/Lights/Torches" unique_id=2101766132 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.265188, 76.21148, 156.14966)
+
+[node name="FloorTorch29" parent="Environment/Lights/Torches" unique_id=1451997782 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.22757, 97.71313, 184.66806)
+
+[node name="FloorTorch30" parent="Environment/Lights/Torches" unique_id=1151068960 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.644913, 117.26639, 151.5883)
+
+[node name="FloorTorch31" parent="Environment/Lights/Torches" unique_id=1043735495 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67074347, 118.18966, 214.30363)
+
+[node name="FloorTorch22" parent="Environment/Lights/Torches" unique_id=1588315156 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.453154, 91.652054, 92.54116)
+
+[node name="FloorTorch23" parent="Environment/Lights/Torches" unique_id=840361815 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.627655, 67.2487, 119.06631)
+
+[node name="FloorTorch24" parent="Environment/Lights/Torches" unique_id=804520405 instance=ExtResource("29_wwjbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.371815, 77.67354, 153.72937)
+
+[node name="Lava" type="Node3D" parent="Environment/Lights" unique_id=322230659]
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/Lights/Lava" unique_id=875336314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.8548, 45.53223, 141.03583)
+light_color = Color(0.8117139, 0.07439273, 9.62615e-08, 1)
+light_energy = 8.0
+shadow_enabled = true
+omni_range = 86.239
+omni_attenuation = 0.655
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/Lights/Lava" unique_id=1552707114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.40877, 62.243996, 209.30052)
+light_color = Color(0.8117139, 0.07439273, 9.62615e-08, 1)
+light_energy = 4.0
+shadow_enabled = true
+omni_range = 86.239
+omni_attenuation = 0.655
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/Lights/Lava" unique_id=1193981467]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 6.6399326, -44.33932, 48.574585)
+light_color = Color(0.9293862, 0.092274696, 9.604179e-07, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 0.5
+spot_range = 144.65315
+spot_angle = 89.99
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Environment/Lights/Lava" unique_id=1614399242]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 6.6399326, -44.33932, 131.62413)
+light_color = Color(0.9293862, 0.092274696, 9.604179e-07, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 0.5
+spot_range = 144.65315
+spot_angle = 89.99
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Environment/Lights/Lava" unique_id=1973443381]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 6.6399326, -44.33932, 280.67047)
+light_color = Color(0.9293862, 0.092274696, 9.604179e-07, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 0.5
+spot_range = 144.65315
+spot_angle = 89.99
+
 [node name="defaults" type="Node3D" parent="." unique_id=1498478716]
 
 [node name="Lava" parent="defaults" unique_id=1849340564 instance=ExtResource("1_nmpub")]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 4.860691, 117.05072)
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 4.860691, 190.4467)
 collision_layer = 3
 rise_per_sec = 0.01
 
 [node name="player" parent="defaults" unique_id=299372560 instance=ExtResource("2_h33yd")]
 transform = Transform3D(-0.6225144, 0, -0.7826079, 0, 1, 0, 0.7826079, 0, -0.6225144, -13.463941, 17.215221, -19.313278)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="defaults" unique_id=868652649]
-environment = ExtResource("3_vivos")
 
 [node name="WinningZone" parent="defaults" unique_id=984008320 instance=ExtResource("5_h33yd")]
 transform = Transform3D(-0.9999915, 0, 0.004138358, 0, 1, 0, -0.004138358, 0, -0.9999915, 13.779826, 156.6243, 301.4992)
@@ -3508,7 +3649,7 @@ collision_layer = 3
 rise_per_sec = 0.01
 
 [node name="Lava5" parent="defaults" unique_id=708362321 instance=ExtResource("1_nmpub")]
-transform = Transform3D(25, 0, 0, 0, 24.78173, -3.296335, 0, 3.296335, 24.78173, 0, 5.4726543, 151.2851)
+transform = Transform3D(25, 0, 0, 0, 24.78173, -3.296335, 0, 3.296335, 24.78173, 0, 6.5297832, 147.44786)
 collision_layer = 3
 rise_per_sec = 0.01
 
@@ -3572,7 +3713,7 @@ transform = Transform3D(0.01492735, 0.6607827, 0.75042886, -0.013141531, 0.75057
 boosts = false
 
 [node name="Lava3" parent="defaults" unique_id=1093954742 instance=ExtResource("1_nmpub")]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 115.573975, 53.842537, 146.9168)
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 120.595184, 53.842537, 146.9168)
 collision_layer = 3
 rise_per_sec = 0.01
 
@@ -3581,6 +3722,11 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 28.1
 
 [node name="Lava4" parent="defaults" unique_id=310003075 instance=ExtResource("1_nmpub")]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 32.062798, 249.4151)
+collision_layer = 3
+rise_per_sec = 0.01
+
+[node name="Lava6" parent="defaults" unique_id=417464178 instance=ExtResource("1_nmpub")]
+transform = Transform3D(11.526552, 0, 2.432139, 0, 25, 0, -2.432139, 0, 11.526552, 90.6609, 75.48369, 210.06328)
 collision_layer = 3
 rise_per_sec = 0.01
 
@@ -6450,68 +6596,6 @@ speed_scale = 0.025
 
 [node name="assets" type="Node3D" parent="." unique_id=1697361040]
 
-[node name="lights" type="Node3D" parent="assets" unique_id=1895631975]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="assets/lights" unique_id=2025539823]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.917204, 11.807491, 84.68975)
-light_color = Color(0.8117139, 0.07439273, 9.62615e-08, 1)
-light_energy = 16.0
-shadow_enabled = true
-omni_range = 86.239
-omni_attenuation = 0.655
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="assets/lights" unique_id=1026002970]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.917204, 9.019472, 141.03583)
-light_color = Color(0.8117139, 0.07439273, 9.62615e-08, 1)
-light_energy = 16.0
-shadow_enabled = true
-omni_range = 86.239
-omni_attenuation = 0.655
-
-[node name="FloorTorch" parent="assets/lights" unique_id=1851058920 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3461223, 16.15413, -15.124996)
-
-[node name="FloorTorch2" parent="assets/lights" unique_id=355140850 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5762997, 19.638132, -8.681028)
-
-[node name="FloorTorch3" parent="assets/lights" unique_id=1492711469 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.697313, 30.498846, -4.101489)
-
-[node name="FloorTorch4" parent="assets/lights" unique_id=258087910 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.412758, 27.247904, -17.149319)
-
-[node name="FloorTorch5" parent="assets/lights" unique_id=1417501179 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.33803, 22.693731, 19.642641)
-
-[node name="FloorTorch6" parent="assets/lights" unique_id=1479144882 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.490044, 31.46036, 36.803078)
-
-[node name="FloorTorch7" parent="assets/lights" unique_id=372822642 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.82306, 31.46036, 40.29914)
-
-[node name="FloorTorch8" parent="assets/lights" unique_id=2136758807 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.706556, 52.875652, 48.764805)
-
-[node name="FloorTorch9" parent="assets/lights" unique_id=1110611583 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.119003, 54.460888, 97.85344)
-
-[node name="FloorTorch10" parent="assets/lights" unique_id=138986138 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.453154, 91.652054, 92.54116)
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="assets/lights" unique_id=805555928]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.8548, 45.53223, 141.03583)
-light_color = Color(0.8117139, 0.07439273, 9.62615e-08, 1)
-light_energy = 16.0
-shadow_enabled = true
-omni_range = 86.239
-omni_attenuation = 0.655
-
-[node name="FloorTorch11" parent="assets/lights" unique_id=919616570 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.627655, 67.2487, 119.06631)
-
-[node name="FloorTorch12" parent="assets/lights" unique_id=1441402114 instance=ExtResource("29_wwjbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.371815, 77.67354, 153.72937)
-
 [node name="models" type="Node3D" parent="assets" unique_id=1989268757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60.54195)
 
@@ -6702,10 +6786,11 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.023011243, 0, -0.99973506, 0, 1, 0, 0.999735, 0, -0.023011245, 3.6414132, 114.88611, 174.81941)
+transform = Transform3D(-0.023011234, 0, -0.9997347, 0, 1, 0, 0.99973464, 0, -0.023011236, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")
 autoplay = &"swingeroo"
 
+[editable path="Environment/Lights/Torches/FloorTorch13"]
 [editable path="defaults/WinningZone"]
