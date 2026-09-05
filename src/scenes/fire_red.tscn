@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cyxydyqne5ouo"]
+[gd_scene format=3 uid="uid://cyxydyqne5ouo"]
 
 [ext_resource type="Shader" uid="uid://cmagqip8lfvqt" path="res://src/shaders/fire_red.tres" id="1_nb0ta"]
 [ext_resource type="Texture2D" uid="uid://dge62i8tu2n5p" path="res://addons/kenney_particle_pack/flame_01.png" id="2_2i1yw"]
@@ -73,28 +73,28 @@ scale_curve = SubResource("CurveTexture_2g1kc")
 color = Color(0, 0, 0, 0.799)
 color_ramp = SubResource("GradientTexture1D_rec1g")
 
-[node name="fire_red" type="Node3D"]
+[node name="fire_red" type="Node3D" unique_id=11957949]
 
-[node name="staticflame" type="GPUParticles3D" parent="."]
+[node name="staticflame" type="GPUParticles3D" parent="." unique_id=182558239]
 material_override = SubResource("ShaderMaterial_u4jbm")
 amount = 1
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_1504j")
 draw_pass_1 = SubResource("QuadMesh_2tngd")
 
-[node name="flames" type="GPUParticles3D" parent="."]
+[node name="flames" type="GPUParticles3D" parent="." unique_id=1027136159]
 material_override = SubResource("ShaderMaterial_o3xlb")
-amount = 5
+amount = 3
 lifetime = 1.2
 speed_scale = 0.9
 process_material = SubResource("ParticleProcessMaterial_xpnnt")
 draw_pass_1 = SubResource("QuadMesh_011py")
 
-[node name="smoke" type="GPUParticles3D" parent="."]
+[node name="smoke" type="GPUParticles3D" parent="." unique_id=570623875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.166586, 0)
 sorting_offset = -1.0
 material_override = SubResource("ShaderMaterial_o3xlb")
-amount = 5
-lifetime = 2.5
+amount = 3
+lifetime = 1.45
 process_material = SubResource("ParticleProcessMaterial_uuf4d")
 draw_pass_1 = SubResource("QuadMesh_011py")

@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://hd0mfdaec0nl"]
+
+[ext_resource type="Shader" uid="uid://cd6606lhdnurb" path="res://src/assets/objects/wooden_plank_detailed/WoodenPlankDetailedOutline.gdshader" id="1_j1yel"]
+[ext_resource type="Shader" uid="uid://d3yhjdxkdf7cn" path="res://src/assets/objects/wooden_plank_detailed/WoodenPlankDetailed.gdshader" id="2_ed80t"]
+[ext_resource type="Texture2D" uid="uid://cdb80jhpdpmhv" path="res://src/assets/objects/wooden_plank_detailed/WoodenPlankDetailedLow_WoodenPlankDetailedSmooth_BaseColor.png" id="3_j1yel"]
+[ext_resource type="Texture2D" uid="uid://cqwpssweava30" path="res://src/assets/objects/wooden_plank_detailed/WoodenPlankDetailedLow_WoodenPlankDetailed_Normal.png" id="4_3pjbv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7shm"]
+render_priority = 0
+shader = ExtResource("1_j1yel")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_y7shm")
+shader = ExtResource("2_ed80t")
+shader_parameter/normal_scale = 1.0
+shader_parameter/normal_map = ExtResource("4_3pjbv")
+shader_parameter/anisotropy_ratio = 0.0
+shader_parameter/anisotropy_direction = Vector3(0, -1, 0)
+shader_parameter/aniso_map_dir_ratio = 0.0
+shader_parameter/color = Color(0.8287289, 0.8302353, 0.62159926, 1)
+shader_parameter/base_texture = ExtResource("3_j1yel")
+shader_parameter/specular = Color(0, 0, 0, 0.5019608)
+shader_parameter/fresnel = Color(0, 0, 0, 0.3019608)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)

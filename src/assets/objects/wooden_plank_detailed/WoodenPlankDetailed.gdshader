@@ -7,7 +7,7 @@ shader_type spatial;
 #define USE_NORMAL_MAP 1
 
 #define USE_OCCLUSION 0
-#define USE_ANISOTROPY 0
+#define USE_ANISOTROPY 1
 #define USE_BACKLIGHT 0
 #define USE_REFRACTION 0
 

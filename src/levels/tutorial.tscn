@@ -6,6 +6,7 @@
 [ext_resource type="Environment" uid="uid://cbfxn8yoprrvk" path="res://src/assets/env.tres" id="3_s4utg"]
 [ext_resource type="PackedScene" uid="uid://cqw0ccga86fo2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tscn" id="4_7hu6p"]
 [ext_resource type="PackedScene" uid="uid://bmdbt45de3e3r" path="res://src/scenes/winning_zone.tscn" id="5_nivcp"]
+[ext_resource type="PackedScene" uid="uid://do1e7k51502jm" path="res://src/assets/object_scene_catalogue/railroad_piece.tscn" id="6_78avc"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="7_p0j4l"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="8_ls71d"]
 [ext_resource type="PackedScene" uid="uid://duohm4m7d15nc" path="res://src/assets/object_scene_catalogue/wooden_fence_2v.tscn" id="9_ilqeb"]
@@ -20,10 +21,14 @@
 [ext_resource type="PackedScene" uid="uid://ce5nkueanr6el" path="res://src/assets/object_scene_catalogue/stalactite_3v.tscn" id="16_lsdrn"]
 [ext_resource type="PackedScene" uid="uid://wccl2vr3oknw" path="res://src/assets/object_scene_catalogue/wooden_plank.tscn" id="17_2st20"]
 [ext_resource type="PackedScene" uid="uid://t6jpoek0vjnu" path="res://src/scenes/sign_display.tscn" id="17_7upbt"]
+[ext_resource type="PackedScene" uid="uid://blrebcu8rrq7" path="res://src/assets/blender_meshes/tutorial/godot_scenes/big_platform.tscn" id="21_0l37i"]
 [ext_resource type="PackedScene" uid="uid://djhp683wygffw" path="res://src/assets/object_scene_catalogue/small_passage.tscn" id="22_av687"]
 [ext_resource type="PackedScene" uid="uid://cse18aa5wsg46" path="res://src/assets/object_scene_catalogue/floor_torch.tscn" id="22_e2faa"]
 [ext_resource type="Script" uid="uid://cwqodyxexs4un" path="res://src/scripts/tutorial_boot.gd" id="23_7upbt"]
 [ext_resource type="PackedScene" uid="uid://cys8x4y7y5fkm" path="res://src/assets/object_scene_catalogue/dwarf_statue.tscn" id="23_jlaup"]
+[ext_resource type="PackedScene" uid="uid://b6st2dxv8v6l3" path="res://src/assets/object_scene_catalogue/objects_without_collisions/beveled_cube_number_2.tscn" id="27_ilqeb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgbkm"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lsdrn"]
 _surfaces = [{
@@ -579,6 +584,21 @@ environment = ExtResource("3_s4utg")
 [node name="WinningZone" parent="defaults" unique_id=890264459 instance=ExtResource("5_nivcp")]
 transform = Transform3D(0.6213381, 0, -0.7835426, 0, 1, 0, 0.7835426, 0, 0.6213381, 6.8990397, 15.467094, 57.71913)
 
+[node name="RailroadPiece" parent="defaults" unique_id=350949630 instance=ExtResource("6_78avc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.23331, 17.063967, 14.566376)
+
+[node name="RailroadPiece2" parent="defaults" unique_id=595342878 instance=ExtResource("6_78avc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.597, 17.064, 14.566)
+
+[node name="RailroadPiece3" parent="defaults" unique_id=331911046 instance=ExtResource("6_78avc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.953, 17.064, 14.566)
+
+[node name="RailroadPiece4" parent="defaults" unique_id=1851320198 instance=ExtResource("6_78avc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.317, 17.064, 14.566)
+
+[node name="RailroadPiece5" parent="defaults" unique_id=1717389346 instance=ExtResource("6_78avc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.681, 17.064, 14.566)
+
 [node name="objects" type="Node3D" parent="." unique_id=1187584457]
 
 [node name="entity_27_hookspot_var2" parent="objects" unique_id=1358222857 instance=ExtResource("4_7hu6p")]
@@ -719,6 +739,15 @@ DisplayedText = 3
 
 [node name="SmallPassage" parent="objects" unique_id=647192200 instance=ExtResource("22_av687")]
 transform = Transform3D(157.87958, 0, -42.094666, 0, 163.39499, 0, 42.094666, 0, 157.87958, 10.128956, 5.017883, 65.42621)
+
+[node name="big_platform" parent="objects" unique_id=431525396 instance=ExtResource("21_0l37i")]
+transform = Transform3D(0.16008481, 0, 1.2811875, 0, 1.2911502, 0, -1.2811874, 0, 0.16008481, 38.242165, 16.214466, 62.339336)
+
+[node name="BlockoutCube" type="Node3D" parent="objects" unique_id=1768755884]
+transform = Transform3D(20.12727, 0, 1.5268599, 0, 0.99999994, 0, -3.095207, 0, 9.928744, 40.26013, 14.593823, 64.75976)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="objects/BlockoutCube" unique_id=294045561]
+mesh = SubResource("BoxMesh_dgbkm")
 
 [node name="rope_animatable" parent="." unique_id=659935673 instance=ExtResource("16_h2r1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.178421, 31.229683, 48.498905)
@@ -1181,5 +1210,11 @@ libraries/ = SubResource("AnimationLibrary_av687")
 script = ExtResource("23_7upbt")
 
 [node name="Managers" type="Node" parent="." unique_id=1431852203]
+
+[node name="WoodenPassageBig" parent="." unique_id=1266729813 instance=ExtResource("16_7urnj")]
+transform = Transform3D(-4.6196237e-06, 0, -105.68466, 0, 105.68466, 0, 105.68466, 0, -4.6196237e-06, 18.723946, 17.03136, 11.453459)
+
+[node name="beveled_cube_number2" parent="." unique_id=81229238 instance=ExtResource("27_ilqeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.397736, 16.427704, 39.325718)
 
 [editable path="defaults/WinningZone"]

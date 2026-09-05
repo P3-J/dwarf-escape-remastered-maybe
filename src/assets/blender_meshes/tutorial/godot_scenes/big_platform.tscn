@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://blrebcu8rrq7"]
+
+[ext_resource type="PackedScene" uid="uid://b53x766ao1f7n" path="res://src/assets/blender_meshes/tutorial/big_platform.blend" id="1_p8vdf"]
+
+[node name="big_platform" unique_id=431525396 instance=ExtResource("1_p8vdf")]
