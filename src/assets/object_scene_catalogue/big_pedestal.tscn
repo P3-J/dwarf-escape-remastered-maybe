@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://q3bgwym60omg"]
+[gd_scene format=3 uid="uid://q3bgwym60omg"]
 
 [ext_resource type="PackedScene" uid="uid://sr14j7it81mu" path="res://src/assets/objects/BigPedestal/BigPedestal.fbx" id="1_v2efx"]
-[ext_resource type="Material" uid="uid://1snuwym130ej" path="res://src/assets/shaders/TilableShaderBase/RockSlate.tres" id="2_qbjpv"]
-[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/shaders/TilableShaderBase/TiledGoldenConcreate.tres" id="3_lpnri"]
+[ext_resource type="Material" uid="uid://1snuwym130ej" path="res://src/assets/Shaders/shader_catalogue/RockSlate.tres" id="2_qbjpv"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="3_lpnri"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v2efx"]
 data = PackedVector3Array(-0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5)

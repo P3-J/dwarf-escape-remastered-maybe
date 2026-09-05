@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cse18aa5wsg46" path="res://src/assets/object_scene_catalogue/floor_torch.tscn" id="22_e2faa"]
 [ext_resource type="Script" uid="uid://cwqodyxexs4un" path="res://src/scripts/tutorial_boot.gd" id="23_7upbt"]
 [ext_resource type="PackedScene" uid="uid://cys8x4y7y5fkm" path="res://src/assets/object_scene_catalogue/dwarf_statue.tscn" id="23_jlaup"]
-[ext_resource type="PackedScene" uid="uid://b6st2dxv8v6l3" path="res://src/assets/object_scene_catalogue/objects_without_collisions/beveled_cube_number_2.tscn" id="27_ilqeb"]
+[ext_resource type="PackedScene" uid="uid://7ic6wm40sqs7" path="res://src/assets/object_scene_catalogue/crystall_2.tscn" id="27_0l37i"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dgbkm"]
 
@@ -646,6 +646,15 @@ transform = Transform3D(-1.3171822, -0.032389536, -2.6609864, 0.01436876, -2.969
 [node name="BigPassage" parent="objects" unique_id=2050026003 instance=ExtResource("15_g0laf")]
 transform = Transform3D(-83.85318, 0, 105.80002, 0, 135, 0, -105.80002, 0, -83.85318, 6.7621737, 13.93088, 57.800987)
 
+[node name="WoodenPassageBig2" parent="objects" unique_id=1266729813 instance=ExtResource("16_7urnj")]
+transform = Transform3D(-4.6196237e-06, 0, -105.68466, 0, 105.68466, 0, 105.68466, 0, -4.6196237e-06, 18.723946, 17.03136, 11.453459)
+
+[node name="Crystall1" parent="objects" unique_id=1279857464 instance=ExtResource("27_0l37i")]
+transform = Transform3D(0.9873081, -0.14518015, -0.064385325, 0.15881671, 0.90253437, 0.4002611, 0, -0.40540648, 0.9141365, 20.530548, 8.255687, 62.346085)
+
+[node name="Crystall2" parent="objects" unique_id=1065611941 instance=ExtResource("27_0l37i")]
+transform = Transform3D(0.6955012, -0.39001298, 0.60346335, 0.15881668, 0.9025343, 0.40026107, -0.70075345, -0.18254198, 0.6896543, 19.596292, 7.162673, 63.340748)
+
 [node name="boostspot" parent="objects" unique_id=879517468 instance=ExtResource("16_bpag7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.705414, 6.063772, 57.996555)
 
@@ -741,7 +750,7 @@ DisplayedText = 3
 transform = Transform3D(157.87958, 0, -42.094666, 0, 163.39499, 0, 42.094666, 0, 157.87958, 10.128956, 5.017883, 65.42621)
 
 [node name="big_platform" parent="objects" unique_id=431525396 instance=ExtResource("21_0l37i")]
-transform = Transform3D(0.16008481, 0, 1.2811875, 0, 1.2911502, 0, -1.2811874, 0, 0.16008481, 38.242165, 16.214466, 62.339336)
+transform = Transform3D(-0.112392455, 0, 1.286249, 0, 1.2911502, 0, -1.2862489, 0, -0.112392455, 37.93542, 16.214466, 63.59305)
 
 [node name="BlockoutCube" type="Node3D" parent="objects" unique_id=1768755884]
 transform = Transform3D(20.12727, 0, 1.5268599, 0, 0.99999994, 0, -3.095207, 0, 9.928744, 40.26013, 14.593823, 64.75976)
@@ -755,7 +764,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.178421, 31.229683, 48.4989
 [node name="FloorTorch8" parent="rope_animatable" unique_id=354724645 instance=ExtResource("22_e2faa")]
 transform = Transform3D(0.47167692, 0, 0.88177145, 0, 1, 0, -0.88177145, 0, 0.47167692, -2.0448284, -15.174316, 0)
 
+[node name="entity_0_mesh_instance2" type="MeshInstance3D" parent="." unique_id=1128728156]
+mesh = SubResource("ArrayMesh_lsdrn")
+skeleton = NodePath("../FuncGodotMap/entity_0_worldspawn")
+
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1176188646]
+visible = false
 script = ExtResource("7_p0j4l")
 local_map_file = "uid://bnop8btn0f7s5"
 map_settings = ExtResource("8_ls71d")
@@ -1210,11 +1224,5 @@ libraries/ = SubResource("AnimationLibrary_av687")
 script = ExtResource("23_7upbt")
 
 [node name="Managers" type="Node" parent="." unique_id=1431852203]
-
-[node name="WoodenPassageBig" parent="." unique_id=1266729813 instance=ExtResource("16_7urnj")]
-transform = Transform3D(-4.6196237e-06, 0, -105.68466, 0, 105.68466, 0, 105.68466, 0, -4.6196237e-06, 18.723946, 17.03136, 11.453459)
-
-[node name="beveled_cube_number2" parent="." unique_id=81229238 instance=ExtResource("27_ilqeb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.397736, 16.427704, 39.325718)
 
 [editable path="defaults/WinningZone"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk5vqvmwunv6h"]
+[gd_scene format=3 uid="uid://dk5vqvmwunv6h"]
 
 [ext_resource type="PackedScene" uid="uid://0snwdlxducqq" path="res://src/assets/objects/crystall_cage/CrystallCage.fbx" id="1_h7qln"]
-[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/shaders/TilableShaderBase/MetalTest.tres" id="2_to7ea"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="2_to7ea"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_h7qln"]
 height = 0.009824218

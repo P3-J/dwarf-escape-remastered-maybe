@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq8tywvi0bbfh"]
+[gd_scene format=3 uid="uid://cq8tywvi0bbfh"]
 
 [ext_resource type="PackedScene" uid="uid://bwxcyjyxr45n5" path="res://src/assets/objects/BigPassage/BigPassage.fbx" id="1_m34jv"]
-[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/shaders/TilableShaderBase/TiledGoldenConcreate.tres" id="2_bxs4e"]
-[ext_resource type="Material" uid="uid://bl1nqa56gvw5f" path="res://src/assets/shaders/TilableShaderBase/RockSlateBright.tres" id="3_ay6rp"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="2_bxs4e"]
+[ext_resource type="Material" uid="uid://bl1nqa56gvw5f" path="res://src/assets/Shaders/shader_catalogue/RockSlateBright.tres" id="3_ay6rp"]
 
 [node name="BigPassage" instance=ExtResource("1_m34jv")]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)

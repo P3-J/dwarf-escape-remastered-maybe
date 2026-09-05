@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://blvdu6jx24qoa"]
+[gd_scene format=3 uid="uid://blvdu6jx24qoa"]
 
 [ext_resource type="PackedScene" uid="uid://dws1l8skhnv3" path="res://src/assets/objects/rocks/Rock1.fbx" id="1_du02w"]
-[ext_resource type="Material" uid="uid://c8cnmm8vr7j6j" path="res://src/assets/shaders/TilableShaderBase/Rock.tres" id="2_6h60p"]
+[ext_resource type="Material" uid="uid://c8cnmm8vr7j6j" path="res://src/assets/Shaders/shader_catalogue/Rock.tres" id="2_6h60p"]
 [ext_resource type="Texture2D" uid="uid://4blj27frwamb" path="res://src/assets/objects/rocks/Rocks_T_BaseColor.png" id="2_hasa0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vioub"]

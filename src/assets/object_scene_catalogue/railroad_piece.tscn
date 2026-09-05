@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://do1e7k51502jm"]
+[gd_scene format=3 uid="uid://do1e7k51502jm"]
 
 [ext_resource type="PackedScene" uid="uid://jstmdmqlgd7i" path="res://src/assets/objects/rail_road/RailroadPiece.fbx" id="1_fgn11"]
-[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/shaders/TilableShaderBase/Wood.tres" id="2_trg8w"]
-[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/shaders/TilableShaderBase/MetalTest.tres" id="2_y6l5h"]
+[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/Shaders/shader_catalogue/Wood.tres" id="2_trg8w"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="2_y6l5h"]
 
 [node name="RailroadPiece" instance=ExtResource("1_fgn11")]
 

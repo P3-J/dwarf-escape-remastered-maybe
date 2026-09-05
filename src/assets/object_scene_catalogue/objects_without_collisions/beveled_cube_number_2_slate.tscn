@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://djagjk7fko652"]
+[gd_scene format=3 uid="uid://djagjk7fko652"]
 
 [ext_resource type="PackedScene" uid="uid://b4mm3w56lp5y4" path="res://src/assets/objects/small_passage_door/beveled_cube_number2.fbx" id="1_rithl"]
-[ext_resource type="Material" uid="uid://1snuwym130ej" path="res://src/assets/shaders/TilableShaderBase/RockSlate.tres" id="2_rithl"]
+[ext_resource type="Material" uid="uid://1snuwym130ej" path="res://src/assets/Shaders/shader_catalogue/RockSlate.tres" id="2_rithl"]
 
 [node name="beveled_cube_number2" instance=ExtResource("1_rithl")]
 

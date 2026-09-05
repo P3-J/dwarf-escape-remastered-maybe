@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqxvsadaxj1r4"]
+[gd_scene format=3 uid="uid://cqxvsadaxj1r4"]
 
 [ext_resource type="PackedScene" uid="uid://bxdruon75wvyg" path="res://src/assets/objects/stalactites/v1/Stalactite1V.fbx" id="1_vfg5w"]
-[ext_resource type="Material" uid="uid://c8cnmm8vr7j6j" path="res://src/assets/shaders/TilableShaderBase/Rock.tres" id="2_r5wre"]
+[ext_resource type="Material" uid="uid://c8cnmm8vr7j6j" path="res://src/assets/Shaders/shader_catalogue/Rock.tres" id="2_r5wre"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vfg5w"]
 size = Vector3(0.007138672, 0.051450193, 0.00717041)

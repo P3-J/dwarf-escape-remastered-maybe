@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ksy510vy6jrd"]
+[gd_scene format=3 uid="uid://ksy510vy6jrd"]
 
 [ext_resource type="PackedScene" uid="uid://cjscerrghb7t0" path="res://src/assets/objects/small_passage_door/angle.fbx" id="1_cvadm"]
-[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/shaders/TilableShaderBase/TiledGoldenConcreate.tres" id="2_lgn4s"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="2_lgn4s"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j3bd8"]
 data = PackedVector3Array(-0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5)

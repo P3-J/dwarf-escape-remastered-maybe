@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgibhgvxxppum"]
+[gd_scene format=3 uid="uid://dgibhgvxxppum"]
 
 [ext_resource type="PackedScene" uid="uid://dp03m5ki4on24" path="res://src/assets/objects/TowerPieceWindow/TowerPieceWindow.fbx" id="1_osb5o"]
-[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/shaders/TilableShaderBase/TiledGoldenConcreate.tres" id="2_abi3p"]
-[ext_resource type="Material" uid="uid://cgnc3wako16yd" path="res://src/assets/shaders/TilableShaderBase/DarkBricks.tres" id="3_v8guy"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="2_abi3p"]
+[ext_resource type="Material" uid="uid://cgnc3wako16yd" path="res://src/assets/Shaders/shader_catalogue/DarkBricks.tres" id="3_v8guy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abi3p"]
 albedo_color = Color(0, 0, 0, 1)
