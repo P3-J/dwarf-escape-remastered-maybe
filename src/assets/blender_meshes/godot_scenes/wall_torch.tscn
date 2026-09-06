@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ca1mcp12h2ed4"]
+
+[ext_resource type="PackedScene" uid="uid://bvbocjtstdjgl" path="res://src/assets/blender_meshes/wall_torch.blend" id="1_mk4in"]
+[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/Shaders/shader_catalogue/Wood.tres" id="2_ofgdj"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="3_5xnak"]
+[ext_resource type="PackedScene" uid="uid://cyxydyqne5ouo" path="res://src/scenes/fire_red.tscn" id="4_dx0db"]
+
+[node name="wall_torch" unique_id=1422693417 instance=ExtResource("1_mk4in")]
+transform = Transform3D(0.22718541, 0, 0, 0, 0.22718541, 0, 0, 0, 0.22718541, 0, 0, 0)
+
+[node name="Cube" parent="." index="0" unique_id=1676371640]
+material_override = ExtResource("2_ofgdj")
+
+[node name="Cylinder" parent="." index="1" unique_id=1283530252]
+material_override = ExtResource("3_5xnak")
+
+[node name="fire_red" parent="." index="2" unique_id=11957949 instance=ExtResource("4_dx0db")]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, -0.02894583, 2.8482597, 2.0490189)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=936582398]
+transform = Transform3D(4.401691, 0, -5.684342e-14, 0, 4.401691, 0, 5.684342e-14, 0, 4.401691, 0.03132829, 5.0383596, 3.995761)
+light_color = Color(1, 0.688116, 0.108807, 1)
+light_energy = 3.349
+light_indirect_energy = 2.368
+light_volumetric_fog_energy = 1.798
+omni_range = 10.243
+omni_attenuation = 2.184

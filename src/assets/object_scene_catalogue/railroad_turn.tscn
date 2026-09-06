@@ -1,29 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw3jhbt7fkdjp"]
+[gd_scene format=3 uid="uid://dw3jhbt7fkdjp"]
 
 [ext_resource type="PackedScene" uid="uid://bqoabihqqkg23" path="res://src/assets/objects/rail_road/RailroadTurn.fbx" id="1_aiain"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="2_qhyvy"]
+[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/Shaders/shader_catalogue/Wood.tres" id="3_4g120"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aiain"]
 size = Vector3(2.4562988, 0.16674805, 1.6740723)
 
-[node name="RailroadTurn" instance=ExtResource("1_aiain")]
+[node name="RailroadTurn" unique_id=701676988 instance=ExtResource("1_aiain")]
 
-[node name="RailroadTurn" parent="." index="0"]
+[node name="RailroadTurn" parent="." index="0" unique_id=2115892860]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="pCube114" parent="RailroadTurn" index="0" unique_id=1090493232]
+material_override = ExtResource("2_qhyvy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="pCube119" parent="RailroadTurn" index="1" unique_id=497984092]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube121" parent="RailroadTurn" index="2" unique_id=2062025398]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube123" parent="RailroadTurn" index="3" unique_id=863914450]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube122" parent="RailroadTurn" index="4" unique_id=731520746]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube120" parent="RailroadTurn" index="5" unique_id=907919951]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube116" parent="RailroadTurn" index="6" unique_id=1524833300]
+material_override = ExtResource("2_qhyvy")
+
+[node name="pCube127" parent="RailroadTurn" index="7" unique_id=1056372156]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube125" parent="RailroadTurn" index="8" unique_id=479711958]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube126" parent="RailroadTurn" index="9" unique_id=688376655]
+material_override = ExtResource("3_4g120")
+
+[node name="pCube124" parent="RailroadTurn" index="10" unique_id=2014035305]
+material_override = ExtResource("3_4g120")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1549543720]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=940686513]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5665283, -0.04309082, 0.014282227)
 shape = SubResource("BoxShape3D_aiain")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=134145327]
 transform = Transform3D(0.9105538, 0, 0.41339052, 0, 1, 0, -0.41339052, 0, 0.9105538, -2.3267195, -0.04309082, 0.43994975)
 shape = SubResource("BoxShape3D_aiain")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2" unique_id=1669836266]
 transform = Transform3D(0.36385283, 0, 0.9314565, 0, 1, 0, -0.9314565, 0, 0.36385283, -3.3678784, -0.04309082, 1.6824375)
 shape = SubResource("BoxShape3D_aiain")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3" unique_id=113480680]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.580712, -0.04309082, 3.0284665)
 shape = SubResource("BoxShape3D_aiain")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://hmhj40djnsp5"]
+
+[ext_resource type="PackedScene" uid="uid://cm7meh5vfm3c3" path="res://src/assets/blender_meshes/tutorial/big_platform_bottom.blend" id="1_lf4aw"]
+[ext_resource type="Material" uid="uid://dkjivxa5udktf" path="res://src/assets/Shaders/shader_catalogue/TiledDirt.tres" id="2_b7jgw"]
+
+[node name="big_platform_bottom" unique_id=2012805806 instance=ExtResource("1_lf4aw")]
+
+[node name="Cube_001" parent="." index="0" unique_id=1750380841]
+material_override = ExtResource("2_b7jgw")

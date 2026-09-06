@@ -9,7 +9,7 @@ data = PackedVector3Array(-0.0089, 0.783, -0.030499998, -0.561, 0.7801, 0.522799
 
 [node name="cave_pillar" unique_id=1721970322 instance=ExtResource("1_2r3bb")]
 
-[node name="Cube" parent="." index="0" unique_id=1854988998]
+[node name="Cube" parent="." index="0" unique_id=250109622]
 transform = Transform3D(2.930967, 0, 0, 0, 0.547478, 0, 0, 0, 2.930967, 0, 0, 0)
 material_override = ExtResource("2_erjnn")
 
