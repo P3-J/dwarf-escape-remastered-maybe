@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://lk5yua6w4apc"
+path="res://.godot/imported/tutorial-crash.map-6e73f2d95afa9a5352de4331762d835d.tres"
+
+[deps]
+
+source_file="res://src/gdmaps/tutorial-crash.map"
+dest_files=["res://.godot/imported/tutorial-crash.map-6e73f2d95afa9a5352de4331762d835d.tres"]
+
+[params]
+

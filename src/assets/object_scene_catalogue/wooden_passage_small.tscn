@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cefelf8kq8pit"]
+[gd_scene format=3 uid="uid://cefelf8kq8pit"]
 
 [ext_resource type="PackedScene" uid="uid://dh52gsfnud4id" path="res://src/assets/objects/wooden_passage_small/WoodenPassageSmall.fbx" id="1_rd8xq"]
+[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/Shaders/shader_catalogue/Wood.tres" id="2_l4oyq"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rd8xq"]
 data = PackedVector3Array(-0.0018999999, 0.017199999, 0.0023, 0.0042999997, 0.0168, 0.0023, 0.0018999999, -0.017099999, 0.0034999999, 0.0018999999, -0.017099999, 0.0034999999, -0.0042999997, -0.0166, 0.0033999998, -0.0018999999, 0.017199999, 0.0023, -0.0018999999, 0.017099999, -0.0033, 0.0042999997, 0.0166, -0.0033, 0.0042999997, 0.0168, 0.0023, 0.0042999997, 0.0168, 0.0023, -0.0018999999, 0.017199999, 0.0023, -0.0018999999, 0.017099999, -0.0033, 0.0018999999, -0.017199999, -0.0023999999, 0.0042999997, 0.0166, -0.0033, -0.0018999999, 0.017099999, -0.0033, -0.0018999999, 0.017099999, -0.0033, -0.0042999997, -0.0168, -0.0025, 0.0018999999, -0.017199999, -0.0023999999, 0.0018999999, -0.017099999, 0.0034999999, 0.0018999999, -0.017199999, -0.0023999999, -0.0042999997, -0.0168, -0.0025, -0.0042999997, -0.0168, -0.0025, -0.0042999997, -0.0166, 0.0033999998, 0.0018999999, -0.017099999, 0.0034999999, 0.0042999997, 0.0166, -0.0033, 0.0018999999, -0.017199999, -0.0023999999, 0.0018999999, -0.017099999, 0.0034999999, 0.0018999999, -0.017099999, 0.0034999999, 0.0042999997, 0.0168, 0.0023, 0.0042999997, 0.0166, -0.0033, -0.0018999999, 0.017099999, -0.0033, -0.0018999999, 0.017199999, 0.0023, -0.0042999997, -0.0166, 0.0033999998, -0.0042999997, -0.0166, 0.0033999998, -0.0042999997, -0.0168, -0.0025, -0.0018999999, 0.017099999, -0.0033)
@@ -17,27 +18,42 @@ data = PackedVector3Array(-0.0036, 0.0169, 0.0030999999, 0.0026, 0.016999999, 0.
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rtvxr"]
 data = PackedVector3Array(0.0211, 0.0039999997, 0.0034999999, 0.0211, -0.0039999997, 0.0034999999, -0.021, -0.0039999997, 0.0037, -0.021, -0.0039999997, 0.0037, -0.021, 0.0039999997, 0.0037, 0.0211, 0.0039999997, 0.0034999999, 0.021, -0.0039999997, -0.0039999997, 0.0211, -0.0039999997, 0.0034999999, 0.0211, 0.0039999997, 0.0034999999, 0.0211, 0.0039999997, 0.0034999999, 0.021, 0.0039999997, -0.0039999997, 0.021, -0.0039999997, -0.0039999997, -0.0211, -0.0039999997, -0.0039, 0.021, -0.0039999997, -0.0039999997, 0.021, 0.0039999997, -0.0039999997, 0.021, 0.0039999997, -0.0039999997, -0.0211, 0.0039999997, -0.0039, -0.0211, -0.0039999997, -0.0039, -0.021, 0.0039999997, 0.0037, -0.021, -0.0039999997, 0.0037, -0.0211, -0.0039999997, -0.0039, -0.0211, -0.0039999997, -0.0039, -0.0211, 0.0039999997, -0.0039, -0.021, 0.0039999997, 0.0037, 0.021, -0.0039999997, -0.0039999997, -0.0211, -0.0039999997, -0.0039, -0.021, -0.0039999997, 0.0037, -0.021, -0.0039999997, 0.0037, 0.0211, -0.0039999997, 0.0034999999, 0.021, -0.0039999997, -0.0039999997, 0.021, 0.0039999997, -0.0039999997, 0.0211, 0.0039999997, 0.0034999999, -0.021, 0.0039999997, 0.0037, -0.021, 0.0039999997, 0.0037, -0.0211, 0.0039999997, -0.0039, 0.021, 0.0039999997, -0.0039999997)
 
-[node name="WoodenPassageSmall" instance=ExtResource("1_rd8xq")]
+[node name="WoodenPassageSmall" unique_id=941029582 instance=ExtResource("1_rd8xq")]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="pCube22" parent="WoodenPassageSmall" parent_id_path=PackedInt32Array(446276063) index="0" unique_id=1767038496]
+material_override = ExtResource("2_l4oyq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="pCube23" parent="WoodenPassageSmall" parent_id_path=PackedInt32Array(446276063) index="1" unique_id=1422389730]
+material_override = ExtResource("2_l4oyq")
+
+[node name="pCube24" parent="WoodenPassageSmall" parent_id_path=PackedInt32Array(446276063) index="2" unique_id=652640509]
+material_override = ExtResource("2_l4oyq")
+
+[node name="pCube25" parent="WoodenPassageSmall" parent_id_path=PackedInt32Array(446276063) index="3" unique_id=1528095703]
+material_override = ExtResource("2_l4oyq")
+
+[node name="pCube26" parent="WoodenPassageSmall" parent_id_path=PackedInt32Array(446276063) index="4" unique_id=274413436]
+material_override = ExtResource("2_l4oyq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1530705670]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=832483569]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0185616, 0.015125631, 0.00015707422)
 shape = SubResource("ConcavePolygonShape3D_rd8xq")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1469335624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010657847, 0.02727119, -0.00088121323)
 shape = SubResource("ConcavePolygonShape3D_l4oyq")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2" unique_id=1144464296]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011678104, 0.027356323, -0.00088121323)
 shape = SubResource("ConcavePolygonShape3D_w7anr")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3" unique_id=315587682]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01722302, 0.015125631, -0.00024260144)
 shape = SubResource("ConcavePolygonShape3D_y4xqh")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="4" unique_id=919539757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.678548e-05, 0.03539605, 0)
 shape = SubResource("ConcavePolygonShape3D_rtvxr")

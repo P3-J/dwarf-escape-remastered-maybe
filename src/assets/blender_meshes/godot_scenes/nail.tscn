@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bhndlq87uecgo"]
+
+[ext_resource type="PackedScene" uid="uid://c6b8gfubeo54a" path="res://src/assets/blender_meshes/nail.blend" id="1_v4r16"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="2_3xx0a"]
+
+[node name="nail" unique_id=102396531 instance=ExtResource("1_v4r16")]
+
+[node name="Cube" parent="." index="0" unique_id=1867316372]
+transform = Transform3D(0.05677608, 0, 0, 0, 0.05677608, 0, 0, 0, 0.05677608, 0, 0, 0)
+material_override = ExtResource("2_3xx0a")

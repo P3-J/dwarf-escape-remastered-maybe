@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://ckqhnqud0ppq8"]
 
 [ext_resource type="PackedScene" uid="uid://h3gfi3a8it55" path="res://src/assets/objects/wooden_platform_central_rope/WoodenPlatformCentralRope.fbx" id="1_ymrcs"]
+[ext_resource type="PackedScene" uid="uid://decswpkodwhm0" path="res://src/assets/object_scene_catalogue/wooden/wooden_square_platform.tscn" id="2_iaco8"]
 
 [node name="WoodenPlatformCentralRope" unique_id=1550159911 instance=ExtResource("1_ymrcs")]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
 
-[node name="WoodenPlatformCentralRope" parent="." index="0" unique_id=1419405273]
+[node name="WoodenPlatformCentralRope" parent="." index="0" unique_id=2103516196]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12648253, 0)
+
+[node name="WoodenSquarePlatform" parent="." index="2" unique_id=1103372358 instance=ExtResource("2_iaco8")]
+transform = Transform3D(0.013588153, 0, 0, 0, 0.013588153, 0, 0, 0, 0.013588153, 0.00019832976, -0.12864245, -0.0004319921)
