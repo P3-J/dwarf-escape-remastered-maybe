@@ -125,6 +125,8 @@ Label/fonts/font = ExtResource("2_fxfkc")
 Label/styles/normal = SubResource("StyleBoxEmpty_ebn7h")
 VBoxContainer/constants/separation = 60
 
+[sub_resource type="Theme" id="Theme_hwtoi"]
+
 [node name="SettingsMenu" type="Control" unique_id=1145202651]
 process_mode = 3
 layout_mode = 3
@@ -156,52 +158,28 @@ texture = ExtResource("2_k7k4c")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect" unique_id=152750892]
+[node name="GridContainer" type="GridContainer" parent="TextureRect" unique_id=67226792]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.11785714
-anchor_top = 0.3272727
-anchor_right = 0.8115941
-anchor_bottom = 0.6727273
-offset_right = 6.1035156e-05
-grow_horizontal = 2
+anchor_left = 0.04857143
+anchor_top = 0.26819924
+anchor_right = 0.95
+anchor_bottom = 0.7318008
 grow_vertical = 2
+columns = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="TextureRect/HBoxContainer" unique_id=13342356]
-layout_mode = 2
-theme = ExtResource("8_fxfkc")
-
-[node name="mouse" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer3" unique_id=2023785973]
+[node name="mouse" type="Label" parent="TextureRect/GridContainer" unique_id=2023785973]
 layout_mode = 2
 theme = ExtResource("8_fxfkc")
 text = "Mouse sensitivity"
 
-[node name="music" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer3" unique_id=806430057]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/GridContainer" unique_id=1077778619]
 layout_mode = 2
+size_flags_horizontal = 10
 theme = ExtResource("8_fxfkc")
-text = "Music volume"
 
-[node name="audio" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer3" unique_id=1772293838]
-layout_mode = 2
-theme = ExtResource("8_fxfkc")
-text = "Audio volume"
-
-[node name="fullscreen" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer3" unique_id=711447457]
-layout_mode = 2
-text = "Fullscreen"
-
-[node name="resolution" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer3" unique_id=1805654072]
-layout_mode = 2
-text = "Resolution"
-
-[node name="HBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer" unique_id=489674045]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/HBoxContainer" unique_id=1077778619]
-layout_mode = 2
-
-[node name="HSlider" type="HSlider" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer" unique_id=123341333]
+[node name="HSlider" type="HSlider" parent="TextureRect/GridContainer/HBoxContainer" unique_id=123341333]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme = ExtResource("8_fxfkc")
@@ -210,49 +188,92 @@ max_value = 5.0
 step = 0.1
 value = 1.1
 
-[node name="MouseValue" type="Label" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer" unique_id=1455565459]
+[node name="MouseValue" type="Label" parent="TextureRect/GridContainer/HBoxContainer" unique_id=1455565459]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme = SubResource("Theme_ri8ns")
+horizontal_alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/HBoxContainer/HBoxContainer" unique_id=1211761818]
+[node name="music" type="Label" parent="TextureRect/GridContainer" unique_id=806430057]
 layout_mode = 2
+theme = ExtResource("8_fxfkc")
+text = "Music volume"
 
-[node name="MusicSlider" type="HSlider" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer2" unique_id=752295437]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/GridContainer" unique_id=1211761818]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = SubResource("Theme_hwtoi")
+
+[node name="MusicSlider" type="HSlider" parent="TextureRect/GridContainer/HBoxContainer2" unique_id=752295437]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme = ExtResource("8_fxfkc")
 
-[node name="MusicValue" type="Label" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer2" unique_id=468209635]
+[node name="MusicValue" type="Label" parent="TextureRect/GridContainer/HBoxContainer2" unique_id=468209635]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme = SubResource("Theme_ri8ns")
+horizontal_alignment = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/HBoxContainer/HBoxContainer" unique_id=840012851]
+[node name="audio" type="Label" parent="TextureRect/GridContainer" unique_id=1772293838]
 layout_mode = 2
+theme = ExtResource("8_fxfkc")
+text = "Audio volume"
 
-[node name="AudioSlider" type="HSlider" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer3" unique_id=1523671078]
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/GridContainer" unique_id=840012851]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = SubResource("Theme_hwtoi")
+
+[node name="AudioSlider" type="HSlider" parent="TextureRect/GridContainer/HBoxContainer3" unique_id=1523671078]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme = ExtResource("8_fxfkc")
 
-[node name="AudioValue" type="Label" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer3" unique_id=1909753572]
+[node name="AudioValue" type="Label" parent="TextureRect/GridContainer/HBoxContainer3" unique_id=1909753572]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme = SubResource("Theme_ri8ns")
+horizontal_alignment = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="TextureRect/HBoxContainer/HBoxContainer" unique_id=43454085]
+[node name="fullscreen" type="Label" parent="TextureRect/GridContainer" unique_id=711447457]
+layout_mode = 2
+theme = ExtResource("8_fxfkc")
+text = "Fullscreen"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="TextureRect/GridContainer" unique_id=578162974]
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer4" unique_id=551980606]
+[node name="CheckButton" type="CheckButton" parent="TextureRect/GridContainer/VBoxContainer" unique_id=551980606]
 layout_mode = 2
+size_flags_horizontal = 10
 theme = ExtResource("8_fxfkc")
 button_pressed = true
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="TextureRect/HBoxContainer/HBoxContainer" unique_id=784720708]
+[node name="Label" type="Label" parent="TextureRect/GridContainer/VBoxContainer" unique_id=1205588910]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer5" unique_id=2065786713]
+[node name="resolution" type="Label" parent="TextureRect/GridContainer" unique_id=1805654072]
 layout_mode = 2
 theme = ExtResource("8_fxfkc")
+text = "Resolution"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TextureRect/GridContainer" unique_id=1083061562]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="TextureRect/GridContainer/HBoxContainer4" unique_id=2065786713]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("8_fxfkc")
+item_count = 1
+popup/item_0/text = "testing"
+popup/item_0/id = 0
+
+[node name="Label" type="Label" parent="TextureRect/GridContainer/HBoxContainer4" unique_id=782059856]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect" unique_id=1243191299]
 layout_mode = 1
@@ -277,7 +298,7 @@ theme = ExtResource("8_fxfkc")
 theme_override_font_sizes/font_size = 25
 text = "Back"
 
-[connection signal="value_changed" from="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="toggled" from="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer4/CheckButton" to="." method="_on_check_button_toggled"]
-[connection signal="item_selected" from="TextureRect/HBoxContainer/HBoxContainer/HBoxContainer5/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="value_changed" from="TextureRect/GridContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="TextureRect/GridContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="item_selected" from="TextureRect/GridContainer/HBoxContainer4/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="TextureRect/VBoxContainer2/AspectRatioContainer/Back" to="." method="_on_back_pressed"]
