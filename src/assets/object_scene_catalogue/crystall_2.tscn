@@ -16,3 +16,7 @@ surface_material_override/0 = ExtResource("2_kkelr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=665685440]
 transform = Transform3D(68.1246, 0, 0, 0, 39.4038, 0, 0, 0, 68.1246, -0.0148167, 0.0277749, 0)
 shape = SubResource("ConcavePolygonShape3D_rpy11")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=1918466946]
+light_color = Color(0.27624333, 0.6317555, 0.8125756, 1)
+light_volumetric_fog_energy = 3.73

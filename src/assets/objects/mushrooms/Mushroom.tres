@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cbftgrmurdy61"]
+
+[ext_resource type="Shader" uid="uid://bs86hj8r6sstw" path="res://src/assets/objects/mushrooms/MushroomOutline.gdshader" id="1_p012x"]
+[ext_resource type="Shader" uid="uid://cqqs64lv4w4d2" path="res://src/assets/objects/mushrooms/Mushroom.gdshader" id="2_2f1w5"]
+[ext_resource type="Texture2D" uid="uid://dgxibkouygwlb" path="res://src/assets/objects/mushrooms/Mushrooms_BaseColor.png" id="3_fjdh1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p012x"]
+render_priority = 0
+shader = ExtResource("1_p012x")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_p012x")
+shader = ExtResource("2_2f1w5")
+shader_parameter/normal_scale = 1.0
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/base_texture = ExtResource("3_fjdh1")
+shader_parameter/specular = Color(0, 0, 0, 0.5019608)
+shader_parameter/fresnel = Color(0, 0, 0, 0.3019608)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dcchg8viwpfv8"]
+
+[ext_resource type="PackedScene" uid="uid://c45lfket8k7o5" path="res://src/assets/objects/mushrooms/red_mushroom/Brown_Mushroom.fbx" id="1_1myd8"]
+[ext_resource type="Material" uid="uid://cbftgrmurdy61" path="res://src/assets/objects/mushrooms/Mushroom.tres" id="2_kdq8n"]
+
+[node name="Brown_Mushroom" unique_id=294199655 instance=ExtResource("1_1myd8")]
+
+[node name="Mushroom_001" parent="." index="0" unique_id=1927349103]
+material_override = ExtResource("2_kdq8n")

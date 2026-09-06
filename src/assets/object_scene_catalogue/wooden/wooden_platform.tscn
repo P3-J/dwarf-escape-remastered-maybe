@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cg7gnpdtisgvj"]
+
+[ext_resource type="PackedScene" uid="uid://e44madilb0nx" path="res://src/assets/object_scene_catalogue/wooden_plank_detailed.tscn" id="1_htdc4"]
+
+[node name="WoodenPlatform" type="Node3D" unique_id=2076864672]
+
+[node name="WoodenPlankDetailed" parent="." unique_id=1361906033 instance=ExtResource("1_htdc4")]
+transform = Transform3D(0.9542539, 0, 0.051293764, -0.0005253553, 0.9999382, 0.011522395, -0.04723812, -0.011120738, 1.0360535, -0.15957308, 0, 0)
+
+[node name="WoodenPlankDetailed2" parent="." unique_id=1006755048 instance=ExtResource("1_htdc4")]
+transform = Transform3D(0.9253873, -8.290317e-08, 0.06775004, -8.1101284e-08, -0.94999, -9.817223e-10, 0.06624438, -4.949244e-09, -0.9464204, 0.6563258, -0.0028513614, -0.33394808)
+
+[node name="WoodenPlankDetailed3" parent="." unique_id=1392319362 instance=ExtResource("1_htdc4")]
+transform = Transform3D(-0.81735086, 0.0006176756, 0.030497184, -8.9510795e-05, -0.9680045, 0.016306084, 0.025715217, 0.016263166, 0.9694012, 1.4134618, -0.0028514257, -0.2356568)
+
+[node name="WoodenPlankDetailed4" parent="." unique_id=1073163051 instance=ExtResource("1_htdc4")]
+transform = Transform3D(0.9937446, 0, -0.067164816, 0, 1.0181115, 0, 0.06575384, 0, 1.0150691, 2.2318268, 0, 0.012321979)
+
+[node name="WoodenPlankDetailed5" parent="." unique_id=319437823 instance=ExtResource("1_htdc4")]
+transform = Transform3D(0.9512397, -9.04496e-08, -0.060383964, -8.3273676e-08, -1.03684, -1.1667348e-09, -0.051010273, 5.9246754e-09, -1.1260401, 2.9688072, -0.0028513614, -0.07766688)
+
+[node name="WoodenPlankDetailed7" parent="." unique_id=665604715 instance=ExtResource("1_htdc4")]
+transform = Transform3D(-1.0279346, -8.4815674e-08, 0.11679462, 0.0071266037, -0.9770364, 0.05578362, 0.12364003, 0.0563156, 0.9678069, 4.435811, 0.017354548, -0.043873906)
+
+[node name="WoodenPlankDetailed8" parent="." unique_id=1734560326 instance=ExtResource("1_htdc4")]
+transform = Transform3D(0.9554808, 0, -0.026681835, -0.00081651047, 1.0184758, -0.03309697, 0.02506544, 0.03317701, 1.0160189, 5.2255254, 0.0038275719, 0.095526844)
+
+[node name="WoodenPlankDetailed9" parent="." unique_id=76907893 instance=ExtResource("1_htdc4")]
+transform = Transform3D(0.8863881, -8.302389e-08, -0.10466941, -7.79535e-08, -0.9567376, -9.893452e-10, -0.09761309, 1.0138845e-08, -0.95046395, 6.0214086, 0.004381066, 0.026120722)
+
+[node name="WoodenPlankDetailed10" parent="." unique_id=732749201 instance=ExtResource("1_htdc4")]
+transform = Transform3D(-0.0011722891, 1.137127e-09, -0.9999994, -6.053824e-12, 1, 1.1371376e-09, 0.9999994, 7.403855e-12, -0.0011722891, 4.6587596, -0.103221536, -0.8524417)
+
+[node name="WoodenPlankDetailed11" parent="." unique_id=1122395699 instance=ExtResource("1_htdc4")]
+transform = Transform3D(-0.001172289, 1.1371268e-09, -0.9999993, -8.741665e-08, -1, -1.0346528e-09, -0.9999993, 8.741537e-08, 0.001172289, 4.6587596, -0.103221536, 1.1166048)
+
+[node name="WoodenPlankDetailed12" parent="." unique_id=835449443 instance=ExtResource("1_htdc4")]
+transform = Transform3D(-0.001172289, 1.1371268e-09, -0.9999993, -8.741665e-08, -1, -1.0346528e-09, -0.9999993, 8.741537e-08, 0.001172289, 1.1630888, -0.103221536, -0.8524417)
+
+[node name="WoodenPlankDetailed13" parent="." unique_id=700860462 instance=ExtResource("1_htdc4")]
+transform = Transform3D(-0.0011722891, 1.137127e-09, -0.9999994, 1.7483937e-07, 1, 9.32168e-10, 0.9999994, -1.7483816e-07, -0.0011722891, 1.1630888, -0.103221536, 1.1166048)
+
+[node name="WoodenPlankDetailed6" parent="." unique_id=3136760 instance=ExtResource("1_htdc4")]
+transform = Transform3D(-0.9065447, -8.400667e-08, -0.10861536, 7.9749555e-08, -0.9657954, 1.0026879e-09, -0.10224711, -8.46933e-09, 0.963007, 3.7469907, 0.018649042, -0.013985068)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1288033259]

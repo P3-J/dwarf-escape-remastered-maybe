@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cnma2q7krkyn1"]
+
+[ext_resource type="Material" uid="uid://cbftgrmurdy61" path="res://src/assets/objects/mushrooms/Mushroom.tres" id="1_xtw4o"]
+
+[node name="Brown_Mushroom" unique_id=1759309886]
+
+[node name="Mushroom_003" parent="." index="0" unique_id=1515939440]
+material_override = ExtResource("1_xtw4o")
