@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://brgq0gi6exh2s" path="res://src/assets/ui/settings/SliderPointerHighlighted.png" id="6_b06wh"]
 [ext_resource type="Texture2D" uid="uid://hopphwhipqsv" path="res://src/assets/ui/leaderboard/NameInput.png" id="6_me7jw"]
 [ext_resource type="Texture2D" uid="uid://bmoyx51oqubng" path="res://src/assets/ui/level_selection/LevelSelectionBackground.png" id="7_0so4u"]
+[ext_resource type="Texture2D" uid="uid://mif7yug5bof1" path="res://src/assets/ui/settings/SettingsCheckboxActive (2).png" id="7_10um3"]
+[ext_resource type="Texture2D" uid="uid://dbel42a58nyb4" path="res://src/assets/ui/settings/SettingsCheckboxDisabled (2).png" id="8_bv0ra"]
 [ext_resource type="Texture2D" uid="uid://ccwdljdkm1hne" path="res://src/assets/ui/basic/LavaMeterEmpty.png" id="9_xhd47"]
 [ext_resource type="Texture2D" uid="uid://ddbkffjryuvuf" path="res://src/assets/ui/basic/LavameterFilled.png" id="10_1fb32"]
 [ext_resource type="Texture2D" uid="uid://cyutfnr4ol5x" path="res://src/assets/ui/settings/CloseButton.png" id="15_hwtoi"]
@@ -21,24 +23,27 @@ content_margin_bottom = 10.0
 texture = ExtResource("2_b06wh")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x6mre"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x31ag"]
-content_margin_bottom = 10.0
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 5.0
 texture = ExtResource("3_h64qy")
-expand_margin_left = 28.0
-expand_margin_right = 28.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s8qip"]
-content_margin_bottom = 10.0
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 5.0
 texture = ExtResource("3_0so4u")
-expand_margin_left = 28.0
-expand_margin_right = 28.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_io5f3"]
-content_margin_bottom = 10.0
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 5.0
 texture = ExtResource("2_b06wh")
-expand_margin_left = 28.0
-expand_margin_right = 28.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7xjr"]
 
@@ -102,16 +107,15 @@ Button/colors/icon_hover_pressed_color = Color(0.8392157, 0.5647059, 0.29411766,
 Button/colors/icon_normal_color = Color(0.8392157, 0.5647059, 0.29411766, 1)
 Button/colors/icon_pressed_color = Color(0.8392157, 0.5647059, 0.29411766, 1)
 Button/constants/align_to_largest_stylebox = 0
-Button/constants/h_separation = 300
 Button/constants/outline_size = 5
-Button/font_sizes/font_size = 42
+Button/font_sizes/font_size = 38
 Button/fonts/font = ExtResource("1_me7jw")
 Button/styles/disabled = SubResource("StyleBoxTexture_1fb32")
 Button/styles/focus = SubResource("StyleBoxTexture_x6mre")
 Button/styles/hover = SubResource("StyleBoxTexture_x31ag")
 Button/styles/normal = SubResource("StyleBoxTexture_s8qip")
 Button/styles/pressed = SubResource("StyleBoxTexture_io5f3")
-CheckBox/icons/checked = ExtResource("5_v7xjr")
+CheckBox/icons/checked = null
 CheckBox/icons/checked_disabled = ExtResource("4_ksw8g")
 CheckBox/icons/radio_checked = ExtResource("5_v7xjr")
 CheckBox/icons/radio_checked_disabled = ExtResource("4_ksw8g")
@@ -119,10 +123,10 @@ CheckBox/icons/radio_unchecked = ExtResource("4_ksw8g")
 CheckBox/icons/radio_unchecked_disabled = ExtResource("4_ksw8g")
 CheckBox/icons/unchecked = ExtResource("4_ksw8g")
 CheckBox/icons/unchecked_disabled = ExtResource("4_ksw8g")
-CheckButton/icons/checked = ExtResource("5_v7xjr")
-CheckButton/icons/checked_disabled = ExtResource("4_ksw8g")
-CheckButton/icons/unchecked = ExtResource("4_ksw8g")
-CheckButton/icons/unchecked_disabled = ExtResource("4_ksw8g")
+CheckButton/icons/checked = ExtResource("7_10um3")
+CheckButton/icons/checked_disabled = ExtResource("8_bv0ra")
+CheckButton/icons/unchecked = ExtResource("8_bv0ra")
+CheckButton/icons/unchecked_disabled = ExtResource("8_bv0ra")
 CheckButton/styles/disabled = SubResource("StyleBoxEmpty_v7xjr")
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_h64qy")
 CheckButton/styles/hover = SubResource("StyleBoxEmpty_hwtoi")
@@ -150,6 +154,7 @@ Label/colors/font_shadow_color = Color(0, 0, 0, 0)
 Label/constants/outline_size = 11
 Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_me7jw")
+OptionButton/font_sizes/font_size = 30
 ProgressBar/fonts/font = ExtResource("1_me7jw")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_h64qy")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_hwtoi")
