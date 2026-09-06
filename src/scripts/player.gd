@@ -284,6 +284,9 @@ func _get_input_direction() -> Vector3:
 	elif !walk_sfx.playing:
 		walk_sfx.play()
 
+	var sspeed = Vector2(velocity.x, velocity.z).length()
+	var spitch = remap(sspeed, 0.0, speed, 1.0, 2)
+	walk_sfx.pitch_scale = clamp(spitch, 1.0, 2)
 	return direction.normalized()
 
 
@@ -609,6 +612,9 @@ func _process_swing_movement(delta: float, input_direction: Vector3) -> void:
 
 func _update_coyote_timer(delta: float) -> void:
 	if is_on_floor():
+		if floor_jump_done == true:
+			%groundpounce.emitting = true
+			%groundpouncesound.play()
 		floor_jump_done = false;
 		has_pickaxe_boosted_air = true if is_pickaxe_boosting else false;
 		coyote_timer = coyote_time
