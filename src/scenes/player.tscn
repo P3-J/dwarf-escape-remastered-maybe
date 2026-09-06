@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dgr2fdi84ubyo" path="res://src/scenes/ghostcube.tscn" id="17_usugt"]
 [ext_resource type="Texture2D" uid="uid://r4h083wkk1un" path="res://src/textures/player_misc/ground_shadow.png" id="18_3qshy"]
 [ext_resource type="Texture2D" uid="uid://bpscfjwhi5nqq" path="res://textures/t2/F1/CNAR9.png" id="18_twf7n"]
+[ext_resource type="AudioStream" uid="uid://cjt3c16xomdn8" path="res://src/assets/sounds/gthump2.mp3" id="20_qmjc7"]
 
 [sub_resource type="Animation" id="Animation_4pcbe"]
 length = 0.001
@@ -149,11 +150,12 @@ height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v6aa"]
 transparency = 1
-albedo_color = Color(0.01, 0.005, 0, 0.795)
+albedo_color = Color(0.2816881, 0.1580235, 0, 0.8)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0qy4j"]
 material = SubResource("StandardMaterial3D_8v6aa")
 size = Vector2(0.1, 0.1)
+orientation = 2
 
 [sub_resource type="Curve" id="Curve_4pcbe"]
 _data = [Vector2(0.00645161, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -187,7 +189,6 @@ hookray = NodePath("head/hookray")
 swing_pump_accel = 15.0
 rope_pull_in_speed = 1.0
 pickaxe_throw_speed = 45.0
-pickaxe_retract_speed = 30.0
 PickAxe = NodePath("head/Pickaxe")
 BoostRay = NodePath("head/boostray")
 boost_str = 30.0
@@ -407,7 +408,6 @@ transform = Transform3D(0.18638709, 0, 0.9824764, 0, 1, 0, -0.9824764, 0, 0.1863
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96358967, 0)
 stream = ExtResource("8_4pcbe")
 unit_size = 4.0
-pitch_scale = 1.5
 bus = &"SFX"
 
 [node name="slide_sound" type="AudioStreamPlayer" parent="Audio" unique_id=1300037818]
@@ -429,23 +429,36 @@ rope_tex = ExtResource("18_twf7n")
 script = ExtResource("16_myy50")
 player_node = NodePath("../..")
 
+[node name="groundpouncesound" type="AudioStreamPlayer" parent="callables" unique_id=2102710949]
+unique_name_in_owner = true
+stream = ExtResource("20_qmjc7")
+volume_db = -10.0
+pitch_scale = 3.07
+
 [node name="ghostcube" parent="." unique_id=112604108 node_paths=PackedStringArray("yarddata") instance=ExtResource("17_usugt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.228012)
 top_level = true
 yarddata = NodePath("../callables/yard")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=677576926]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0785469, -1.13536, 0.00383642)
-visible = false
+[node name="groundpounce" type="CPUParticles3D" parent="." unique_id=677576926]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.014538452, 0.9998943, 0, -0.9998943, 0.014538452, 0, -0.82203984, 0)
+emitting = false
 amount = 32
 lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
 mesh = SubResource("PlaneMesh_0qy4j")
-emission_shape = 1
-emission_sphere_radius = 0.5
-gravity = Vector3(0, -1, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.1
+emission_ring_radius = 0.5
+emission_ring_inner_radius = 0.4
+emission_ring_cone_angle = 90.0
+spread = 180.0
+gravity = Vector3(0, 1, 0)
 initial_velocity_max = 0.2
-angular_velocity_min = 1.0
-angular_velocity_max = 4.0
+linear_accel_max = 6.46
 scale_amount_curve = SubResource("Curve_4pcbe")
 
 [node name="player_shadow" type="Decal" parent="." unique_id=1257865229]

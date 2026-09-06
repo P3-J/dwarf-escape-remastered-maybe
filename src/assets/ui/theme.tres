@@ -4,16 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cepdomtjvle48" path="res://src/assets/ui/buttons/MenuButton1Clicked.png" id="2_b06wh"]
 [ext_resource type="Texture2D" uid="uid://dowirk5166mvt" path="res://src/assets/ui/buttons/MenuButton1.png" id="3_0so4u"]
 [ext_resource type="Texture2D" uid="uid://b00ai1twg6wdt" path="res://src/assets/ui/basic/MenuButton1Highlighted.png" id="3_h64qy"]
-[ext_resource type="Texture2D" uid="uid://3fjqhpfu8kdq" path="res://src/assets/ui/settings/SettingsCheckboxDisabled.png" id="4_ksw8g"]
 [ext_resource type="Texture2D" uid="uid://kgj7rby47ays" path="res://src/assets/ui/settings/SliderPointerDisabled.png" id="5_me7jw"]
-[ext_resource type="Texture2D" uid="uid://c3jnym6pw78vf" path="res://src/assets/ui/settings/SettingsCheckboxActive.png" id="5_v7xjr"]
 [ext_resource type="Texture2D" uid="uid://c3o3oypueolv" path="res://src/assets/ui/settings/SliderActive.png" id="5_xhd47"]
 [ext_resource type="Texture2D" uid="uid://cgtuxauca5huk" path="res://src/assets/ui/settings/SliderDisabled.png" id="6_0so4u"]
 [ext_resource type="Texture2D" uid="uid://brgq0gi6exh2s" path="res://src/assets/ui/settings/SliderPointerHighlighted.png" id="6_b06wh"]
 [ext_resource type="Texture2D" uid="uid://hopphwhipqsv" path="res://src/assets/ui/leaderboard/NameInput.png" id="6_me7jw"]
 [ext_resource type="Texture2D" uid="uid://bmoyx51oqubng" path="res://src/assets/ui/level_selection/LevelSelectionBackground.png" id="7_0so4u"]
-[ext_resource type="Texture2D" uid="uid://mif7yug5bof1" path="res://src/assets/ui/settings/SettingsCheckboxActive (2).png" id="7_10um3"]
-[ext_resource type="Texture2D" uid="uid://dbel42a58nyb4" path="res://src/assets/ui/settings/SettingsCheckboxDisabled (2).png" id="8_bv0ra"]
+[ext_resource type="Texture2D" uid="uid://mif7yug5bof1" path="res://src/assets/ui/settings/SettingsCheckboxActive.png" id="7_10um3"]
+[ext_resource type="Texture2D" uid="uid://dbel42a58nyb4" path="res://src/assets/ui/settings/SettingsCheckboxDisabled.png" id="8_bv0ra"]
 [ext_resource type="Texture2D" uid="uid://ccwdljdkm1hne" path="res://src/assets/ui/basic/LavaMeterEmpty.png" id="9_xhd47"]
 [ext_resource type="Texture2D" uid="uid://ddbkffjryuvuf" path="res://src/assets/ui/basic/LavameterFilled.png" id="10_1fb32"]
 [ext_resource type="Texture2D" uid="uid://cyutfnr4ol5x" path="res://src/assets/ui/settings/CloseButton.png" id="15_hwtoi"]
@@ -116,13 +114,13 @@ Button/styles/hover = SubResource("StyleBoxTexture_x31ag")
 Button/styles/normal = SubResource("StyleBoxTexture_s8qip")
 Button/styles/pressed = SubResource("StyleBoxTexture_io5f3")
 CheckBox/icons/checked = null
-CheckBox/icons/checked_disabled = ExtResource("4_ksw8g")
-CheckBox/icons/radio_checked = ExtResource("5_v7xjr")
-CheckBox/icons/radio_checked_disabled = ExtResource("4_ksw8g")
-CheckBox/icons/radio_unchecked = ExtResource("4_ksw8g")
-CheckBox/icons/radio_unchecked_disabled = ExtResource("4_ksw8g")
-CheckBox/icons/unchecked = ExtResource("4_ksw8g")
-CheckBox/icons/unchecked_disabled = ExtResource("4_ksw8g")
+CheckBox/icons/checked_disabled = ExtResource("8_bv0ra")
+CheckBox/icons/radio_checked = ExtResource("7_10um3")
+CheckBox/icons/radio_checked_disabled = ExtResource("8_bv0ra")
+CheckBox/icons/radio_unchecked = ExtResource("8_bv0ra")
+CheckBox/icons/radio_unchecked_disabled = ExtResource("8_bv0ra")
+CheckBox/icons/unchecked = ExtResource("8_bv0ra")
+CheckBox/icons/unchecked_disabled = ExtResource("8_bv0ra")
 CheckButton/icons/checked = ExtResource("7_10um3")
 CheckButton/icons/checked_disabled = ExtResource("8_bv0ra")
 CheckButton/icons/unchecked = ExtResource("8_bv0ra")
