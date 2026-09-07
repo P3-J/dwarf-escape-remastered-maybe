@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dod04tt2vl7s1"
-path.s3tc="res://.godot/imported/asd.png-b714027a556841752d5937ed04503c05.s3tc.ctex"
+uid="uid://bgjl5jp2l8035"
+path.s3tc="res://.godot/imported/spriteimpact.png-c51e79936155edee2bde471903f6c23a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/t2/asd.png"
-dest_files=["res://.godot/imported/asd.png-b714027a556841752d5937ed04503c05.s3tc.ctex"]
+source_file="res://src/assets/sprites/spriteimpact.png"
+dest_files=["res://.godot/imported/spriteimpact.png-c51e79936155edee2bde471903f6c23a.s3tc.ctex"]
 
 [params]
 
