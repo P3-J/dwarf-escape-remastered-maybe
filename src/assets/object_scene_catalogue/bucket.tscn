@@ -9,27 +9,31 @@ height = 0.005378723
 radius = 0.0029296875
 
 [node name="Bucket" unique_id=234600394 instance=ExtResource("1_sveyt")]
-transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
+transform = Transform3D(133.45059, 0, 0, 0, 133.45059, 0, 0, 0, 133.45059, 0, 0, 0)
 
-[node name="pTorus1" parent="Bucket" parent_id_path=PackedInt32Array(1284359925) index="0" unique_id=138516074]
+[node name="Bucket" parent="." index="0" unique_id=1284359925]
+transform = Transform3D(0.97418165, 0, 0, 0, 0.97418165, 0, 0, 0, 0.97418165, 0, 0, 0)
+
+[node name="pTorus1" parent="Bucket" index="0" unique_id=138516074]
 material_override = ExtResource("3_y0for")
 
-[node name="pCylinder9" parent="Bucket" parent_id_path=PackedInt32Array(1284359925) index="1" unique_id=1465024718]
+[node name="pCylinder9" parent="Bucket" index="1" unique_id=1465024718]
 material_override = ExtResource("3_y0for")
 
-[node name="pCylinder6" parent="Bucket" parent_id_path=PackedInt32Array(1284359925) index="2" unique_id=1567201806]
+[node name="pCylinder6" parent="Bucket" index="2" unique_id=1567201806]
 material_override = ExtResource("2_riid1")
 
-[node name="pCube67" parent="Bucket" parent_id_path=PackedInt32Array(1284359925) index="3" unique_id=1675733448]
+[node name="pCube67" parent="Bucket" index="3" unique_id=1675733448]
 material_override = ExtResource("2_riid1")
 
-[node name="pCube68" parent="Bucket" parent_id_path=PackedInt32Array(1284359925) index="4" unique_id=66209789]
+[node name="pCube68" parent="Bucket" index="4" unique_id=66209789]
 material_override = ExtResource("2_riid1")
 
-[node name="pCylinder8" parent="Bucket" parent_id_path=PackedInt32Array(1284359925) index="5" unique_id=1648149666]
+[node name="pCylinder8" parent="Bucket" index="5" unique_id=1648149666]
 material_override = ExtResource("3_y0for")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=102812704]
+transform = Transform3D(0.9821404, 0, 0, 0, 0.9821404, 0, 0, 0, 0.9821404, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=215495007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0026359558, 0)

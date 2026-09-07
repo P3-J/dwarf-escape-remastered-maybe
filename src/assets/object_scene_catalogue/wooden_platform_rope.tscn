@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://nh2ae8wxqy4g"]
+
+[ext_resource type="PackedScene" uid="uid://5xfklfhhi6xv" path="res://src/assets/objects/wooden_platform_central_rope/WoodenPlatformRope.fbx" id="1_416ur"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="2_14e8c"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="3_2jva3"]
+
+[node name="WoodenPlatformRope" unique_id=1513090053 instance=ExtResource("1_416ur")]
+
+[node name="WoodenPlatformCentralRope" parent="." index="0" unique_id=1315907703]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="pCube10" parent="WoodenPlatformCentralRope" index="0" unique_id=196170736]
+material_override = ExtResource("2_14e8c")
+
+[node name="pCube11" parent="WoodenPlatformCentralRope" index="1" unique_id=822815582]
+material_override = ExtResource("3_2jva3")
+
+[node name="pCube12" parent="WoodenPlatformCentralRope" index="2" unique_id=1149249435]
+material_override = ExtResource("2_14e8c")
+
+[node name="pCube13" parent="WoodenPlatformCentralRope" index="3" unique_id=1737320653]
+material_override = ExtResource("3_2jva3")
+
+[node name="pCube14" parent="WoodenPlatformCentralRope/group4" parent_id_path=PackedInt32Array(924963881) index="0" unique_id=1765760109]
+material_override = ExtResource("3_2jva3")
+
+[node name="pCube142" parent="WoodenPlatformCentralRope/group5" parent_id_path=PackedInt32Array(1045306267) index="0" unique_id=638874959]
+material_override = ExtResource("3_2jva3")
+
+[node name="pCube143" parent="WoodenPlatformCentralRope/group6" parent_id_path=PackedInt32Array(522170193) index="0" unique_id=826029290]
+material_override = ExtResource("3_2jva3")
+
+[node name="pCube144" parent="WoodenPlatformCentralRope/group7" parent_id_path=PackedInt32Array(1596848126) index="0" unique_id=305391213]
+material_override = ExtResource("3_2jva3")
