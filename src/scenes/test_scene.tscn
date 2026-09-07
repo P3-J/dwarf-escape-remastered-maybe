@@ -1,6 +1,27 @@
 [gd_scene format=3 uid="uid://dmu7yd3ktqlcd"]
 
+[ext_resource type="Texture2D" uid="uid://bgjl5jp2l8035" path="res://src/assets/sprites/spriteimpact.png" id="1_xshpu"]
+[ext_resource type="PackedScene" uid="uid://d2fflt0dmlqmk" path="res://src/scenes/boostspot.tscn" id="2_vua8w"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_e68yd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e68yd"]
+
 [node name="test_scene" type="Node3D" unique_id=1327832915]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1755660850]
-transform = Transform3D(-0.058625843, 0.99828005, 0, -0.99828005, -0.058625843, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-0.05862584, 0.99828, 0, 0.036875233, 0.0021655662, 0.99931747, 0.99759877, 0.058585834, -0.036938768, 0, 0, 0)
+mesh = SubResource("QuadMesh_e68yd")
+
+[node name="Decal" type="Decal" parent="." unique_id=344879085]
+transform = Transform3D(0.99633074, 0.085585475, -0.0005385691, 0.0051552616, -0.053730667, 0.9985422, 0.08543177, -0.99488103, -0.053974718, -0.12842607, 0.11900723, -0.1640274)
+size = Vector3(0.2, 0.2, 0.2)
+texture_albedo = ExtResource("1_xshpu")
+texture_emission = ExtResource("1_xshpu")
+modulate = Color(0.4745098, 0, 0.03137255, 1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1778357713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.609619)
+mesh = SubResource("BoxMesh_e68yd")
+
+[node name="boostspot" parent="." unique_id=960495019 instance=ExtResource("2_vua8w")]

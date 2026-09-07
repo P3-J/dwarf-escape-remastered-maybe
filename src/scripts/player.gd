@@ -6,6 +6,7 @@ class_name PlayerDwarf
 @export_group("Callables")
 @export var hook_mesh_parent: RopeMesh
 @export var yardman: YARDMAN
+@export var boost_decal: GroundImpactSprite
 
 @export_group("Movement")
 @export var speed: float = 10.0
@@ -173,7 +174,7 @@ func _physics_process(delta: float) -> void:
 	_should_show_speed_lines(velocity)
 	_update_hook_target_indicator()
 
-	if in_boost_area: velocity.y += 2
+	if in_boost_area: velocity.y = 30
 
 	if is_sliding:
 		_process_slide_movement(delta)
@@ -647,6 +648,10 @@ func boost_off_surface():
 	var ray_origin = BoostRay.global_transform.origin
 	var ray_dir = (BoostRay.global_transform.basis * BoostRay.target_position).normalized()
 
+	var point := BoostRay.get_collision_point()
+	var normal := BoostRay.get_collision_normal()
+	boost_decal._create_sprite(point, normal)
+
 	var distance = 10.0
 	var opposite_point = ray_origin - ray_dir * distance
 
@@ -672,7 +677,7 @@ func _should_show_speed_lines(vel: Vector3) -> void:
 	if not %windblow.playing:
 		%windblow.play()
 	else:
-		%windblow.volume_db = -55 + total_speed
+		%windblow.volume_db = -55 + clamp(total_speed, 0, 30)
 
 	if speed_lines_material == null and speed_lines_shader:
 		speed_lines_material = speed_lines_shader.material as ShaderMaterial

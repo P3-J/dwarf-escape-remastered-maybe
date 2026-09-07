@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://r4h083wkk1un" path="res://src/textures/player_misc/ground_shadow.png" id="18_3qshy"]
 [ext_resource type="Texture2D" uid="uid://bpscfjwhi5nqq" path="res://textures/t2/F1/CNAR9.png" id="18_twf7n"]
 [ext_resource type="AudioStream" uid="uid://cjt3c16xomdn8" path="res://src/assets/sounds/gthump2.mp3" id="20_qmjc7"]
+[ext_resource type="Script" uid="uid://dktkhi2s5kwwq" path="res://src/scripts/spriteground.gd" id="21_ybrxc"]
 
 [sub_resource type="Animation" id="Animation_4pcbe"]
 length = 0.001
@@ -161,13 +162,14 @@ orientation = 2
 _data = [Vector2(0.00645161, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="player" type="CharacterBody3D" unique_id=299372560 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "yardman", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "slide_sound", "timer_text", "speed_lines_shader") groups=["player"]]
+[node name="player" type="CharacterBody3D" unique_id=299372560 node_paths=PackedStringArray("player_head", "hook_mesh_parent", "yardman", "boost_decal", "wall_ray_right", "wall_ray_left", "standing_collision", "crouching_collision", "ceiling_check", "hookray", "PickAxe", "BoostRay", "slide_sound", "timer_text", "speed_lines_shader") groups=["player"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_ve44u")
 player_head = NodePath("head")
 hook_mesh_parent = NodePath("callables/RopeMeshy")
 yardman = NodePath("callables/yard")
+boost_decal = NodePath("callables/spriteground")
 speed = 11.0
 air_speed = 9.0
 accel = 3.0
@@ -338,6 +340,7 @@ metadata/_edit_use_anchors_ = true
 [node name="countdownanim" type="AnimationPlayer" parent="UI/countdownlabel" unique_id=1791923121]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_0hlw3")
+speed_scale = 1.7
 
 [node name="MainMenuUiPrototo" type="Sprite2D" parent="UI" unique_id=580101095]
 light_mask = 0
@@ -400,7 +403,7 @@ transform = Transform3D(1, 0, 0, 0, 2.0677965, 0.08325372, 0, -0.17275149, 0.996
 target_position = Vector3(0, 0, -3.2)
 
 [node name="Pickaxe" parent="head" unique_id=689752792 instance=ExtResource("2_xatcm")]
-transform = Transform3D(0.18638709, 0, 0.9824764, 0, 1, 0, -0.9824764, 0, 0.18638709, 0.1756073, -0.22893149, -0.29213384)
+transform = Transform3D(0.10742298, 0, 0.99421346, 0, 1, 0, -0.99421346, 0, 0.10742298, 0.13966471, -0.1926443, -0.2805647)
 
 [node name="Audio" type="Node3D" parent="." unique_id=1446774357]
 
@@ -419,6 +422,12 @@ unique_name_in_owner = true
 stream = ExtResource("16_twf7n")
 volume_db = -40.0
 
+[node name="groundpouncesound" type="AudioStreamPlayer" parent="Audio" unique_id=2102710949]
+unique_name_in_owner = true
+stream = ExtResource("20_qmjc7")
+volume_db = -10.0
+pitch_scale = 3.07
+
 [node name="callables" type="Node" parent="." unique_id=254208813]
 
 [node name="RopeMeshy" type="Node" parent="callables" unique_id=1897900637]
@@ -429,11 +438,8 @@ rope_tex = ExtResource("18_twf7n")
 script = ExtResource("16_myy50")
 player_node = NodePath("../..")
 
-[node name="groundpouncesound" type="AudioStreamPlayer" parent="callables" unique_id=2102710949]
-unique_name_in_owner = true
-stream = ExtResource("20_qmjc7")
-volume_db = -10.0
-pitch_scale = 3.07
+[node name="spriteground" type="Node" parent="callables" unique_id=1422143462]
+script = ExtResource("21_ybrxc")
 
 [node name="ghostcube" parent="." unique_id=112604108 node_paths=PackedStringArray("yarddata") instance=ExtResource("17_usugt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.228012)
