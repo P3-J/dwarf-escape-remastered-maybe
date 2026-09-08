@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://djhp683wygffw"]
+[gd_scene format=3 uid="uid://djhp683wygffw"]
 
 [ext_resource type="PackedScene" uid="uid://cl13y7c776y2l" path="res://src/assets/objects/SmallPassage/SmallPassage.fbx" id="1_fejat"]
-[ext_resource type="Material" uid="uid://bl1nqa56gvw5f" path="res://src/assets/shaders/TilableShaderBase/RockSlateBright.tres" id="2_5wssn"]
-[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/shaders/TilableShaderBase/TiledGoldenConcreate.tres" id="3_yq2r5"]
+[ext_resource type="Material" uid="uid://bl1nqa56gvw5f" path="res://src/assets/Shaders/shader_catalogue/RockSlateBright.tres" id="2_5wssn"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="3_yq2r5"]
 
 [node name="SmallPassage" instance=ExtResource("1_fejat")]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)

@@ -10,7 +10,7 @@ render_priority = 0
 shader = ExtResource("3_8q6l0")
 shader_parameter/base_texture = ExtResource("3_iwrnh")
 shader_parameter/cool_color = Color(0.05, 0.01, 0, 1)
-shader_parameter/hot_color = Color(0.95686275, 0.05882353, 0, 1)
+shader_parameter/hot_color = Color(0.95349616, 0.36818022, 7.70092e-07, 1)
 shader_parameter/emission_strength = 275.08
 shader_parameter/emission_flicker_speed = 2.0
 shader_parameter/base_texture_scale = Vector2(15, 15)
@@ -62,6 +62,7 @@ collision_mask = 3
 script = ExtResource("1_u7ucl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=167300565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012726784, 0.004858613, -0.0023293495)
 mesh = SubResource("PlaneMesh_652k1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1228142798]

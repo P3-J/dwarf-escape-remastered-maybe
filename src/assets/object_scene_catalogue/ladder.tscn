@@ -1,17 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhs67ys81v5aj"]
+[gd_scene format=3 uid="uid://dhs67ys81v5aj"]
 
 [ext_resource type="PackedScene" uid="uid://be3lbnf5dg2hx" path="res://src/assets/objects/ladder/Ladder.fbx" id="1_bjoxn"]
+[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/Shaders/shader_catalogue/Wood.tres" id="2_bhg13"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bjoxn"]
 size = Vector3(1.2946777, 5.837158, 0.22802734)
 
-[node name="Ladder" instance=ExtResource("1_bjoxn")]
+[node name="Ladder" unique_id=828275530 instance=ExtResource("1_bjoxn")]
 
-[node name="Ladder" parent="." index="0"]
+[node name="Ladder" parent="." index="0" unique_id=229060904]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="pCube50" parent="Ladder" index="0" unique_id=1195615500]
+material_override = ExtResource("2_bhg13")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="pCube46" parent="Ladder" index="1" unique_id=55602270]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube43" parent="Ladder" index="2" unique_id=583280865]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube49" parent="Ladder" index="3" unique_id=316550817]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube45" parent="Ladder" index="4" unique_id=1008769067]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube48" parent="Ladder" index="5" unique_id=1070924368]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube44" parent="Ladder" index="6" unique_id=2038017577]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube47" parent="Ladder" index="7" unique_id=1903859020]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube39" parent="Ladder" index="8" unique_id=947092894]
+material_override = ExtResource("2_bhg13")
+
+[node name="pCube41" parent="Ladder" index="9" unique_id=498890325]
+material_override = ExtResource("2_bhg13")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=222145189]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1212391038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032958984, 0.006713867, 0.013427734)
 shape = SubResource("BoxShape3D_bjoxn")

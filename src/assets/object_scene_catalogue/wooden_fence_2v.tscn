@@ -1,15 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://duohm4m7d15nc"]
+[gd_scene format=3 uid="uid://duohm4m7d15nc"]
 
 [ext_resource type="PackedScene" uid="uid://r3bhkn1v6vlt" path="res://src/assets/objects/wooden_fences/v2/WoodenFence2V.fbx" id="1_20bkf"]
+[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/Shaders/shader_catalogue/Wood.tres" id="2_2ge7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_20bkf"]
 size = Vector3(0.04668945, 0.013791503, 0.0020117187)
 
-[node name="WoodenFence2V" instance=ExtResource("1_20bkf")]
+[node name="WoodenFence2V" unique_id=299363060 instance=ExtResource("1_20bkf")]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="pCube133" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="0" unique_id=215312102]
+material_override = ExtResource("2_2ge7j")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="pCube131" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="1" unique_id=1812557180]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube128" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="2" unique_id=603463178]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube136" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="3" unique_id=456362432]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube134" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="4" unique_id=401555843]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube130" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="5" unique_id=1722898311]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube129" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="6" unique_id=1708159836]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube132" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="7" unique_id=1884848717]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube135" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="8" unique_id=401375219]
+material_override = ExtResource("2_2ge7j")
+
+[node name="pCube137" parent="WoodenFence2v" parent_id_path=PackedInt32Array(1235193280) index="9" unique_id=1460323302]
+material_override = ExtResource("2_2ge7j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1217388941]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=29115889]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00058105343, 0.004945067, 2.9297007e-05)
 shape = SubResource("BoxShape3D_20bkf")

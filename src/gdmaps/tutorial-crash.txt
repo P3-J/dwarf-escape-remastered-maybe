@@ -1,0 +1,52 @@
+OS:	Windows 10 Version 22H2
+Qt:	6.10.3
+GL_VENDOR:	NVIDIA Corporation
+GL_RENDERER:	NVIDIA GeForce RTX 3060/PCIe/SSE2
+GL_VERSION:	4.6.0 NVIDIA 610.47
+TrenchBroom Version:	2026.2
+TrenchBroom Build:	v2026.2 Release Win64
+Reason:	D:\a\TrenchBroom\TrenchBroom\lib\TbMdlLib\include\mdl/Polyhedron_ConvexHull.h line 184: assertion '(vm::segment<T, 3>(position, v1->position()) .contains(v2->position(), vm::constants<T>::almost_zero()))' failed
+Stack trace (most recent call first):
+#0  0x00007ff70f67fa95 in  ?? 
+#1  0x00007ff70f67b02d in  ?? 
+#2  0x00007ff70f67af0f in  ?? 
+#3  0x00007ff71018335a in  ?? 
+#4  0x00007ff710183490 in  ?? 
+#5  0x00007ff70fc189b2 in  ?? 
+#6  0x00007ff70fc1b214 in  ?? 
+#7  0x00007ff70fc1cb0e in  ?? 
+#8  0x00007ff70fc04369 in  ?? 
+#9  0x00007ff70fc6aaf9 in  ?? 
+#10 0x00007ff70fc68a45 in  ?? 
+#11 0x00007ff70fce23b1 in  ?? 
+#12 0x00007ff70fcc9d30 in  ?? 
+#13 0x00007ff70fcec2d3 in  ?? 
+#14 0x00007ff70f8a2339 in  ?? 
+#15 0x00007ff70fa56fa6 in  ?? 
+#16 0x00007ff70fa5947a in  ?? 
+#17 0x00007ff70f8efc61 in  ?? 
+#18 0x00007ff70f97e2fb in  ?? 
+#19 0x00007ff70f8eceff in  ?? 
+#20 0x00007ffa965239ae in QOpenGLWidget::redirected
+#21 0x00007ffa9652330e in QOpenGLWidget::paintEvent
+#22 0x00007ff9d32d9ca2 in QWidget::event
+#23 0x00007ff9d3293520 in QApplicationPrivate::notify_helper
+#24 0x00007ff9d329261d in QApplication::notify
+#25 0x00007ff9a9509c50 in QCoreApplication::notifyInternal2
+#26 0x00007ff9d32e8959 in QWidgetPrivate::sendPaintEvent
+#27 0x00007ff9d32fb161 in QWidgetRepaintManager::paintAndFlush
+#28 0x00007ff9d32da0a8 in QWidget::event
+#29 0x00007ff9d3293520 in QApplicationPrivate::notify_helper
+#30 0x00007ff9d329261d in QApplication::notify
+#31 0x00007ff9a9509c50 in QCoreApplication::notifyInternal2
+#32 0x00007ff9a950c472 in QCoreApplicationPrivate::sendPostedEvents
+#33 0x00007ff9a8ef57de in QWindowsGuiEventDispatcher::sendPostedEvents
+#34 0x00007ff9a96a921f in QEventDispatcherWin32::processEvents
+#35 0x00007ff9a8ef5758 in QWindowsGuiEventDispatcher::processEvents
+#36 0x00007ff9a9510663 in QEventLoop::exec
+#37 0x00007ff9a9508179 in QCoreApplication::exec
+#38 0x00007ff70f6508b3 in  ?? 
+#39 0x00007ff7101dddff in  ?? 
+#40 0x00007ff7101d5705 in  ?? 
+#41 0x00007ffaac627373 in BaseThreadInitThunk
+#42 0x00007ffaaca1cc90 in RtlUserThreadStart

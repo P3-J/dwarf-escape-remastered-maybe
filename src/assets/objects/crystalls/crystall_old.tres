@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://73fouxkrqev"]
+
+[ext_resource type="Shader" uid="uid://c1le07vrr33gh" path="res://src/assets/objects/crystalls/crystall_old.gdshader" id="1_616t3"]
+[ext_resource type="Shader" uid="uid://cft1d7qalccpt" path="res://src/assets/objects/crystalls/crystall_old_outline.gdshader" id="1_m7rht"]
+[ext_resource type="Texture2D" uid="uid://doxank5oeh6mm" path="res://src/assets/objects/crystalls/CrystallOld/Crystall1_BaseColor.png" id="2_pmbtf"]
+[ext_resource type="Texture2D" uid="uid://doyv3aavnxpt" path="res://src/assets/objects/crystalls/CrystallOld/Crystall1_Crystall_Emissive.png" id="3_m7rht"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhh7r"]
+render_priority = 0
+shader = ExtResource("1_m7rht")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_lhh7r")
+shader = ExtResource("1_616t3")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/emission_texture = ExtResource("3_m7rht")
+shader_parameter/normal_scale = 1.0
+shader_parameter/color = Color(0.36829916, 0.5756109, 0.7494093, 1)
+shader_parameter/base_texture = ExtResource("2_pmbtf")
+shader_parameter/specular = Color(0, 0, 0, 0.5019608)
+shader_parameter/fresnel = Color(0, 0, 0, 0.3019608)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)

@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b40104e2nwgj5"]
+[gd_scene format=3 uid="uid://b40104e2nwgj5"]
 
 [ext_resource type="PackedScene" uid="uid://eixvvcniferr" path="res://src/assets/objects/pickaxe_prop/PickaxeProp.fbx" id="1_trrbj"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="2_6qsrj"]
+[ext_resource type="Material" uid="uid://bwpi2mo12dghj" path="res://src/assets/Shaders/shader_catalogue/Wood.tres" id="3_m1hi4"]
 
-[node name="PickaxeProp" instance=ExtResource("1_trrbj")]
+[node name="PickaxeProp" unique_id=1145242255 instance=ExtResource("1_trrbj")]
 
-[node name="PickaxeProp" parent="." index="0"]
+[node name="PickaxeProp" parent="." index="0" unique_id=1105721480]
 transform = Transform3D(135, 0, 0, 0, 135, 0, 0, 0, 135, 0, 0, 0)
+
+[node name="pCube69" parent="PickaxeProp" index="0" unique_id=1362444957]
+transform = Transform3D(0.886065, 0, 0, 0, 0.886065, 0, 0, 0, 0.886065, 0, 0.004590256, 0)
+material_override = ExtResource("2_6qsrj")
+
+[node name="pCylinder11" parent="PickaxeProp" index="1" unique_id=522522528]
+transform = Transform3D(0.886065, 0, 0, 0, 0.886065, 0, 0, 0, 0.886065, 0, 0.0047728107, 0)
+material_override = ExtResource("2_6qsrj")
+
+[node name="pCylinder10" parent="PickaxeProp" index="2" unique_id=1486937173]
+transform = Transform3D(0.886065, 0, 0, 0, 0.886065, 0, 0, 0, 0.886065, 0, 0.00036963157, 0)
+material_override = ExtResource("3_m1hi4")

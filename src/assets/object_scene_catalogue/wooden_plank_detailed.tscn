@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://e44madilb0nx"]
+
+[ext_resource type="PackedScene" uid="uid://d4cp6sp5fl58n" path="res://src/assets/objects/wooden_plank_detailed/WoodenPlankDetailed.fbx" id="1_duswo"]
+[ext_resource type="Material" uid="uid://hd0mfdaec0nl" path="res://src/assets/objects/wooden_plank_detailed/WoodenPlankDetailed.tres" id="2_vma5b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgbkm"]
+size = Vector3(0.9716797, 1, 1)
+
+[node name="WoodenPlankDetailed" unique_id=1361906033 instance=ExtResource("1_duswo")]
+
+[node name="WoodenPlankDetailedLow" parent="." index="0" unique_id=649702762]
+transform = Transform3D(0.3, 0, 0, 0, -1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-08, 0, 0, 0)
+material_override = ExtResource("2_vma5b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1973147250]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=829230773]
+transform = Transform3D(0.79785323, 0, 0, 0, 0.13849635, 0, 0, 0, 3.626305, 0, 0, 0)
+shape = SubResource("BoxShape3D_dgbkm")

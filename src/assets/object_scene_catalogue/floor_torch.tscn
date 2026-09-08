@@ -12,7 +12,7 @@ data = PackedVector3Array(0.8997, 0.3888, -0.0903, 0.9635, 0.3888, -0.0639, 0.97
 
 [node name="FloorTorch" unique_id=1851058920 instance=ExtResource("1_1imc7")]
 
-[node name="Floor_Torch" parent="." index="0" unique_id=2047522101]
+[node name="Floor_Torch" parent="." index="0" unique_id=1595628448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.879367, 0, 0)
 material_override = SubResource("StandardMaterial3D_8jyr4")
 
@@ -22,10 +22,10 @@ transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, -0.03818512, 0.82326
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1574010622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024416525, 1.0335641, 0.10805905)
 light_color = Color(1, 0.688116, 0.108807, 1)
-light_energy = 4.228
+light_energy = 4.386
 light_indirect_energy = 2.368
 light_volumetric_fog_energy = 1.798
-omni_range = 5.3004117
+omni_range = 10.243
 omni_attenuation = 2.184
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="3" unique_id=559058294]

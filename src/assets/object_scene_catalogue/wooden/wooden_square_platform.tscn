@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://decswpkodwhm0"]
+
+[ext_resource type="PackedScene" uid="uid://e44madilb0nx" path="res://src/assets/object_scene_catalogue/wooden_plank_detailed.tscn" id="1_oo1uh"]
+[ext_resource type="PackedScene" uid="uid://bhndlq87uecgo" path="res://src/assets/blender_meshes/godot_scenes/nail.tscn" id="2_2onrp"]
+
+[node name="WoodenSquarePlatform" type="Node3D" unique_id=1103372358]
+
+[node name="WoodenPlankDetailed" parent="." unique_id=1361906033 instance=ExtResource("1_oo1uh")]
+transform = Transform3D(1.1295599, -0.00020148388, -0.00672182, 1.6437848e-11, 1.129349, -0.016769804, 0.009552351, 0.023825347, 0.79485124, -1.0411608, 0.2234289, 0.021049224)
+
+[node name="WoodenPlankDetailed4" parent="." unique_id=1600735474 instance=ExtResource("1_oo1uh")]
+transform = Transform3D(-2.4252108e-08, 8.822724e-10, 0.69408524, 0.011621898, 0.96357596, 0, -0.5548236, 0.02018404, -3.033943e-08, -0.05533263, 0.16069528, 0.9662986)
+
+[node name="WoodenPlankDetailed5" parent="." unique_id=1259713855 instance=ExtResource("1_oo1uh")]
+transform = Transform3D(-2.4252108e-08, 8.822724e-10, 0.69408524, 0.011621898, 0.96357596, 0, -0.5548236, 0.02018404, -3.033943e-08, -0.05533263, 0.16069528, -0.9407715)
+
+[node name="WoodenPlankDetailed2" parent="." unique_id=1697109125 instance=ExtResource("1_oo1uh")]
+transform = Transform3D(1.128939, 0.0010361884, -0.027190331, -1.7049335e-07, -1.129194, -0.021321151, -0.038645368, 0.030274937, -0.7943053, -0.03362899, 0.2234289, 0.021049224)
+
+[node name="WoodenPlankDetailed3" parent="." unique_id=1337613206 instance=ExtResource("1_oo1uh")]
+transform = Transform3D(-1.1293336, -0.00047357482, 0.017271535, 0, 1.12939, 0.0153407995, -0.024543615, 0.021790754, -0.7947208, 0.99692994, 0.2234289, 0.021049224)
+
+[node name="nail" parent="." unique_id=102396531 instance=ExtResource("2_2onrp")]
+transform = Transform3D(1.119974, -0.1355282, -0.057332333, 0.13700166, 1.1209488, 0.026479471, 0.053716257, -0.033207268, 1.1278336, -0.07906306, 0.26414862, -0.9608398)
+
+[node name="nail3" parent="." unique_id=800878066 instance=ExtResource("2_2onrp")]
+transform = Transform3D(1.1103255, 0.20778422, 0, -0.20778422, 1.1103255, 0, 0, 0, 1.1296003, -0.99705344, 0.31619552, -0.9146523)
+
+[node name="nail2" parent="." unique_id=1544944032 instance=ExtResource("2_2onrp")]
+transform = Transform3D(1.126102, 0.088832274, 0, -0.088832274, 1.126102, 0, 0, 0, 1.1296003, 0.9381766, 0.3129132, -0.9213066)
+
+[node name="nail4" parent="." unique_id=849573246 instance=ExtResource("2_2onrp")]
+transform = Transform3D(1.1199743, -0.13552824, -0.057332344, 0.13093393, 1.1186398, -0.08659404, 0.067165494, 0.07921061, 1.1248163, 0.029790001, 0.3198383, 1.0406708)
+
+[node name="nail5" parent="." unique_id=1735270534 instance=ExtResource("2_2onrp")]
+transform = Transform3D(1.1289102, -0.03947844, 0, 0.03947844, 1.1289102, 0, 0, 0, 1.1296003, -0.99705344, 0.26432696, 0.95645154)
+
+[node name="nail6" parent="." unique_id=456561385 instance=ExtResource("2_2onrp")]
+transform = Transform3D(1.1296002, -0.0003978243, 0, 0.0003978243, 1.1296002, 0, 0, 0, 1.1296003, 0.9943903, 0.2892041, 0.95858747)

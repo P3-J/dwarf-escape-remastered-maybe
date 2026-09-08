@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccyobeqin2nea"]
+[gd_scene format=3 uid="uid://ccyobeqin2nea"]
 
-[ext_resource type="PackedScene" uid="uid://xrc0trn0jwmr" path="res://src/assets/objects/cart/cart.fbx" id="1_x07oj"]
-[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/shaders/TilableShaderBase/TiledGoldenConcreate.tres" id="2_gixik"]
-[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/shaders/TilableShaderBase/MetalTest.tres" id="2_h33qg"]
+[ext_resource type="PackedScene" uid="uid://xrc0trn0jwmr" path="res://src/assets/objects/cart/Cart.fbx" id="1_x07oj"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="2_gixik"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="2_h33qg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x07oj"]
 size = Vector3(2.5078735, 1.5820313, 1.4268799)

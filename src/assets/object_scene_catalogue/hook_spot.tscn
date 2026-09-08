@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkfbtvxfwq2ov"]
+[gd_scene format=3 uid="uid://dkfbtvxfwq2ov"]
 
 [ext_resource type="PackedScene" uid="uid://cb6nxc6hamo61" path="res://src/assets/objects/hook_spots/Hook_Spot.fbx" id="1_xyjpx"]
 [ext_resource type="Texture2D" uid="uid://ppe0pa5i2312" path="res://src/assets/objects/hook_spots/Hook_Spot_T_BaseColor.png" id="2_3lgxc"]
@@ -10,11 +10,12 @@ metallic_specular = 0.0
 emission = Color(0.177896, 0.0701795, 0.000686435, 1)
 emission_energy_multiplier = 6.87
 
-[node name="Hook_Spot" instance=ExtResource("1_xyjpx")]
+[node name="Hook_Spot" unique_id=1018935251 instance=ExtResource("1_xyjpx")]
 
-[node name="group2" parent="." index="0"]
+[node name="group2" parent="." index="0" unique_id=680407216]
 visible = false
 
-[node name="Hook_Spot" parent="." index="1"]
+[node name="Hook_Spot" parent="." index="1" unique_id=760680160]
+transform = Transform3D(6.318598, 0, 0, 0, 6.318598, 0, 0, 0, 6.318598, -1.2199198e-05, 0.05727334, -0.026440952)
 material_override = ExtResource("2_adn13")
 surface_material_override/0 = SubResource("StandardMaterial3D_3071o")
