@@ -38,6 +38,10 @@ func _ready() -> void:
 	Signalbus.connect('play_ring_boost_sound', _play_ring_boost_sound)
 	Signalbus.connect('dont_play_sounds_on_reload', _on_dont_play_sounds_on_reload)
 	Signalbus.connect('settings_changed', _on_settings_changed)
+	Signalbus.connect("play_ambient_lv3", func():
+		if not %ambientlv3.playing:
+			%ambientlv3.play()
+	)
 
 	# initialize audio settings
 	_on_settings_changed()
@@ -66,7 +70,7 @@ func _play_death_sound() -> void:
 		death_sound.play()
 
 func _play_pickaxe_grab_sound(is_grabbed: bool) -> void:
-	pickaxe_hooked.playing = is_grabbed	
+	pickaxe_hooked.playing = is_grabbed
 
 func _play_pickaxe_throw_sound() -> void:
 	pickaxe_throw.pitch_scale = randf_range(0.8, 1.2)
