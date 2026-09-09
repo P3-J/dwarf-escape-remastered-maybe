@@ -20,6 +20,7 @@ func _ready() -> void:
 		Globalsettings.splash_screen_called = true
 		animation.active = true
 		animation.play("fade_in")
+	animation.play("start")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,8 +38,8 @@ func _on_quit_pressed() -> void:
 
 
 func _on_play_pressed() -> void:
-	MenuManager.open(level_selector)
+	MenuManager.openWith(level_selector)
 
 
 func _on_settings_pressed() -> void:
-	MenuManager.open(settings)
+	MenuManager.openWith(settings)

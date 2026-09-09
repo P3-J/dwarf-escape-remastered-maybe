@@ -130,9 +130,10 @@ VBoxContainer/constants/separation = 60
 [node name="TextureRect" type="TextureRect" unique_id=1003500185]
 custom_minimum_size = Vector2(700, 300)
 anchors_preset = -1
-anchor_top = 0.13009259
-anchor_right = 0.5671875
-anchor_bottom = 0.8888889
+anchor_left = 0.42890626
+anchor_top = 0.18472221
+anchor_right = 0.97578126
+anchor_bottom = 0.9097222
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_k7k4c")
@@ -273,7 +274,7 @@ metadata/_edit_use_anchors_ = true
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer2" unique_id=605306098]
 layout_mode = 2
 ratio = 3.4
-stretch_mode = 3
+stretch_mode = 1
 
 [node name="Back" type="Button" parent="VBoxContainer2/AspectRatioContainer" unique_id=1485159944]
 layout_mode = 2

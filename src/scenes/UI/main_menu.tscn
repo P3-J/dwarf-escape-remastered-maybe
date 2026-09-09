@@ -24,6 +24,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoStreamPlayer/Logo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-439, -92.00001)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VideoStreamPlayer/MainMenu:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(142, 761.99994)]
+}
 
 [sub_resource type="Animation" id="Animation_i48r3"]
 resource_name = "fade_in"
@@ -41,67 +65,38 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_q5ok3"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer/Logo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-439, -92.00001), Vector2(107, -138.565)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoStreamPlayer/MainMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(142, 761.99994), Vector2(142, 256)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7p88j"]
 _data = {
 &"RESET": SubResource("Animation_y0iw5"),
-&"fade_in": SubResource("Animation_i48r3")
-}
-
-[sub_resource type="Animation" id="Animation_q5ok3"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VideoStreamPlayer/Logo:offset_left")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(130, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VideoStreamPlayer/MainMenu:offset_top")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(150, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_4xweg"]
-resource_name = "Start"
-length = 1.2
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VideoStreamPlayer/Logo:offset_left")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2, 0),
-"points": PackedFloat32Array(-500, 0, 0, 0.1, -106.080505, 130, 0, 0, 0.09986805, 0, 130, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.60079175, 1.2)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VideoStreamPlayer/MainMenu:offset_top")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2),
-"points": PackedFloat32Array(2000, 0, 0, 0.09986805, -308.33334, 150, -0.100000024, 774.97815, 0.21961105, -1701.9373),
-"times": PackedFloat32Array(0.60079175, 1.2)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4v121"]
-_data = {
-&"RESET": SubResource("Animation_q5ok3"),
-&"Start": SubResource("Animation_4xweg")
+&"fade_in": SubResource("Animation_i48r3"),
+&"start": SubResource("Animation_q5ok3")
 }
 
 [node name="main_menu" type="Control" unique_id=1346338242]
@@ -130,71 +125,74 @@ loop = true
 [node name="Logo" type="TextureRect" parent="VideoStreamPlayer" unique_id=412201664]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 130.0
-offset_top = -60.0
-offset_right = 806.0
-offset_bottom = 300.0
+anchor_left = 0.055729166
+anchor_top = -0.12830094
+anchor_right = 0.36041668
+anchor_bottom = 0.3939213
+offset_left = -546.0
+offset_top = 46.564995
+offset_right = -546.0
+offset_bottom = 46.565002
 texture = ExtResource("7_6r18w")
 expand_mode = 1
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="MainMenu" type="Control" parent="VideoStreamPlayer" unique_id=578906259]
 process_mode = 3
 layout_mode = 1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 150.0
-offset_top = 150.0
+anchor_left = 0.07395833
+anchor_top = 0.23703703
+anchor_right = 0.33958334
+anchor_bottom = 0.85509217
+offset_top = 505.99994
+offset_bottom = 506.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_vmwyx")
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="VideoStreamPlayer/MainMenu" unique_id=1158249200]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -248.46631
-offset_right = 341.0
-offset_bottom = 248.46631
+anchors_preset = -1
+anchor_top = 0.0060311956
+anchor_right = 1.0029411
+anchor_bottom = 0.9939688
 grow_vertical = 2
 texture = ExtResource("4_q5ok3")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="VideoStreamPlayer/MainMenu/TextureRect" unique_id=395972156]
+[node name="VBoxContainer" type="VBoxContainer" parent="VideoStreamPlayer/MainMenu/TextureRect" unique_id=258470795]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.114369504
+anchor_top = 0.18506797
+anchor_right = 0.8797654
+anchor_bottom = 0.6418703
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 80
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer" unique_id=258470795]
-layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 40
+metadata/_edit_use_anchors_ = true
 
-[node name="Play" type="Button" parent="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer" unique_id=329979661]
+[node name="Play" type="Button" parent="VideoStreamPlayer/MainMenu/TextureRect/VBoxContainer" unique_id=329979661]
 layout_mode = 2
 theme = ExtResource("8_6wcb6")
 theme_override_font_sizes/font_size = 0
 text = "PLAY"
 
-[node name="Settings" type="Button" parent="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer" unique_id=767868896]
+[node name="Settings" type="Button" parent="VideoStreamPlayer/MainMenu/TextureRect/VBoxContainer" unique_id=767868896]
 z_as_relative = false
 layout_mode = 2
 theme = ExtResource("8_6wcb6")
 theme_override_font_sizes/font_size = 0
 text = "SETTINGS"
 
-[node name="Quit" type="Button" parent="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer" unique_id=1051480335]
+[node name="Quit" type="Button" parent="VideoStreamPlayer/MainMenu/TextureRect/VBoxContainer" unique_id=1051480335]
 layout_mode = 2
 theme = ExtResource("8_6wcb6")
 theme_override_font_sizes/font_size = 0
@@ -204,25 +202,26 @@ text = "QUIT"
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.0018518518
-anchor_bottom = 1.0018518
-metadata/_edit_use_anchors_ = true
+anchor_left = 0.43515626
+anchor_top = 0.12916666
+anchor_right = 0.9398438
+anchor_bottom = 0.7972222
 
 [node name="SettingsMenu" parent="." unique_id=547418481 instance=ExtResource("10_5dsdd")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
+anchor_left = 0.38958332
+anchor_top = 0.13425925
+anchor_right = 0.95677084
+anchor_bottom = 0.89305556
 
 [node name="start" type="AnimationPlayer" parent="." unique_id=1502041780]
 unique_name_in_owner = true
-active = false
 libraries/ = SubResource("AnimationLibrary_7p88j")
 
 [node name="ColorRect" type="ColorRect" parent="start" unique_id=627866153]
 unique_name_in_owner = true
 visible = false
-modulate = Color(1, 1, 1, 0.9030624)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -255,10 +254,6 @@ vertical_alignment = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=304791920]
 stream = ExtResource("18_ofngt")
 
-[node name="StartAnimation" type="AnimationPlayer" parent="." unique_id=422239419]
-libraries/ = SubResource("AnimationLibrary_4v121")
-autoplay = &"Start"
-
-[connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer/Play" to="VideoStreamPlayer/MainMenu" method="_on_play_pressed"]
-[connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer/Settings" to="VideoStreamPlayer/MainMenu" method="_on_settings_pressed"]
-[connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/MarginContainer/VBoxContainer/Quit" to="VideoStreamPlayer/MainMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/VBoxContainer/Play" to="VideoStreamPlayer/MainMenu" method="_on_play_pressed"]
+[connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/VBoxContainer/Settings" to="VideoStreamPlayer/MainMenu" method="_on_settings_pressed"]
+[connection signal="pressed" from="VideoStreamPlayer/MainMenu/TextureRect/VBoxContainer/Quit" to="VideoStreamPlayer/MainMenu" method="_on_quit_pressed"]

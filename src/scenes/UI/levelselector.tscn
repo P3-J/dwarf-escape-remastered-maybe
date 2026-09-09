@@ -2,63 +2,47 @@
 
 [ext_resource type="Theme" uid="uid://ys24hk4rb1xo" path="res://src/assets/ui/theme.tres" id="1_0s7kf"]
 [ext_resource type="Script" uid="uid://bi5xtufoosq0s" path="res://src/scenes/UI/levelselector.gd" id="1_y6hlq"]
-[ext_resource type="Texture2D" uid="uid://cyutfnr4ol5x" path="res://src/assets/ui/settings/CloseButton.png" id="2_purqi"]
 [ext_resource type="Texture2D" uid="uid://cw1u02xxef24" path="res://src/assets/ui/level_selection/MainButton.png" id="3_877dj"]
+[ext_resource type="Texture2D" uid="uid://clt6r2fpknr1i" path="res://src/assets/ui/settings/CloseButtonsmall.png" id="3_y6hlq"]
 [ext_resource type="PackedScene" uid="uid://dusgog1jtdc0d" path="res://src/scenes/UI/loading_screen.tscn" id="6_y6hlq"]
 [ext_resource type="Texture2D" uid="uid://bmoyx51oqubng" path="res://src/assets/ui/level_selection/LevelSelectionBackground.png" id="8_ca0it"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6hlq"]
-atlas = ExtResource("2_purqi")
-
-[node name="levelselector" type="Control" unique_id=293096507 node_paths=PackedStringArray("loading_screen")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_y6hlq")
-loading_screen = NodePath("loading_screen")
-
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=1728617087]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -328.0
-offset_top = -252.0
-offset_right = 344.0
-offset_bottom = 252.0
+[node name="TextureRect2" type="TextureRect" unique_id=1728617087 node_paths=PackedStringArray("loading_screen")]
+anchors_preset = -1
+anchor_left = 0.24375
+anchor_top = 0.15
+anchor_right = 0.76875
+anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_ca0it")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("1_y6hlq")
+loading_screen = NodePath("loading_screen")
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect2" unique_id=1467868091]
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1467868091]
 z_index = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 359.99994
-offset_top = -235.99997
-offset_right = 542.99994
-offset_bottom = -53.99997
+anchors_preset = -1
+anchor_left = 0.8943452
+anchor_top = -0.023809524
+anchor_right = 1.0079762
+anchor_bottom = 0.12605159
+offset_right = 15.640015
+offset_bottom = 15.469997
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.83, 0.83)
-texture_normal = SubResource("AtlasTexture_y6hlq")
-texture_pressed = ExtResource("2_purqi")
-texture_hover = ExtResource("2_purqi")
-texture_disabled = ExtResource("2_purqi")
-texture_focused = ExtResource("2_purqi")
+texture_normal = ExtResource("3_y6hlq")
+texture_pressed = ExtResource("3_y6hlq")
+texture_hover = ExtResource("3_y6hlq")
+texture_disabled = ExtResource("3_y6hlq")
+texture_focused = ExtResource("3_y6hlq")
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="TextureRect2" unique_id=890984522]
+[node name="Label" type="Label" parent="." unique_id=890984522]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.037623763
@@ -74,16 +58,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="tutorial" type="TextureButton" parent="TextureRect2" unique_id=1845130936]
+[node name="tutorial" type="TextureButton" parent="." unique_id=1845130936]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 144.0
-offset_right = -76.0
-offset_bottom = -260.0
+anchor_left = 0.0952381
+anchor_top = 0.2857143
+anchor_right = 0.8869048
+anchor_bottom = 0.48412699
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -91,33 +73,31 @@ size_flags_vertical = 4
 texture_normal = ExtResource("3_877dj")
 ignore_texture_size = true
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="TextureRect2/tutorial" unique_id=249030346]
+[node name="Label" type="Label" parent="tutorial" unique_id=249030346]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = -37.0
-offset_bottom = -30.0
+anchor_left = 0.04511278
+anchor_top = 0.24
+anchor_right = 0.36090225
+anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0s7kf")
 theme_override_font_sizes/font_size = 40
 text = "tutorial"
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="lvl3" type="TextureButton" parent="TextureRect2" unique_id=452254732]
+[node name="lvl3" type="TextureButton" parent="." unique_id=452254732]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 66.0
-offset_top = 277.0
-offset_right = -74.0
-offset_bottom = -127.0
+anchor_left = 0.09821428
+anchor_top = 0.54960316
+anchor_right = 0.88988096
+anchor_bottom = 0.7480159
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -125,30 +105,28 @@ size_flags_vertical = 4
 texture_normal = ExtResource("3_877dj")
 ignore_texture_size = true
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="TextureRect2/lvl3" unique_id=1612030377]
+[node name="Label" type="Label" parent="lvl3" unique_id=1612030377]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = -37.0
-offset_bottom = -30.0
+anchor_left = 0.04511278
+anchor_top = 0.24
+anchor_right = 0.7349624
+anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0s7kf")
 theme_override_font_sizes/font_size = 40
 text = "placeholder name "
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="loading_screen" parent="." unique_id=1582058390 instance=ExtResource("6_y6hlq")]
 visible = false
 layout_mode = 1
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="pressed" from="TextureRect2/TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="TextureRect2/tutorial" to="." method="_on_tutorial_pressed"]
-[connection signal="pressed" from="TextureRect2/lvl3" to="." method="_on_lvl_3_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="lvl3" to="." method="_on_lvl_3_pressed"]
