@@ -700,6 +700,10 @@ func check_lava_level():
 	# hazards, not one synchronized flood height), so only the nearest pool
 	# is relevant here. Actual death-by-lava is handled by each pool's own
 	# Area3D collision (see lava.gd) — this just drives the proximity audio.
+	#
+
+
+
 	var lava_pools := get_tree().get_nodes_in_group('lava')
 	if lava_pools.is_empty():
 		return
@@ -711,6 +715,10 @@ func check_lava_level():
 			nearest_horizontal_dist = horizontal_dist
 			nearest_pool = pool
 	var vertical_distance = global_position.y - nearest_pool.global_position.y
+
+	if nearest_pool.global_position.y >= global_position.y:
+		_on_player_kill()
+
 	Signalbus.emit_signal('play_lava_rise_sound', vertical_distance)
 	Signalbus.emit_signal('play_lava_hiss_sound', vertical_distance)
 
@@ -777,9 +785,13 @@ func intro_anim_unfreeze(intro_nr: int) -> void:
 		0:
 			Globalsettings.first_boot_tutorial = false
 			start_countdown()
+		1:
+			Globalsettings.first_boot_tutorial = false
+			start_countdown()
 
 func start_countdown() -> void:
 	if Globalsettings.first_boot_tutorial and Globalsettings.current_level == 0: return
+	#if Globalsettings.first_boot_lv3 and Globalsettings.current_level == 1: return
 	%UI.visible = true
 	%countdownanim.play("countdown")
 
