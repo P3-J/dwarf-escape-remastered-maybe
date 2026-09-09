@@ -422,23 +422,27 @@ transform = Transform3D(0.10742298, 0, 0.99421346, 0, 1, 0, -0.99421346, 0, 0.10
 [node name="Walk" type="AudioStreamPlayer3D" parent="Audio" unique_id=1139533422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96358967, 0)
 stream = ExtResource("8_4pcbe")
+volume_db = -5.0
 unit_size = 4.0
 bus = &"SFX"
 
 [node name="slide_sound" type="AudioStreamPlayer" parent="Audio" unique_id=1300037818]
 stream = ExtResource("15_5h06g")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="windblow" type="AudioStreamPlayer" parent="Audio" unique_id=1155837108]
 unique_name_in_owner = true
 stream = ExtResource("16_twf7n")
 volume_db = -40.0
+bus = &"SFX"
 
 [node name="groundpouncesound" type="AudioStreamPlayer" parent="Audio" unique_id=2102710949]
 unique_name_in_owner = true
 stream = ExtResource("20_qmjc7")
 volume_db = -10.0
 pitch_scale = 3.07
+bus = &"SFX"
 
 [node name="callables" type="Node" parent="." unique_id=254208813]
 
