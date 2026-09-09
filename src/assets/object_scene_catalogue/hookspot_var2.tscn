@@ -4,6 +4,8 @@
 [ext_resource type="Material" uid="uid://chiwt1b2w84yj" path="res://src/materials/hookspot_particle_effects.tres" id="2_h2ycr"]
 [ext_resource type="QuadMesh" uid="uid://l4xuwt7m1i2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tres" id="3_73ken"]
 [ext_resource type="PackedScene" uid="uid://vtnij47baem1" path="res://src/assets/object_scene_catalogue/hook.tscn" id="3_h2ycr"]
+[ext_resource type="Material" uid="uid://di2y8ybgpy0he" path="res://src/assets/Shaders/shader_catalogue/MetalTest.tres" id="5_ceewf"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="6_m0nbc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a70su"]
 size = Vector3(3.5221548, 4.386812, 1.89172)
@@ -32,6 +34,15 @@ omni_range = 120.738
 
 [node name="Hook" parent="." unique_id=441632900 instance=ExtResource("3_h2ycr")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.07692003, 0)
+
+[node name="pTorus10" parent="Hook/Hook" parent_id_path=PackedInt32Array(441632900, 1225107851) index="0" unique_id=934299516]
+material_override = ExtResource("5_ceewf")
+
+[node name="pCube146" parent="Hook/Hook" parent_id_path=PackedInt32Array(441632900, 1225107851) index="1" unique_id=1640741886]
+material_override = ExtResource("5_ceewf")
+
+[node name="pCube147" parent="Hook/Hook" parent_id_path=PackedInt32Array(441632900, 1225107851) index="2" unique_id=902767717]
+material_override = ExtResource("6_m0nbc")
 
 [node name="StaticBody3D" parent="Hook" index="2"]
 collision_layer = 0

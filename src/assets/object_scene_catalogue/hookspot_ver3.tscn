@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c5qsbyntdqbeq"]
+
+[ext_resource type="Material" uid="uid://chiwt1b2w84yj" path="res://src/materials/hookspot_particle_effects.tres" id="1_mxhqk"]
+[ext_resource type="QuadMesh" uid="uid://l4xuwt7m1i2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tres" id="2_d5hoq"]
+[ext_resource type="PackedScene" uid="uid://cumj88gp2emog" path="res://src/assets/object_scene_catalogue/metal_ceiling_hook.tscn" id="6_rmupf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6572u"]
+size = Vector3(3.5221548, 4.386812, 1.89172)
+
+[node name="HookspotVer3" type="Node3D" unique_id=1230789858]
+
+[node name="hookspot2" type="Area3D" parent="." unique_id=1434335312]
+
+[node name="hookshape2" type="CollisionShape3D" parent="hookspot2" unique_id=558979625]
+transform = Transform3D(1.1365285, 0, 0, 0, 1.1365285, 0, 0, 0, 1.1365285, -0.008025646, 2.1938767, 0.0957642)
+shape = SubResource("BoxShape3D_6572u")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="hookspot2" unique_id=1747314712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.403494, 0)
+amount = 16
+lifetime = 0.5
+process_material = ExtResource("1_mxhqk")
+draw_pass_1 = ExtResource("2_d5hoq")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="hookspot2" unique_id=555993963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144356415, 0.7434749, 0.26029325)
+light_color = Color(0.75049126, 0.7014907, 0.34454572, 1)
+light_energy = 1.91
+omni_range = 120.738
+
+[node name="MetalFloorHook" parent="hookspot2" unique_id=130673268 instance=ExtResource("6_rmupf")]
+transform = Transform3D(254.26277, 0, 0, 0, 254.26277, 0, 0, 0, 254.26277, 0, 0, 0)

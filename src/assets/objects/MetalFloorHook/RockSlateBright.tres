@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c4qyot2g4yvga"]
+
+[ext_resource type="Shader" uid="uid://bflgqure4ogyv" path="res://src/assets/objects/MetalFloorHook/HookSpotOutline.gdshader" id="1_3nw8p"]
+[ext_resource type="Shader" uid="uid://cmh7q3wu6sxl1" path="res://src/assets/Shaders/TilableShaderBase/TiledDirt.gdshader" id="1_7gt6r"]
+[ext_resource type="Texture2D" uid="uid://udreyr6auiyo" path="res://src/assets/Shaders/TilableShaderBase/rock_slate_bright_Base_color.png" id="2_3nw8p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11nbd"]
+render_priority = 0
+shader = ExtResource("1_3nw8p")
+shader_parameter/color = Color(0.8039216, 0.58431375, 0.21176471, 1)
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_11nbd")
+shader = ExtResource("1_7gt6r")
+shader_parameter/color = Color(0.704687, 0.7216113, 0.7916389, 1)
+shader_parameter/base_texture = ExtResource("2_3nw8p")
+shader_parameter/uv_scale = Vector2(0.2, 0.2)
+shader_parameter/uv_offset = Vector2(0, 0)

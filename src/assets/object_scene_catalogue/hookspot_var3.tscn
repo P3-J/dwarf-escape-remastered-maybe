@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bsrsa30j12cri"]
+
+[ext_resource type="Script" uid="uid://bkfwk156dge2a" path="res://src/scripts/hookspot.gd" id="1_7bgle"]
+[ext_resource type="Material" uid="uid://chiwt1b2w84yj" path="res://src/materials/hookspot_particle_effects.tres" id="3_nqedr"]
+[ext_resource type="PackedScene" uid="uid://cumj88gp2emog" path="res://src/assets/object_scene_catalogue/metal_ceiling_hook.tscn" id="4_nqedr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4b356"]
+size = Vector3(3.5221548, 4.386812, 1.89172)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plgsd"]
+transparency = 1
+albedo_color = Color(0.6391864, 0.3217717, 9.62615e-08, 0.78431374)
+emission_enabled = true
+emission = Color(0.9103343, 0.4689383, 3.85046e-07, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_repeat = false
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_qpyl7"]
+material = SubResource("StandardMaterial3D_plgsd")
+
+[node name="hookspot" type="Area3D" unique_id=1591514908 groups=["hook", "hookspot"]]
+collision_mask = 3
+script = ExtResource("1_7bgle")
+
+[node name="hookshape2" type="CollisionShape3D" parent="." unique_id=497326220]
+transform = Transform3D(1.1365285, 0, 0, 0, 1.1365285, 0, 0, 0, 1.1365285, -0.008025646, 2.1938767, 0.0957642)
+shape = SubResource("BoxShape3D_4b356")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=965282507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144356415, 0.7434749, 0.26029325)
+light_color = Color(0.75049126, 0.7014907, 0.34454572, 1)
+light_energy = 1.762
+omni_range = 4.075
+
+[node name="MetalFloorHook" parent="." unique_id=130673268 instance=ExtResource("4_nqedr")]
+transform = Transform3D(254.26277, 0, 0, 0, 254.26277, 0, 0, 0, 254.26277, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=93976758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.403494, 0)
+amount = 16
+lifetime = 0.75
+process_material = ExtResource("3_nqedr")
+draw_pass_1 = SubResource("QuadMesh_qpyl7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
