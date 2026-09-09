@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://byrd4m2tsyrub" path="res://src/assets/sounds/SFX/death.wav" id="12_upv5m"]
 [ext_resource type="AudioStream" uid="uid://b2x0otrtyjdc7" path="res://src/assets/sounds/SFX/jump.wav" id="13_vt8aq"]
 [ext_resource type="AudioStream" uid="uid://dqo6vpmv3jb8p" path="res://src/assets/sounds/SFX/ring_woosh.wav" id="14_ojpeg"]
+[ext_resource type="AudioStream" uid="uid://d1u0g8rfy6cxt" path="res://src/assets/sounds/The_Essential_Terrestial.mp3" id="16_ojpeg"]
 
 [node name="AudioManager" type="Node" unique_id=471948994 node_paths=PackedStringArray("main_music", "death_sound", "pickaxe_sound", "pickaxe_throw", "pickaxe_hooked", "pickaxe_boost_hit", "rope_pull", "background_music", "geyser_woosh", "boiling_lava", "lava_hiss", "dwarf_death", "jump", "ring_boost")]
 script = ExtResource("1_wdger")
@@ -93,5 +94,11 @@ bus = &"SFX"
 [node name="RingBoost" type="AudioStreamPlayer" parent="." unique_id=195917103]
 stream = ExtResource("14_ojpeg")
 bus = &"SFX"
+
+[node name="ambientlv3" type="AudioStreamPlayer" parent="." unique_id=97218991]
+unique_name_in_owner = true
+stream = ExtResource("16_ojpeg")
+volume_db = -20.0
+bus = &"Music"
 
 [connection signal="finished" from="RopePull" to="." method="_on_rope_pull_finished"]
