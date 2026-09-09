@@ -2,15 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c10qq3sfbdgex" path="res://src/scripts/world.gd" id="1_gn8i6"]
 [ext_resource type="PackedScene" uid="uid://ddk73t8n4ysd6" path="res://src/scenes/lava.tscn" id="1_nmpub"]
-[ext_resource type="Script" uid="uid://bnb42goqcvb3y" path="res://src/scripts/lava.gd" id="2_17ei1"]
 [ext_resource type="PackedScene" uid="uid://cwdgh5qpr51w6" path="res://src/scenes/player.tscn" id="2_h33yd"]
-[ext_resource type="Shader" uid="uid://77d7ml8amjt1" path="res://src/shaders/water.gdshader" id="3_007wy"]
 [ext_resource type="Environment" uid="uid://cbfxn8yoprrvk" path="res://src/assets/env.tres" id="3_vivos"]
-[ext_resource type="Texture2D" uid="uid://yobghhc5us53" path="res://src/assets/Shaders/TilableShaderBase/lava_tilable_Base_color.png" id="4_0rnly"]
 [ext_resource type="PackedScene" uid="uid://d2fflt0dmlqmk" path="res://src/scenes/boostspot.tscn" id="4_77g68"]
 [ext_resource type="PackedScene" uid="uid://bmdbt45de3e3r" path="res://src/scenes/winning_zone.tscn" id="5_h33yd"]
 [ext_resource type="PackedScene" uid="uid://cqw0ccga86fo2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tscn" id="5_oslvj"]
-[ext_resource type="QuadMesh" uid="uid://cfbdof6t2j1g1" path="res://src/materials/lava_particles_material.tres" id="5_xwneu"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="7_3y4o0"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="8_gn8i6"]
 [ext_resource type="Texture2D" uid="uid://gknfa1owxyth" path="res://textures/rock/related/Rock028_1K-JPG_Color.jpg" id="8_q1b5h"]
@@ -60,58 +56,6 @@
 [ext_resource type="PackedScene" uid="uid://7ic6wm40sqs7" path="res://src/assets/object_scene_catalogue/crystall_2.tscn" id="60_fganh"]
 [ext_resource type="PackedScene" uid="uid://ci6vafc1t3jwp" path="res://src/assets/blender_meshes/godot_scenes/cave_pillar.tscn" id="61_fganh"]
 [ext_resource type="PackedScene" uid="uid://ca53qh2w2kror" path="res://src/assets/blender_meshes/godot_scenes/small_wall_cliff_platform.tscn" id="62_gqoio"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdre5"]
-render_priority = 0
-shader = ExtResource("3_007wy")
-shader_parameter/base_texture = ExtResource("4_0rnly")
-shader_parameter/cool_color = Color(0.05, 0.01, 0, 1)
-shader_parameter/hot_color = Color(0.95686275, 0.05882353, 0, 1)
-shader_parameter/emission_strength = 275.08
-shader_parameter/emission_flicker_speed = 2.0
-shader_parameter/base_texture_scale = Vector2(15, 15)
-shader_parameter/wave_speed = 0.415
-shader_parameter/wave_strength = 0.02
-shader_parameter/flow_strength = 0.105
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_33kml"]
-material = SubResource("ShaderMaterial_sdre5")
-size = Vector2(10, 15)
-subdivide_width = 90
-subdivide_depth = 90
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k2oyh"]
-size = Vector3(5, 0.8, 5)
-
-[sub_resource type="Curve" id="Curve_lrb6e"]
-_data = [Vector2(0, 0.3146068), 0.0, 0.0, 0, 0, Vector2(0.49382722, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_x0kyh"]
-curve = SubResource("Curve_lrb6e")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iwrnh"]
-emission_shape_scale = Vector3(5, 0, 5)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-angle_min = -9.9999895
-angle_max = 10.0000105
-direction = Vector3(0, 1, 0)
-spread = 30.0
-initial_velocity_min = 0.02
-initial_velocity_max = 0.19999999
-gravity = Vector3(0, 1, 0)
-scale_min = 0.19999999
-scale_max = 0.39999998
-scale_curve = SubResource("CurveTexture_x0kyh")
-scale_over_velocity_min = 1.0
-scale_over_velocity_max = 5.0
-hue_variation_min = -1.0
-hue_variation_max = 0.99999994
-turbulence_noise_strength = 0.1
-turbulence_noise_scale = 1.0
-turbulence_noise_speed = Vector3(0, 20, 0)
-turbulence_influence_min = 0.030000001
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dhb8i"]
 friction = 0.56
@@ -3538,31 +3482,6 @@ directional_shadow_max_distance = 386.9
 
 [node name="defaults" type="Node3D" parent="." unique_id=1498478716]
 
-[node name="Lava" type="Area3D" parent="defaults" unique_id=1849340564 groups=["lava"]]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 14.593386, 10.350014)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("2_17ei1")
-rise_per_sec = 0.01
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="defaults/Lava" unique_id=167300565]
-transform = Transform3D(1, 0, 0, 0, 0.9996099, -0.027928883, 0, 0.027928883, 0.9996099, 0, -0.049191594, 0)
-mesh = SubResource("PlaneMesh_33kml")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="defaults/Lava" unique_id=1228142798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
-shape = SubResource("BoxShape3D_k2oyh")
-
-[node name="Timer" type="Timer" parent="defaults/Lava" unique_id=842461161]
-
-[node name="ParticleEffects" type="Node3D" parent="defaults/Lava" unique_id=748331945]
-
-[node name="LavaPE" type="GPUParticles3D" parent="defaults/Lava/ParticleEffects" unique_id=28661149]
-amount = 300
-lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_iwrnh")
-draw_pass_1 = ExtResource("5_xwneu")
-
 [node name="Lava4" parent="defaults" unique_id=310003075 instance=ExtResource("1_nmpub")]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 7.6293945e-06, 32.062794, 249.41508)
 collision_layer = 3
@@ -3640,6 +3559,10 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18.
 
 [node name="entity_8_boostspot5" parent="defaults" unique_id=1109586411 instance=ExtResource("4_77g68")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 33.653473, 122.09448, 243.44792)
+
+[node name="Lava" parent="defaults" unique_id=388630991 instance=ExtResource("1_nmpub")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 13.55743, 33.25063)
+rise_per_sec = 0.05
 
 [node name="map_terrain" type="Node3D" parent="." unique_id=580884850]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.43762, 0)
@@ -6518,22 +6441,6 @@ transform = Transform3D(59.303814, 12.215724, 267.3183, 2.1063597, 273.77435, -1
 
 [node name="lights" type="Node3D" parent="assets" unique_id=1895631975]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="assets/lights" unique_id=2025539823]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.917204, 11.807491, 84.68975)
-light_color = Color(0.8117139, 0.07439273, 9.62615e-08, 1)
-light_energy = 16.0
-shadow_enabled = true
-omni_range = 86.239
-omni_attenuation = 0.655
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="assets/lights" unique_id=1026002970]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.917204, 9.019472, 141.03583)
-light_color = Color(0.8117139, 0.07439273, 9.62615e-08, 1)
-light_energy = 16.0
-shadow_enabled = true
-omni_range = 86.239
-omni_attenuation = 0.655
-
 [node name="FloorTorch" parent="assets/lights" unique_id=1851058920 instance=ExtResource("29_wwjbi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3461223, 16.15413, -15.124996)
 
@@ -6952,7 +6859,7 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.023011219, 0, -0.99973404, 0, 1, 0, 0.999734, 0, -0.02301122, 3.6414132, 114.88611, 174.81941)
+transform = Transform3D(-0.023011219, 0, -0.999734, 0, 1, 0, 0.9997339, 0, -0.023011219, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")
@@ -7056,7 +6963,5 @@ transform = Transform3D(-1.8363304, -0.21776111, 1.0097221, -0.15553837, 2.09436
 
 [node name="hookspot" parent="." unique_id=1033087962 instance=ExtResource("27_afm63")]
 transform = Transform3D(-1.4446034, 0.17209227, -0.41710454, 0.17126405, 1.5034637, 0.027153265, 0.41744533, -0.02128234, -1.4545643, 28.81494, 55.128014, 52.26838)
-
-[connection signal="body_entered" from="defaults/Lava" to="defaults/Lava" method="_on_body_entered"]
 
 [editable path="defaults/WinningZone"]
