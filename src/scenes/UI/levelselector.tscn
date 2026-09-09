@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bi5xtufoosq0s" path="res://src/scenes/UI/levelselector.gd" id="1_y6hlq"]
 [ext_resource type="Texture2D" uid="uid://cw1u02xxef24" path="res://src/assets/ui/level_selection/MainButton.png" id="3_877dj"]
 [ext_resource type="Texture2D" uid="uid://clt6r2fpknr1i" path="res://src/assets/ui/settings/CloseButtonsmall.png" id="3_y6hlq"]
-[ext_resource type="PackedScene" uid="uid://dusgog1jtdc0d" path="res://src/scenes/UI/loading_screen.tscn" id="6_y6hlq"]
 [ext_resource type="Texture2D" uid="uid://bmoyx51oqubng" path="res://src/assets/ui/level_selection/LevelSelectionBackground.png" id="8_ca0it"]
 
 [node name="TextureRect2" type="TextureRect" unique_id=1728617087 node_paths=PackedStringArray("loading_screen")]
@@ -19,7 +18,7 @@ texture = ExtResource("8_ca0it")
 expand_mode = 1
 stretch_mode = 4
 script = ExtResource("1_y6hlq")
-loading_screen = NodePath("loading_screen")
+loading_screen = NodePath("")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1467868091]
@@ -121,11 +120,6 @@ theme_override_font_sizes/font_size = 40
 text = "placeholder name "
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="loading_screen" parent="." unique_id=1582058390 instance=ExtResource("6_y6hlq")]
-visible = false
-layout_mode = 1
-mouse_filter = 2
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="tutorial" to="." method="_on_tutorial_pressed"]

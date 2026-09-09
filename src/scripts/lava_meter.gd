@@ -1,4 +1,4 @@
-extends Control
+extends TextureProgressBar
 
 # lava_meter's texture_under/texture_progress ship in three baked
 # sizes (full, "small" = half, "smallest" = quarter). Below this
@@ -11,8 +11,7 @@ const SMALLEST_SCALE_FACTOR := 4.0 # smallest textures are 1/4 the size of the f
 const TEXTURE_UNDER_SMALLEST := preload("res://src/assets/ui/basic/LavaMeterEmptysmallest.png")
 const TEXTURE_PROGRESS_SMALLEST := preload("res://src/assets/ui/basic/LavameterFilledsmallest.png")
 
-@onready var lava_meter = $LavaMeter
-@onready var player_indicator = $LavaMeter/PlayerPos
+@onready var player_indicator = $Player
 var exit: Node3D
 var lava: Node3D
 var player
@@ -40,9 +39,9 @@ func _ready() -> void:
 	min_height = lava.global_transform.origin.y + min_height_offset
 	max_height = exit.global_transform.origin.y
 
-	_texture_under_full = lava_meter.texture_under
-	_texture_progress_full = lava_meter.texture_progress
-	_base_scale = lava_meter.scale
+	_texture_under_full = texture_under
+	_texture_progress_full = texture_progress
+	_base_scale = scale
 
 	Signalbus.settings_changed.connect(_update_texture_quality)
 	_update_texture_quality()
@@ -57,15 +56,15 @@ func _update_texture_quality() -> void:
 	_using_smallest_texture = use_smallest
 
 	if use_smallest:
-		lava_meter.texture_under = TEXTURE_UNDER_SMALLEST
-		lava_meter.texture_progress = TEXTURE_PROGRESS_SMALLEST
+		texture_under = TEXTURE_UNDER_SMALLEST
+		texture_progress = TEXTURE_PROGRESS_SMALLEST
 		# smallest textures are 1/4 the pixel size of the full-res ones,
 		# so scale up by the same factor to land on the same on-screen size.
-		lava_meter.scale = _base_scale * SMALLEST_SCALE_FACTOR
+		scale = _base_scale * SMALLEST_SCALE_FACTOR
 	else:
-		lava_meter.texture_under = _texture_under_full
-		lava_meter.texture_progress = _texture_progress_full
-		lava_meter.scale = _base_scale
+		texture_under = _texture_under_full
+		texture_progress = _texture_progress_full
+		scale = _base_scale
 
 func _process(_delta: float) -> void:
 	
@@ -77,11 +76,14 @@ func _process(_delta: float) -> void:
 	var player_height = player.global_transform.origin.y - min_height
 
 	var lava_percentage = round((lava_height / (max_height - min_height)) * 10000) / 100
-	lava_meter.value = lava_percentage
+	value = lava_percentage
 
 	var player_percentage = round((player_height / (max_height - min_height)) * 10000) / 100
 
-	var max_pos = lava_meter.position.y
-	var min_pos = max_pos + lava_meter.size.y
+	# player_indicator is a child of this progress bar, so its position
+	# is local to the bar's own rect (top-left at 0), not this node's
+	# position within its parent.
+	var max_pos = 0.0
+	var min_pos = max_pos + size.y
 	player_indicator.position.y = min_pos - (((min_pos - max_pos) / 100) * player_percentage)
-	player_indicator.position.y -= 26
+	player_indicator.position.y -= 130
