@@ -2,9 +2,9 @@
 
 [resource]
 transparency = 1
-albedo_color = Color(0.4627451, 0.7176471, 0.90588236, 0.78431374)
+albedo_color = Color(0.4745098, 0.8980392, 1, 1)
 emission_enabled = true
-emission = Color(0.4627451, 0.7176471, 0.90588236, 1)
+emission = Color(0.4745098, 0.8980392, 1, 1)
 uv1_triplanar = true
 uv1_world_triplanar = true
 texture_repeat = false

@@ -1,4 +1,4 @@
-[gd_resource type="QuadMesh" load_steps=2 format=3 uid="uid://l4xuwt7m1i2"]
+[gd_resource type="QuadMesh" format=3 uid="uid://l4xuwt7m1i2"]
 
 [ext_resource type="Material" uid="uid://d1l67dwjc7yfp" path="res://src/materials/hookspot_particles_mat.tres" id="1_33yoa"]
 

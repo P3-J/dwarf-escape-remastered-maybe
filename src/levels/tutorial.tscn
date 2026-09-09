@@ -2216,7 +2216,7 @@ shape = SubResource("ConvexPolygonShape3D_b06v8")
 [node name="lights" type="Node3D" parent="." unique_id=571954694]
 
 [node name="AreaLight3D" type="AreaLight3D" parent="lights" unique_id=1718771928]
-transform = Transform3D(0.99245274, 0.122627944, -5.360237e-09, 0, -4.371139e-08, -1, -0.122627944, 0.99245274, -4.3381483e-08, 10.687, -5.725, 8.207)
+transform = Transform3D(0.99245274, 0.122627944, -5.360237e-09, 0, -4.371139e-08, -1, -0.122627944, 0.99245274, -4.3381483e-08, 10.687, -23.53, 8.207)
 light_color = Color(0.5859688, 0.38649693, 0.14778662, 1)
 light_energy = 7.518
 light_indirect_energy = 13.04
