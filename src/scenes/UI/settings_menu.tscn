@@ -261,26 +261,22 @@ layout_mode = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1243191299]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.032857142
-anchor_top = 0.7878788
-anchor_right = 0.24714285
-anchor_bottom = 0.9292929
+anchor_left = 0.038567495
+anchor_top = 0.84502745
+anchor_right = 0.24905287
+anchor_bottom = 0.9219036
 grow_vertical = 0
 theme = ExtResource("8_fxfkc")
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer2" unique_id=605306098]
-layout_mode = 2
-ratio = 3.4
-stretch_mode = 3
-
-[node name="Back" type="Button" parent="VBoxContainer2/AspectRatioContainer" unique_id=1485159944]
+[node name="Back" type="Button" parent="VBoxContainer2" unique_id=1485159944]
 layout_mode = 2
 theme = ExtResource("8_fxfkc")
 theme_override_font_sizes/font_size = 25
 text = "Back"
+vertical_icon_alignment = 0
 
 [connection signal="toggled" from="GridContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="item_selected" from="GridContainer/HBoxContainer4/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="VBoxContainer2/AspectRatioContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Back" to="." method="_on_back_pressed"]
