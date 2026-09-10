@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cfopry6gxpopf"
-path="res://.godot/imported/tutorial_cliff.blend-471024c6bd762273a3e0ffd642c5d7fe.scn"
+valid=false
 
 [deps]
 
 source_file="res://src/assets/blender_meshes/tutorial/tutorial_cliff.blend"
-dest_files=["res://.godot/imported/tutorial_cliff.blend-471024c6bd762273a3e0ffd642c5d7fe.scn"]
 
 [params]
 

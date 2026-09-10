@@ -6,9 +6,14 @@ var stack: Array[Control] = []
 
 # Open a menu
 func open(menu: Control) -> void:
-	print(str(stack))
 	if stack.size() > 0:
 		stack.back().hide()  # Hide previous menu
+	stack.append(menu)
+	menu.show()
+	
+func openWith(menu: Control) -> void:
+	if stack.size() > 1:
+		back()
 	stack.append(menu)
 	menu.show()
 

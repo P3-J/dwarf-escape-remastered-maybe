@@ -14,10 +14,14 @@
 [ext_resource type="AudioStream" uid="uid://dsept5vtv4vvo" path="res://src/assets/sounds/SFX/walk_on_stone.wav" id="8_4pcbe"]
 [ext_resource type="FontFile" uid="uid://crcvk11dlvyuo" path="res://font/Sunantara.ttf" id="9_lsi8j"]
 [ext_resource type="PackedScene" uid="uid://dh6bt55m0insb" path="res://src/scenes/pause_ui.tscn" id="12_wpkk7"]
+[ext_resource type="Texture2D" uid="uid://cy73yfo7nr81h" path="res://src/assets/ui/basic/LavaMeterEmptysmall.png" id="13_op12o"]
+[ext_resource type="Texture2D" uid="uid://cjhdkj71n2y1r" path="res://src/assets/ui/basic/LavameterFilledsmall.png" id="14_b6jla"]
 [ext_resource type="Script" uid="uid://brvqpikjr5bsk" path="res://src/scripts/rope_meshy.gd" id="14_hhiii"]
 [ext_resource type="AudioStream" uid="uid://vo10xy86dfh6" path="res://src/assets/sounds/SFX/woosh.mp3" id="15_5h06g"]
+[ext_resource type="Script" uid="uid://cpxaiqos62cwk" path="res://src/scripts/lava_meter.gd" id="15_b6jla"]
 [ext_resource type="Script" uid="uid://dkj5ir1t46l4x" path="res://src/scripts/yard.gd" id="16_myy50"]
 [ext_resource type="AudioStream" uid="uid://b8b4kp44kg8h6" path="res://src/assets/sounds/windblow2.mp3" id="16_twf7n"]
+[ext_resource type="Texture2D" uid="uid://c7fqtqfd2jhsf" path="res://src/assets/ui/basic/LavaMeterDwarfIndicatorsmall.png" id="16_vwic4"]
 [ext_resource type="PackedScene" uid="uid://dgr2fdi84ubyo" path="res://src/scenes/ghostcube.tscn" id="17_usugt"]
 [ext_resource type="Texture2D" uid="uid://r4h083wkk1un" path="res://src/textures/player_misc/ground_shadow.png" id="18_3qshy"]
 [ext_resource type="Texture2D" uid="uid://bpscfjwhi5nqq" path="res://textures/t2/F1/CNAR9.png" id="18_twf7n"]
@@ -200,7 +204,6 @@ speed_lines_shader = NodePath("UI/SpeedLinesShader")
 
 [node name="UI" type="Control" parent="." unique_id=876507995]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,28 +303,26 @@ metadata/_edit_use_anchors_ = true
 [node name="timer" type="TextureRect" parent="UI" unique_id=498766344]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = -0.02
-anchor_right = 0.5
-offset_left = -100.0
-offset_right = 100.0
-offset_bottom = 60.0
+anchor_left = 0.44791666
+anchor_top = 0.0009259259
+anchor_right = 0.5520833
+anchor_bottom = 0.07648148
 grow_horizontal = 2
 texture = ExtResource("4_4pcbe")
 expand_mode = 1
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="timer_text" type="RichTextLabel" parent="UI/timer" unique_id=1663079986]
 layout_mode = 0
-offset_right = 200.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
+anchor_right = 1.0
+anchor_bottom = 0.7352941
 theme = ExtResource("5_xvyn7")
 theme_override_font_sizes/normal_font_size = 18
 text = "00:00:000"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="countdownlabel" type="RichTextLabel" parent="UI" unique_id=1294284919]
 visible = false
@@ -362,6 +363,29 @@ grow_vertical = 2
 
 [node name="pause_ui" parent="UI" unique_id=645484055 instance=ExtResource("12_wpkk7")]
 layout_mode = 1
+
+[node name="LavaMeter" type="TextureProgressBar" parent="UI" unique_id=123451811]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.93645835
+anchor_top = 0.19074073
+anchor_right = 0.971875
+anchor_bottom = 0.7601852
+fill_mode = 3
+texture_under = ExtResource("13_op12o")
+texture_progress = ExtResource("14_b6jla")
+script = ExtResource("15_b6jla")
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="TextureRect" parent="UI/LavaMeter" unique_id=1556150848]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.13235295
+anchor_top = -0.0016260162
+anchor_right = 1.0441177
+anchor_bottom = 0.09756097
+texture = ExtResource("16_vwic4")
+metadata/_edit_use_anchors_ = true
 
 [node name="player_stand" type="CollisionShape3D" parent="." unique_id=600236814]
 shape = SubResource("CapsuleShape3D_0qy4j")
