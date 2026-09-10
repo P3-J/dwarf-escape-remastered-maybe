@@ -11,7 +11,7 @@ data = PackedVector3Array(-10.526999, -1.1017, 1.74, -8.9512, 0.94369996, -1.830
 [node name="Cube_001" parent="." index="0" unique_id=1381770047]
 material_override = ExtResource("2_b7jgw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0" unique_id=1077221405]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0" unique_id=2063151966]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0" unique_id=1161107138]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0" unique_id=494239148]
 shape = SubResource("ConcavePolygonShape3D_0f4bl")
