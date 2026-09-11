@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://hmhj40djnsp5"]
 
-[ext_resource type="PackedScene" uid="uid://blrebcu8rrq7" path="res://src/assets/blender_meshes/tutorial/godot_scenes/big_platform.tscn" id="1_lf4aw"]
+[ext_resource type="PackedScene" uid="uid://cm7meh5vfm3c3" path="res://src/assets/blender_meshes/tutorial/big_platform_bottom.blend" id="1_lf4aw"]
 [ext_resource type="Material" uid="uid://dkjivxa5udktf" path="res://src/assets/Shaders/shader_catalogue/TiledDirt.tres" id="2_b7jgw"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0f4bl"]
@@ -8,10 +8,10 @@ data = PackedVector3Array(-10.526999, -1.1017, 1.74, -8.9512, 0.94369996, -1.830
 
 [node name="big_platform_bottom" unique_id=2012805806 instance=ExtResource("1_lf4aw")]
 
-[node name="Cube_001" parent="." index="0" unique_id=1381770047]
+[node name="Cube_001" parent="." index="0" unique_id=1869598791]
 material_override = ExtResource("2_b7jgw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0" unique_id=2063151966]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0" unique_id=1077221405]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0" unique_id=494239148]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0" unique_id=1161107138]
 shape = SubResource("ConcavePolygonShape3D_0f4bl")
