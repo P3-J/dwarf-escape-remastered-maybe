@@ -1,4 +1,4 @@
-extends Control
+extends TextureRect
 
 @export var loading_screen: LevelLoader
 

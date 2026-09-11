@@ -8,15 +8,20 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sdre5"]
 render_priority = 0
 shader = ExtResource("3_8q6l0")
-shader_parameter/base_texture = ExtResource("3_iwrnh")
-shader_parameter/cool_color = Color(0.05, 0.01, 0, 1)
-shader_parameter/hot_color = Color(0.95349616, 0.36818022, 7.70092e-07, 1)
-shader_parameter/emission_strength = 275.08
-shader_parameter/emission_flicker_speed = 2.0
-shader_parameter/base_texture_scale = Vector2(15, 15)
-shader_parameter/wave_speed = 0.415
+shader_parameter/lava_texture = ExtResource("3_iwrnh")
+shader_parameter/texture_scale = 10.000000471740119
+shader_parameter/lava_tint = Color(1, 1, 1, 1)
+shader_parameter/brightness = 1.30000006175
+shader_parameter/emission_color = Color(0.99215686, 0.49019608, 0.0627451, 1)
+shader_parameter/emission_strength = 3.0000001425
+shader_parameter/emission_pulse = 1.0000000475
+shader_parameter/wave_speed = 0.186000008835
 shader_parameter/wave_strength = 0.02
-shader_parameter/flow_strength = 0.105
+shader_parameter/wave_scale = 5.10200023908512
+shader_parameter/flow_speed = 0.18
+shader_parameter/flow_strength = 0.03600000171
+shader_parameter/hot_threshold = 0.4350000206625
+shader_parameter/hot_contrast = 2.58400011948012
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_652k1"]
 material = SubResource("ShaderMaterial_sdre5")
@@ -35,9 +40,8 @@ point_count = 3
 curve = SubResource("Curve_lrb6e")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iwrnh"]
-emission_shape_scale = Vector3(5, 0, 5)
 emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
+emission_box_extents = Vector3(2.5, 1, 2.5)
 angle_min = -9.9999895
 angle_max = 10.0000105
 direction = Vector3(0, 1, 0)

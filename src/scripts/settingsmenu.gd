@@ -1,20 +1,18 @@
-extends Control
+extends TextureRect
 
-@onready var mouse_slider: HSlider = $TextureRect/GridContainer/HBoxContainer/HSlider
-@onready var mouse_value: Label = $TextureRect/GridContainer/HBoxContainer/MouseValue
+@onready var mouse_slider: HSlider = $GridContainer/HBoxContainer/HSlider
+@onready var mouse_value: Label = $GridContainer/HBoxContainer/MouseValue
 
-@onready var music_slider: HSlider = $TextureRect/GridContainer/HBoxContainer2/MusicSlider
-@onready var music_value: Label = $TextureRect/GridContainer/HBoxContainer2/MusicValue
+@onready var music_slider: HSlider = $GridContainer/HBoxContainer2/MusicSlider
+@onready var music_value: Label = $GridContainer/HBoxContainer2/MusicValue
 
-@onready var audio_slider: HSlider = $TextureRect/GridContainer/HBoxContainer3/AudioSlider
-@onready var audio_value: Label = $TextureRect/GridContainer/HBoxContainer3/AudioValue
+@onready var audio_slider: HSlider = $GridContainer/HBoxContainer3/AudioSlider
+@onready var audio_value: Label = $GridContainer/HBoxContainer3/AudioValue
 
-@onready var resolution_option: OptionButton = $TextureRect/GridContainer/HBoxContainer4/OptionButton
-@onready var fullscreen_check: CheckButton = $TextureRect/GridContainer/VBoxContainer/CheckButton
+@onready var resolution_option: OptionButton = $GridContainer/HBoxContainer4/OptionButton
+@onready var fullscreen_check: CheckButton = $GridContainer/VBoxContainer/CheckButton
 
 const COMMON_RESOLUTIONS: Array[Vector2i] = [
-	Vector2i(1024, 576),
-	Vector2i(1152, 648),
 	Vector2i(1280, 720),
 	Vector2i(1280, 800),
 	Vector2i(1366, 768),
@@ -130,6 +128,12 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 			DisplayServer.WINDOW_MODE_WINDOWED
 		)
 
+		# Fullscreen may have left us rendering at a custom base
+		# size (see _on_resolution_selected); drop back to the
+		# project's default so windowed stretch scaling isn't
+		# left using a leftover fullscreen resolution.
+		get_window().content_scale_size = Vector2i.ZERO
+
 		# Restore a sensible window position.
 		_center_window()
 
@@ -207,8 +211,25 @@ func _setup_resolution_options() -> void:
 
 func _get_current_resolution() -> Vector2i:
 
-	# window_get_size() reports the correct size in every mode,
-	# so there's nothing to branch on here.
+	var mode := DisplayServer.window_get_mode()
+
+	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN or mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+
+		# window_get_size() always reports the monitor's native
+		# size while fullscreen, since the OS window itself never
+		# shrinks - the "resolution" we actually picked lives in
+		# content_scale_size instead (falling back to the project's
+		# default base size when we haven't overridden it).
+		var scale_size := get_window().content_scale_size
+
+		if scale_size != Vector2i.ZERO:
+			return scale_size
+
+		return Vector2i(
+			ProjectSettings.get_setting("display/window/size/viewport_width"),
+			ProjectSettings.get_setting("display/window/size/viewport_height")
+		)
+
 	return DisplayServer.window_get_size()
 
 func _on_resolution_selected(index: int) -> void:
@@ -226,61 +247,27 @@ func _on_resolution_selected(index: int) -> void:
 
 	var mode := DisplayServer.window_get_mode()
 
-	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN or mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
 
-		# Set the actual fullscreen display resolution.
+		# Both fullscreen modes always cover the monitor at its
+		# native pixel size on Windows - DisplayServer.window_set_size()
+		# is a no-op here, so resizing the actual OS window can't
+		# give us a lower "resolution".
 		#
-		# We first leave exclusive fullscreen, resize the window,
-		# then enter exclusive fullscreen again.
-		#
-		# This is more reliable across platforms/drivers.
+		# Instead we change the base size the scene renders at and
+		# let window/stretch/mode (see project settings) scale that
+		# up/down to fill the real, native-sized window.
+		get_window().content_scale_size = resolution
 
-		DisplayServer.window_set_mode(
-			DisplayServer.WINDOW_MODE_WINDOWED
-		)
-
-		# Give the driver a frame to actually leave exclusive
-		# fullscreen before we touch the size, otherwise the
-		# resize below gets silently dropped.
-		await get_tree().process_frame
-
-		DisplayServer.window_set_size(resolution)
-
-		await get_tree().process_frame
-
-		DisplayServer.window_set_mode(
-			DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
-		)
 	elif mode == DisplayServer.WINDOW_MODE_WINDOWED:
+
+		# Back to the project's default base resolution so stretch
+		# scaling isn't left using a size we set while fullscreen.
+		get_window().content_scale_size = Vector2i.ZERO
 
 		DisplayServer.window_set_size(resolution)
 
 		_center_window()
-	elif mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		DisplayServer.window_set_mode(
-			DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
-		)
-
-		await get_tree().process_frame
-
-		DisplayServer.window_set_mode(
-			DisplayServer.WINDOW_MODE_WINDOWED
-		)
-
-		await get_tree().process_frame
-
-		DisplayServer.window_set_size(resolution)
-
-		await get_tree().process_frame
-
-		DisplayServer.window_set_mode(
-			DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
-		)
-
-		# We just silently switched the user out of borderless
-		# fullscreen and into exclusive fullscreen; keep the
-		# checkbox in sync so it doesn't lie about the mode.
-		fullscreen_check.set_pressed_no_signal(true)
 
 
 	Signalbus.settings_changed.emit()
@@ -308,3 +295,7 @@ func _sort_resolutions(a: Vector2i, b: Vector2i) -> bool:
 		return a.x < b.x
 
 	return area_a < area_b
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	pass # Replace with function body.

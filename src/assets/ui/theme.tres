@@ -53,31 +53,32 @@ texture = ExtResource("2_b06wh")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10um3"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7xjr"]
-content_margin_top = 20.0
-texture = ExtResource("5_xhd47")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h64qy"]
+load_path = "res://.godot/imported/SliderActive.png-094739826291327b0a3f98dbbefa0d73.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksw8g"]
-content_margin_top = 20.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h64qy"]
 texture = ExtResource("5_xhd47")
+axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhd47"]
 content_margin_top = 20.0
 texture = ExtResource("6_0so4u")
+texture_margin_left = 3.0
+texture_margin_right = 10.0
+axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sr1kd"]
 content_margin_left = 40.0
 content_margin_top = 20.0
 texture = ExtResource("7_0so4u")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h64qy"]
-texture = ExtResource("9_xhd47")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hwtoi"]
-texture = ExtResource("10_1fb32")
-axis_stretch_horizontal = 1
+texture = ExtResource("9_xhd47")
 axis_stretch_vertical = 1
-region_rect = Rect2(0, 0, 136, 1229)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bv0ra"]
+texture = ExtResource("10_1fb32")
+axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b06wh"]
 texture = ExtResource("6_me7jw")
@@ -133,8 +134,9 @@ CheckButton/styles/pressed = SubResource("StyleBoxEmpty_10um3")
 HSlider/icons/grabber = ExtResource("5_me7jw")
 HSlider/icons/grabber_disabled = ExtResource("5_me7jw")
 HSlider/icons/grabber_highlight = ExtResource("6_b06wh")
-HSlider/styles/grabber_area = SubResource("StyleBoxTexture_v7xjr")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_ksw8g")
+HSlider/icons/tick = SubResource("CompressedTexture2D_h64qy")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_h64qy")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_h64qy")
 HSlider/styles/slider = SubResource("StyleBoxTexture_xhd47")
 ItemList/colors/font_color = Color(1, 1, 1, 1)
 ItemList/colors/font_hovered_color = Color(0.95, 0.95, 0.95, 1)
@@ -154,8 +156,8 @@ Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_me7jw")
 OptionButton/font_sizes/font_size = 30
 ProgressBar/fonts/font = ExtResource("1_me7jw")
-ProgressBar/styles/background = SubResource("StyleBoxTexture_h64qy")
-ProgressBar/styles/fill = SubResource("StyleBoxTexture_hwtoi")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_hwtoi")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_bv0ra")
 RichTextLabel/constants/outline_size = 5
 RichTextLabel/font_sizes/normal_font_size = 60
 RichTextLabel/fonts/normal_font = ExtResource("1_me7jw")

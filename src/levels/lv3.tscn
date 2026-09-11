@@ -2,15 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c10qq3sfbdgex" path="res://src/scripts/world.gd" id="1_gn8i6"]
 [ext_resource type="PackedScene" uid="uid://ddk73t8n4ysd6" path="res://src/scenes/lava.tscn" id="1_nmpub"]
-[ext_resource type="Script" uid="uid://bnb42goqcvb3y" path="res://src/scripts/lava.gd" id="2_17ei1"]
 [ext_resource type="PackedScene" uid="uid://cwdgh5qpr51w6" path="res://src/scenes/player.tscn" id="2_h33yd"]
-[ext_resource type="Shader" uid="uid://77d7ml8amjt1" path="res://src/shaders/water.gdshader" id="3_007wy"]
 [ext_resource type="Environment" uid="uid://cbfxn8yoprrvk" path="res://src/assets/env.tres" id="3_vivos"]
-[ext_resource type="Texture2D" uid="uid://yobghhc5us53" path="res://src/assets/Shaders/TilableShaderBase/lava_tilable_Base_color.png" id="4_0rnly"]
 [ext_resource type="PackedScene" uid="uid://d2fflt0dmlqmk" path="res://src/scenes/boostspot.tscn" id="4_77g68"]
 [ext_resource type="PackedScene" uid="uid://bmdbt45de3e3r" path="res://src/scenes/winning_zone.tscn" id="5_h33yd"]
 [ext_resource type="PackedScene" uid="uid://cqw0ccga86fo2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tscn" id="5_oslvj"]
-[ext_resource type="QuadMesh" uid="uid://cfbdof6t2j1g1" path="res://src/materials/lava_particles_material.tres" id="5_xwneu"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="7_3y4o0"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="8_gn8i6"]
 [ext_resource type="Material" uid="uid://dk8u1xyv4dmfl" path="res://textures/rock/related/Rock028_1K-JPG_Color.tres" id="9_3y4o0"]
@@ -125,6 +121,27 @@ turbulence_noise_speed = Vector3(0, 20, 0)
 turbulence_influence_min = 0.030000001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5trj"]
+albedo_texture = ExtResource("14_lo6ks")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dhb8i"]
+friction = 0.56
+rough = true
+bounce = 0.51
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhb8i"]
+albedo_texture = ExtResource("8_q1b5h")
+
+[sub_resource type="SphereMesh" id="SphereMesh_e68yd"]
+material = SubResource("StandardMaterial3D_dhb8i")
+radius = 4.0
+height = 8.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dhb8i"]
+radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4d5ya"]
 albedo_texture = ExtResource("14_lo6ks")
 metallic_specular = 0.0
 texture_filter = 2
@@ -3074,32 +3091,7 @@ directional_shadow_max_distance = 386.9
 
 [node name="defaults" type="Node3D" parent="." unique_id=1498478716]
 
-[node name="Lava" type="Area3D" parent="defaults" unique_id=1849340564 groups=["lava"]]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 14.593386, 10.350014)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("2_17ei1")
-rise_per_sec = 0.01
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="defaults/Lava" unique_id=167300565]
-transform = Transform3D(1, 0, 0, 0, 0.9996099, -0.027928883, 0, 0.027928883, 0.9996099, 0, -0.049191594, 0)
-mesh = SubResource("PlaneMesh_33kml")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="defaults/Lava" unique_id=1228142798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
-shape = SubResource("BoxShape3D_k2oyh")
-
-[node name="Timer" type="Timer" parent="defaults/Lava" unique_id=842461161]
-
-[node name="ParticleEffects" type="Node3D" parent="defaults/Lava" unique_id=748331945]
-
-[node name="LavaPE" type="GPUParticles3D" parent="defaults/Lava/ParticleEffects" unique_id=28661149]
-amount = 300
-lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_iwrnh")
-draw_pass_1 = ExtResource("5_xwneu")
-
-[node name="cliff" parent="defaults/Lava" unique_id=428873403 instance=ExtResource("23_k2q1p")]
+[node name="cliff" parent="defaults" unique_id=428873403 instance=ExtResource("23_k2q1p")]
 transform = Transform3D(-0.051745895, 0, -0.00992647, 0, 0.05268939, 0, 0.00992647, 0, -0.051745895, 1.325149, 0.3425763, 1.1912999)
 
 [node name="Lava4" parent="defaults" unique_id=310003075 instance=ExtResource("1_nmpub")]
@@ -3156,6 +3148,10 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18.
 
 [node name="entity_8_boostspot5" parent="defaults" unique_id=1109586411 instance=ExtResource("4_77g68")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 33.653473, 122.09448, 243.44792)
+
+[node name="Lava" parent="defaults" unique_id=388630991 instance=ExtResource("1_nmpub")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 13.55743, 33.25063)
+rise_per_sec = 0.05
 
 [node name="map_terrain" type="Node3D" parent="." unique_id=580884850]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.43762, 0)
@@ -6631,7 +6627,7 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.023011195, 0, -0.999733, 0, 1, 0, 0.9997329, 0, -0.023011196, 3.6627223, 114.88611, 173.89363)
+transform = Transform3D(-0.023011217, 0, -0.9997339, 0, 1, 0, 0.99973387, 0, -0.023011219, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")

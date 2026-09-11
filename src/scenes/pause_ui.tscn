@@ -19,5 +19,9 @@ settings = NodePath("../SettingsMenu")
 [node name="SettingsMenu" parent="." unique_id=593419197 instance=ExtResource("2_7n1gy")]
 visible = false
 layout_mode = 1
+anchor_left = 0.24010417
+anchor_top = 0.09537037
+anchor_right = 0.8072917
+anchor_bottom = 0.8541667
 
 [editable path="SettingsMenu"]

@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cm7meh5vfm3c3"
-path="res://.godot/imported/big_platform_bottom.blend-6d84baaf343334aeaf03c01c38d97f6f.scn"
+valid=false
 
 [deps]
 
 source_file="res://src/assets/blender_meshes/tutorial/big_platform_bottom.blend"
-dest_files=["res://.godot/imported/big_platform_bottom.blend-6d84baaf343334aeaf03c01c38d97f6f.scn"]
 
 [params]
 
