@@ -68,25 +68,6 @@
 [ext_resource type="PackedScene" uid="uid://ca1mcp12h2ed4" path="res://src/assets/blender_meshes/godot_scenes/wall_torch.tscn" id="70_t5trj"]
 [ext_resource type="PackedScene" uid="uid://cfltqrtsyjmvk" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_empty.tscn" id="72_1on1t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdre5"]
-render_priority = 0
-shader = ExtResource("3_007wy")
-shader_parameter/base_texture = ExtResource("4_0rnly")
-shader_parameter/cool_color = Color(0.05, 0.01, 0, 1)
-shader_parameter/hot_color = Color(0.95686275, 0.05882353, 0, 1)
-shader_parameter/emission_strength = 275.08
-shader_parameter/emission_flicker_speed = 2.0
-shader_parameter/base_texture_scale = Vector2(15, 15)
-shader_parameter/wave_speed = 0.415
-shader_parameter/wave_strength = 0.02
-shader_parameter/flow_strength = 0.105
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_33kml"]
-material = SubResource("ShaderMaterial_sdre5")
-size = Vector2(10, 15)
-subdivide_width = 90
-subdivide_depth = 90
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_k2oyh"]
 size = Vector3(5, 0.8, 5)
 
@@ -129,14 +110,6 @@ texture_filter = 2
 friction = 0.56
 rough = true
 bounce = 0.51
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhb8i"]
-albedo_texture = ExtResource("8_q1b5h")
-
-[sub_resource type="SphereMesh" id="SphereMesh_e68yd"]
-material = SubResource("StandardMaterial3D_dhb8i")
-radius = 4.0
-height = 8.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dhb8i"]
 radius = 4.0
