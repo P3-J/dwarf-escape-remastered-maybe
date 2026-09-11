@@ -3226,9 +3226,6 @@ draw_pass_1 = ExtResource("12_c2j57")
 [node name="player" parent="defaults" unique_id=299372560 instance=ExtResource("2_h33yd")]
 transform = Transform3D(-0.6225144, 0, -0.7826079, 0, 1, 0, 0.7826079, 0, -0.6225144, -13.463941, 17.215221, -19.313278)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="defaults" unique_id=868652649]
-environment = ExtResource("3_vivos")
-
 [node name="WinningZone" parent="defaults" unique_id=984008320 instance=ExtResource("5_h33yd")]
 transform = Transform3D(-0.9999915, 0, 0.004138358, 0, 1, 0, -0.004138358, 0, -0.9999915, 13.779826, 156.6243, 301.4992)
 
@@ -3284,6 +3281,9 @@ transform = Transform3D(-0.39890045, 0, -0.2999288, 0, 0.49907795, 0, 0.2999288,
 
 [node name="Rock7" parent="defaults" unique_id=1877498393 instance=ExtResource("24_81kd0")]
 transform = Transform3D(1, 0, 0, 0, -0.9999785, -0.006561637, 0, 0.006561637, -0.9999785, 20.226938, 44.77768, 81.424614)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="defaults" unique_id=990967119]
+environment = ExtResource("3_vivos")
 
 [node name="map_terrain" type="Node3D" parent="." unique_id=580884850]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.43762, 0)
@@ -6861,7 +6861,7 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.02301121, 0, -0.9997336, 0, 1, 0, 0.99973357, 0, -0.023011211, 3.6414132, 114.88611, 174.81941)
+transform = Transform3D(-0.023011208, 0, -0.99973357, 0, 1, 0, 0.9997335, 0, -0.02301121, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")
@@ -7072,7 +7072,7 @@ transform = Transform3D(0.8713692, 0, -0.2489321, 0, 0.90622926, 0, 0.2489321, 0
 [node name="intro" type="Node3D" parent="." unique_id=790985474]
 
 [node name="Camera3D" type="Camera3D" parent="intro" unique_id=1323064712]
-transform = Transform3D(-0.9926915, 0, 0.120679595, 0, 1, 0, -0.120679595, 0, -0.9926915, 19.377542, 158.42584, 284.6783)
+transform = Transform3D(-0.99269146, 0, 0.12067959, 0, 1, 0, -0.12067959, 0, -0.99269146, 19.377542, 158.42584, 284.6783)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="intro" unique_id=959952170]
 libraries/ = SubResource("AnimationLibrary_rmrwi")
