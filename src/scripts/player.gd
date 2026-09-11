@@ -677,7 +677,7 @@ func _should_show_speed_lines(vel: Vector3) -> void:
 	if not %windblow.playing:
 		%windblow.play()
 	else:
-		%windblow.volume_db = -55 + clamp(total_speed, 0, 30)
+		%windblow.volume_db = -35 + clamp(total_speed, 0, 30)
 
 	if speed_lines_material == null and speed_lines_shader:
 		speed_lines_material = speed_lines_shader.material as ShaderMaterial

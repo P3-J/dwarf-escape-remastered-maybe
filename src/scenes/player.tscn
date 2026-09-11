@@ -449,7 +449,7 @@ bus = &"SFX"
 [node name="windblow" type="AudioStreamPlayer" parent="Audio" unique_id=1155837108]
 unique_name_in_owner = true
 stream = ExtResource("16_twf7n")
-volume_db = -40.0
+volume_db = -20.0
 bus = &"SFX"
 
 [node name="groundpouncesound" type="AudioStreamPlayer" parent="Audio" unique_id=2102710949]

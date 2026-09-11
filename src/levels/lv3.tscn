@@ -3243,7 +3243,7 @@ draw_pass_1 = ExtResource("12_c2j57")
 transform = Transform3D(-0.6225144, 0, -0.7826079, 0, 1, 0, 0.7826079, 0, -0.6225144, -13.463941, 17.215221, -19.313278)
 
 [node name="WinningZone" parent="defaults" unique_id=984008320 instance=ExtResource("5_h33yd")]
-transform = Transform3D(-0.9999915, 0, 0.004138358, 0, 1, 0, -0.004138358, 0, -0.9999915, 13.779826, 156.6243, 301.4992)
+transform = Transform3D(-0.9999915, 0, 0.004138358, 0, 1, 0, -0.004138358, 0, -0.9999915, 13.779826, 156.6243, 312.2258)
 
 [node name="CollisionShape3D" parent="defaults/WinningZone" index="0" unique_id=2048083580]
 transform = Transform3D(4.4332747, -4.3655746e-11, 0, 0, 4.4329176, 0.0564826, 0, -0.056482594, 4.432916, -0.87741566, 6.1636353, -1.2946167)
@@ -6892,7 +6892,7 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.023011208, 0, -0.9997335, 0, 1, 0, 0.99973345, 0, -0.023011208, 3.6414132, 114.88611, 174.81941)
+transform = Transform3D(-0.023011206, 0, -0.99973345, 0, 1, 0, 0.9997334, 0, -0.023011208, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")
