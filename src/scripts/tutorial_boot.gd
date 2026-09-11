@@ -2,7 +2,7 @@ extends AnimationPlayer
 
 
 func _ready() -> void:
-	if Globalsettings.current_level == 0 and Globalsettings.first_boot_tutorial == true:
+	if Globalsettings.current_level == 0 and Globalsettings.first_boot_tutorial == true or Globalsettings.current_level == 1 and Globalsettings.first_boot_lv3 == true:
 		_play_intro()
 
 func _play_intro() -> void:
@@ -28,4 +28,5 @@ func skip_intro() -> void:
 	var player := get_tree().get_first_node_in_group("player")
 	if player and player.has_method("intro_anim_unfreeze"):
 		player.intro_anim_unfreeze(0)
+		player.intro_anim_unfreeze(1)
 	Globalsettings.intro_playing = false

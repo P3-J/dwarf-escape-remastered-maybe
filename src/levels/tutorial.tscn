@@ -519,7 +519,7 @@ pickaxe_throw_speed = 30.0
 [node name="WinningZone" parent="defaults" unique_id=890264459 instance=ExtResource("5_nivcp")]
 transform = Transform3D(0.6213381, 0, -0.7835426, 0, 1, 0, 0.7835426, 0, 0.6213381, 6.7256694, 15.524115, 57.82066)
 
-[node name="CollisionShape3D" parent="defaults/WinningZone" index="0"]
+[node name="CollisionShape3D" parent="defaults/WinningZone" index="0" unique_id=2048083580]
 transform = Transform3D(1.4963034, 9.313226e-10, 0, 0, 1.4961821, 0.019063802, 0, -0.019063804, 1.4961824, -0.032440174, 0.95113766, -0.4399543)
 
 [node name="Stalactite1V" parent="defaults" unique_id=1599354328 instance=ExtResource("6_46hwg")]

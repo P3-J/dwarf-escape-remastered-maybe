@@ -6,11 +6,15 @@
 [ext_resource type="Environment" uid="uid://cbfxn8yoprrvk" path="res://src/assets/env.tres" id="3_vivos"]
 [ext_resource type="PackedScene" uid="uid://d2fflt0dmlqmk" path="res://src/scenes/boostspot.tscn" id="4_77g68"]
 [ext_resource type="PackedScene" uid="uid://bmdbt45de3e3r" path="res://src/scenes/winning_zone.tscn" id="5_h33yd"]
+[ext_resource type="Shader" uid="uid://77d7ml8amjt1" path="res://src/shaders/water.gdshader" id="5_m55ns"]
 [ext_resource type="PackedScene" uid="uid://cqw0ccga86fo2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tscn" id="5_oslvj"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="7_3y4o0"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="8_gn8i6"]
 [ext_resource type="Material" uid="uid://dk8u1xyv4dmfl" path="res://textures/rock/related/Rock028_1K-JPG_Color.tres" id="9_3y4o0"]
+[ext_resource type="Script" uid="uid://bnb42goqcvb3y" path="res://src/scripts/lava.gd" id="10_hxvvk"]
 [ext_resource type="Material" uid="uid://bw8gjjuv5xfni" path="res://textures/rock/related/Rock051_1K-JPG_Color.tres" id="11_dhb8i"]
+[ext_resource type="Texture2D" uid="uid://yobghhc5us53" path="res://src/assets/Shaders/TilableShaderBase/lava_tilable_Base_color.png" id="11_m55ns"]
+[ext_resource type="QuadMesh" uid="uid://cfbdof6t2j1g1" path="res://src/materials/lava_particles_material.tres" id="12_c2j57"]
 [ext_resource type="PackedScene" uid="uid://ckqhnqud0ppq8" path="res://src/assets/object_scene_catalogue/wooden_platform_central_rope.tscn" id="12_q1b5h"]
 [ext_resource type="PackedScene" uid="uid://bvo4d4a51b2en" path="res://src/assets/object_scene_catalogue/wooden_support.tscn" id="13_0fxca"]
 [ext_resource type="Material" uid="uid://kp7g260s4inv" path="res://textures/rock/related/pipe/Metal056C_1K-JPG_Color.tres" id="13_a5ywc"]
@@ -62,6 +66,7 @@
 [ext_resource type="PackedScene" uid="uid://duohm4m7d15nc" path="res://src/assets/object_scene_catalogue/wooden_fence_2v.tscn" id="61_08x7y"]
 [ext_resource type="PackedScene" uid="uid://ci6vafc1t3jwp" path="res://src/assets/blender_meshes/godot_scenes/cave_pillar.tscn" id="61_fganh"]
 [ext_resource type="PackedScene" uid="uid://biqxvpyiwjvc0" path="res://src/assets/object_scene_catalogue/wooden_fence_1v.tscn" id="61_gqoio"]
+[ext_resource type="Script" uid="uid://cwqodyxexs4un" path="res://src/scripts/tutorial_boot.gd" id="61_ijm3r"]
 [ext_resource type="PackedScene" uid="uid://spatfnp1w3x5" path="res://src/assets/object_scene_catalogue/wooden/barel.tscn" id="62_08x7y"]
 [ext_resource type="PackedScene" uid="uid://ca53qh2w2kror" path="res://src/assets/blender_meshes/godot_scenes/small_wall_cliff_platform.tscn" id="62_gqoio"]
 [ext_resource type="PackedScene" uid="uid://cnn1r3v7jujqt" path="res://src/assets/object_scene_catalogue/objects_without_collisions/architecture_torch.tscn" id="63_08x7y"]
@@ -72,6 +77,209 @@
 [ext_resource type="PackedScene" uid="uid://che5xvfjr56ud" path="res://src/assets/object_scene_catalogue/wooden/barrel.tscn" id="71_t5trj"]
 [ext_resource type="PackedScene" uid="uid://cfltqrtsyjmvk" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_empty.tscn" id="72_1on1t"]
 [ext_resource type="PackedScene" uid="uid://cjhlgvl87tuun" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_filled.tscn" id="72_ijm3r"]
+
+[sub_resource type="Shader" id="Shader_yxmgq"]
+code = "shader_type spatial;
+render_mode unshaded, cull_back;
+
+// Your lava texture
+uniform sampler2D lava_texture : source_color;
+uniform float texture_scale : hint_range(0.1, 50.0) = 1.0;
+
+// Overall lava appearance
+uniform vec4 lava_tint : source_color = vec4(1.0, 0.18, 0.02, 1.0);
+uniform float brightness : hint_range(0.0, 5.0) = 1.4;
+
+// Emission
+uniform vec4 emission_color : source_color = vec4(1.0, 0.08, 0.005, 1.0);
+uniform float emission_strength : hint_range(0.0, 20.0) = 5.0;
+uniform float emission_pulse : hint_range(0.0, 2.0) = 0.15;
+
+// Lava movement
+uniform float wave_speed : hint_range(0.0, 5.0) = 0.35;
+uniform float wave_strength : hint_range(0.0, 0.2) = 0.035;
+uniform float wave_scale : hint_range(0.1, 10.0) = 2.5;
+
+// Second layer gives the lava a more organic flow
+uniform float flow_speed : hint_range(0.0, 5.0) = 0.18;
+uniform float flow_strength : hint_range(0.0, 0.2) = 0.025;
+
+// Hot/cold breakup
+uniform float hot_threshold : hint_range(0.0, 1.0) = 0.55;
+uniform float hot_contrast : hint_range(0.1, 5.0) = 1.8;
+
+void vertex() {
+	// Very subtle physical wave movement.
+	// This is especially nice on a subdivided plane.
+	float t = TIME * wave_speed;
+
+	float wave1 = sin(VERTEX.x * wave_scale + t);
+	float wave2 = cos(VERTEX.z * wave_scale * 0.8 + t * 1.2);
+
+	VERTEX.y += (wave1 + wave2) * wave_strength;
+
+	// Small offset variation so it doesn't look perfectly sinusoidal
+	VERTEX.y += sin((VERTEX.x + VERTEX.z) * 5.0 + TIME) * wave_strength * 0.25;
+}
+
+void fragment() {
+	float t = TIME;
+
+	// ---------------------------------------------------------
+	// Animated UV distortion
+	// ---------------------------------------------------------
+
+	vec2 uv = UV * texture_scale;
+
+	// Large slow waves
+	vec2 wave;
+
+	wave.x = sin(uv.y * 8.0 + t * flow_speed * 3.0);
+	wave.y = cos(uv.x * 7.0 - t * flow_speed * 2.5);
+
+	uv += wave * flow_strength;
+
+	// Smaller secondary waves
+	vec2 detail_wave;
+
+	detail_wave.x = sin(uv.y * 19.0 - t * wave_speed * 2.0);
+	detail_wave.y = cos(uv.x * 17.0 + t * wave_speed * 1.7);
+
+	uv += detail_wave * wave_strength;
+
+	// ---------------------------------------------------------
+	// Sample lava
+	// ---------------------------------------------------------
+
+	vec4 lava = texture(lava_texture, uv);
+
+	// Base color
+	vec3 base_color = lava.rgb * lava_tint.rgb * brightness;
+
+	// ---------------------------------------------------------
+	// Hot spots
+	// ---------------------------------------------------------
+
+	// Luminance of the texture determines where the lava is hottest
+	float heat = dot(lava.rgb, vec3(0.299, 0.587, 0.114));
+
+	heat = smoothstep(
+		hot_threshold,
+		hot_threshold + 0.35,
+		heat
+	);
+
+	heat = pow(heat, hot_contrast);
+
+	// ---------------------------------------------------------
+	// Pulsing emission
+	// ---------------------------------------------------------
+
+	float pulse = 1.0 + sin(t * 2.0) * emission_pulse;
+
+	vec3 emission = emission_color.rgb
+		* heat
+		* emission_strength
+		* pulse;
+
+	// Some base emission so the dark lava isn't completely dead
+	emission += emission_color.rgb
+		* 0.15
+		* emission_strength;
+
+	// ---------------------------------------------------------
+	// Output
+	// ---------------------------------------------------------
+
+	ALBEDO = base_color;
+	EMISSION = emission;
+
+	// Rough lava surface
+	ROUGHNESS = mix(0.9, 0.65, heat);
+
+	// Slightly metallic is usually NOT desirable for lava
+	METALLIC = 0.0;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ic44s"]
+render_priority = 0
+shader = SubResource("Shader_yxmgq")
+shader_parameter/lava_texture = ExtResource("11_m55ns")
+shader_parameter/texture_scale = 50.0
+shader_parameter/lava_tint = Color(1, 1, 1, 1)
+shader_parameter/brightness = 0.6000000285
+shader_parameter/emission_color = Color(0.99215686, 0.49019608, 0.0627451, 1)
+shader_parameter/emission_strength = 3.0000001425
+shader_parameter/emission_pulse = 1.0000000475
+shader_parameter/wave_speed = 0.186000008835
+shader_parameter/wave_strength = 0.02
+shader_parameter/wave_scale = 5.10200023908512
+shader_parameter/flow_speed = 0.18
+shader_parameter/flow_strength = 0.03600000171
+shader_parameter/hot_threshold = 0.4350000206625
+shader_parameter/hot_contrast = 2.58400011948012
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hpimf"]
+material = SubResource("ShaderMaterial_ic44s")
+size = Vector2(40, 40)
+subdivide_width = 30
+subdivide_depth = 30
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2oyh"]
+size = Vector3(5, 0.8, 5)
+
+[sub_resource type="Curve" id="Curve_lrb6e"]
+_data = [Vector2(0, 0.3146068), 0.0, 0.0, 0, 0, Vector2(0.49382722, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_x0kyh"]
+curve = SubResource("Curve_lrb6e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iwrnh"]
+emission_shape = 3
+emission_box_extents = Vector3(2.5, 1, 2.5)
+angle_min = -9.9999895
+angle_max = 10.0000105
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 0.02
+initial_velocity_max = 0.19999999
+gravity = Vector3(0, 1, 0)
+scale_min = 0.19999999
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_x0kyh")
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 5.0
+hue_variation_min = -1.0
+hue_variation_max = 0.99999994
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 1.0
+turbulence_noise_speed = Vector3(0, 20, 0)
+turbulence_influence_min = 0.030000001
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdre5"]
+render_priority = 0
+shader = ExtResource("5_m55ns")
+shader_parameter/lava_texture = ExtResource("11_m55ns")
+shader_parameter/texture_scale = 10.00000047174012
+shader_parameter/lava_tint = Color(1, 1, 1, 1)
+shader_parameter/brightness = 0.6000000285
+shader_parameter/emission_color = Color(0.99215686, 0.49019608, 0.0627451, 1)
+shader_parameter/emission_strength = 3.0000001425
+shader_parameter/emission_pulse = 1.0000000475
+shader_parameter/wave_speed = 0.186000008835
+shader_parameter/wave_strength = 0.02
+shader_parameter/wave_scale = 5.10200023908512
+shader_parameter/flow_speed = 0.18
+shader_parameter/flow_strength = 0.03600000171
+shader_parameter/hot_threshold = 0.4350000206625
+shader_parameter/hot_contrast = 2.58400011948012
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c2j57"]
+material = SubResource("ShaderMaterial_sdre5")
+size = Vector2(10, 5)
+subdivide_width = 30
+subdivide_depth = 30
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1on1t"]
 albedo_texture = ExtResource("14_lo6ks")
@@ -2843,6 +3051,105 @@ _data = {
 &"swingeroo": SubResource("Animation_bb8qe")
 }
 
+[sub_resource type="Animation" id="Animation_1on1t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(19.377542, 158.42584, 284.6783)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.0206182, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ijm3r"]
+resource_name = "intro"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0666667, 2.0014465, 3.0053067, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(19.377542, 158.42584, 284.6783), Vector3(33.87231, 133.50717, 222.37581), Vector3(12.943592, 100.80853, 152.28452), Vector3(-6.382, 90.179, 34.27), Vector3(-13.457, 17.974, -19.464)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.0666667, 3.5666666, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.0206182, 0), Vector3(0, 2.9414163, 0), Vector3(-0.7853982, -2.9321532, 0), Vector3(0, -2.3698251, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../defaults/player")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1],
+"method": &"intro_anim_unfreeze"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmrwi"]
+_data = {
+&"RESET": SubResource("Animation_1on1t"),
+&"intro": SubResource("Animation_ijm3r")
+}
+
 [node name="Lv3_tscn" type="Node3D" unique_id=924920995]
 script = ExtResource("1_gn8i6")
 level_nr = 1
@@ -2859,6 +3166,30 @@ directional_shadow_max_distance = 386.9
 
 [node name="defaults" type="Node3D" parent="." unique_id=1498478716]
 
+[node name="Lava" type="Area3D" parent="defaults" unique_id=388630991 groups=["lava"]]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 10.055935, 33.25063)
+collision_mask = 3
+script = ExtResource("10_hxvvk")
+rise_per_sec = 0.25
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="defaults/Lava" unique_id=1643551624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012726784, 0.004858613, -0.0023293495)
+mesh = SubResource("PlaneMesh_hpimf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="defaults/Lava" unique_id=1178725814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
+shape = SubResource("BoxShape3D_k2oyh")
+
+[node name="Timer" type="Timer" parent="defaults/Lava" unique_id=1864340194]
+
+[node name="ParticleEffects" type="Node3D" parent="defaults/Lava" unique_id=784881363]
+
+[node name="LavaPE" type="GPUParticles3D" parent="defaults/Lava/ParticleEffects" unique_id=608596654]
+amount = 300
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_iwrnh")
+draw_pass_1 = ExtResource("12_c2j57")
+
 [node name="cliff" parent="defaults" unique_id=428873403 instance=ExtResource("23_k2q1p")]
 transform = Transform3D(-0.051745895, 0, -0.00992647, 0, 0.05268939, 0, 0.00992647, 0, -0.051745895, 1.325149, 0.3425763, 1.1912999)
 
@@ -2867,10 +3198,30 @@ transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 7.6293945e-06, 32.062794, 
 collision_layer = 3
 rise_per_sec = 0.01
 
-[node name="Lava3" parent="defaults" unique_id=1093954742 instance=ExtResource("1_nmpub")]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 115.573975, 53.842537, 146.9168)
+[node name="Lava3" type="Area3D" parent="defaults" unique_id=1093954742 groups=["lava"]]
+transform = Transform3D(0.75943, 0, -24.988462, 0, 25, 0, 24.988462, 0, 0.75943, 115.573975, 60.108658, 142.83066)
 collision_layer = 3
+collision_mask = 3
+script = ExtResource("10_hxvvk")
 rise_per_sec = 0.01
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="defaults/Lava3" unique_id=167300565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012726784, 0.004858613, -0.0023293495)
+mesh = SubResource("PlaneMesh_c2j57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="defaults/Lava3" unique_id=1228142798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
+shape = SubResource("BoxShape3D_k2oyh")
+
+[node name="Timer" type="Timer" parent="defaults/Lava3" unique_id=842461161]
+
+[node name="ParticleEffects" type="Node3D" parent="defaults/Lava3" unique_id=748331945]
+
+[node name="LavaPE" type="GPUParticles3D" parent="defaults/Lava3/ParticleEffects" unique_id=28661149]
+amount = 300
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_iwrnh")
+draw_pass_1 = ExtResource("12_c2j57")
 
 [node name="player" parent="defaults" unique_id=299372560 instance=ExtResource("2_h33yd")]
 transform = Transform3D(-0.6225144, 0, -0.7826079, 0, 1, 0, 0.7826079, 0, -0.6225144, -13.463941, 17.215221, -19.313278)
@@ -2912,10 +3263,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18.
 
 [node name="entity_8_boostspot5" parent="defaults" unique_id=1109586411 instance=ExtResource("4_77g68")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 33.653473, 122.09448, 243.44792)
-
-[node name="Lava" parent="defaults" unique_id=388630991 instance=ExtResource("1_nmpub")]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 13.55743, 33.25063)
-rise_per_sec = 0.05
 
 [node name="Rock2" parent="defaults" unique_id=496362738 instance=ExtResource("24_81kd0")]
 transform = Transform3D(-0.24069074, -0.45214745, 0.09609771, 0.46221095, -0.23676214, 0.04368974, 0.005752772, 0.10540622, 0.5103534, 2.9100966, 16.451427, -19.07824)
@@ -6514,7 +6861,7 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.023011213, 0, -0.99973375, 0, 1, 0, 0.9997337, 0, -0.023011213, 3.6414132, 114.88611, 174.81941)
+transform = Transform3D(-0.02301121, 0, -0.9997336, 0, 1, 0, 0.99973357, 0, -0.023011211, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")
@@ -6721,6 +7068,16 @@ transform = Transform3D(1.1363649, 0, -0.32463586, 0, 1.1818265, 0, 0.32463586, 
 
 [node name="Rock8" parent="assets" unique_id=1311305111 instance=ExtResource("25_afm63")]
 transform = Transform3D(0.8713692, 0, -0.2489321, 0, 0.90622926, 0, 0.2489321, 0, 0.8713692, -18.418365, 15.22601, -22.718298)
+
+[node name="intro" type="Node3D" parent="." unique_id=790985474]
+
+[node name="Camera3D" type="Camera3D" parent="intro" unique_id=1323064712]
+transform = Transform3D(-0.9926915, 0, 0.120679595, 0, 1, 0, -0.120679595, 0, -0.9926915, 19.377542, 158.42584, 284.6783)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="intro" unique_id=959952170]
+libraries/ = SubResource("AnimationLibrary_rmrwi")
+speed_scale = 0.5
+script = ExtResource("61_ijm3r")
 
 [node name="RailroadPiece" parent="." unique_id=573535244 instance=ExtResource("44_cnm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.946829, 15.501585, -19.843689)
@@ -7908,5 +8265,8 @@ transform = Transform3D(-0.07084871, 0, 0.21585567, 0, 0.22718541, 0, -0.2158556
 
 [node name="PipeBlockFilled" parent="." unique_id=1629031757 instance=ExtResource("72_ijm3r")]
 transform = Transform3D(-1.4424758e-07, -3.3, 0, -1.442476e-07, 1.4210855e-14, 4.113164, -3.3, 1.4424757e-07, -1.7979211e-07, 23.034668, 124.78419, 243.00607)
+
+[connection signal="body_entered" from="defaults/Lava" to="defaults/Lava" method="_on_body_entered"]
+[connection signal="body_entered" from="defaults/Lava3" to="defaults/Lava3" method="_on_body_entered"]
 
 [editable path="defaults/WinningZone"]

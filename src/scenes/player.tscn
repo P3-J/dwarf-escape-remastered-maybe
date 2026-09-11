@@ -204,6 +204,7 @@ speed_lines_shader = NodePath("UI/SpeedLinesShader")
 
 [node name="UI" type="Control" parent="." unique_id=876507995]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

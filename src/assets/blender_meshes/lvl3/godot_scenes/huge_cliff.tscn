@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://8yt2rmiigoil"]
 
-[ext_resource type="PackedScene" uid="uid://quppmah0fxul" path="res://src/assets/blender_meshes/lvl3/huge_cliff.blend" id="1_h6od1"]
+[ext_resource type="PackedScene" uid="uid://r2su0vt157es" path="res://src/assets/blender_meshes/nail.blend" id="1_h6od1"]
 [ext_resource type="Material" uid="uid://dkjivxa5udktf" path="res://src/assets/Shaders/shader_catalogue/TiledDirt.tres" id="2_gtmk1"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h6od1"]
