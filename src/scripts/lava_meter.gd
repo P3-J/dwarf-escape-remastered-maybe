@@ -86,4 +86,4 @@ func _process(_delta: float) -> void:
 	var max_pos = 0.0
 	var min_pos = max_pos + size.y
 	player_indicator.position.y = min_pos - (((min_pos - max_pos) / 100) * player_percentage)
-	player_indicator.position.y -= 130
+	player_indicator.position.y -= 30
