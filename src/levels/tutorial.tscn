@@ -54,6 +54,8 @@
 [ext_resource type="Script" uid="uid://38q6k0ctahjn" path="res://addons/func_godot/src/map/func_godot_map_settings.gd" id="50_fblni"]
 [ext_resource type="Script" uid="uid://cij36hpqc46c" path="res://addons/func_godot/src/import/quake_wad_file.gd" id="51_cvfnh"]
 [ext_resource type="PackedScene" uid="uid://cf2sc2cob85dj" path="res://src/assets/blender_meshes/godot_scenes/cave_enterance.tscn" id="51_da6f5"]
+[ext_resource type="PackedScene" uid="uid://bsrsa30j12cri" path="res://src/assets/object_scene_catalogue/hookspot_var3.tscn" id="55_iwgpg"]
+[ext_resource type="PackedScene" uid="uid://cqw0ccga86fo2" path="res://src/assets/object_scene_catalogue/hookspot_var2.tscn" id="56_fblni"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utdnl"]
 albedo_color = Color(0, 0, 0, 1)
@@ -2277,6 +2279,13 @@ script = ExtResource("23_7upbt")
 [node name="Managers" type="Node" parent="." unique_id=1431852203]
 
 [node name="hookspot" parent="." unique_id=1591514908 instance=ExtResource("38_d2mvf")]
-transform = Transform3D(0.4699286, 0.16920857, -1.632849, -0.8980738, 1.4482322, -0.10838555, 1.3741509, 0.88862383, 0.4875621, 39.06565, 25.762915, 11.6652355)
+transform = Transform3D(0.4699286, 0.16920857, -1.632849, -0.8980738, 1.4482322, -0.10838555, 1.3741509, 0.88862383, 0.4875621, 39.06565, 25.762915, 8.964209)
+
+[node name="hookspot2" parent="." unique_id=438612789 instance=ExtResource("55_iwgpg")]
+transform = Transform3D(0.0051442874, -0.028837405, 1.3876706, -0.03306155, 1.3872838, 0.028951928, -1.3875763, -0.033161506, 0.0044548158, 39.54966, 22.390972, 16.373163)
+
+[node name="entity_2_hookspot_var4" parent="." unique_id=1358222857 instance=ExtResource("56_fblni")]
+transform = Transform3D(-0.0001589931, -0.014807541, -0.9998902, 0.81287825, 0.582368, -0.008753641, 0.58243376, -0.81279045, 0.011944134, 37.420986, 20.991104, 6.1672754)
+boosts = false
 
 [editable path="defaults/WinningZone"]

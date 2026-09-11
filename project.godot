@@ -142,7 +142,7 @@ crouch={
 
 textures/canvas_textures/default_texture_filter=0
 scaling_3d/mode=5
-scaling_3d/scale=0.75
+scaling_3d/scale=0.95
 
 [shader_globals]
 
