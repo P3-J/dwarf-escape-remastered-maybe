@@ -9,9 +9,9 @@
 render_priority = 0
 shader = ExtResource("3_8q6l0")
 shader_parameter/lava_texture = ExtResource("3_iwrnh")
-shader_parameter/texture_scale = 10.000000471740119
+shader_parameter/texture_scale = 10.00000047174012
 shader_parameter/lava_tint = Color(1, 1, 1, 1)
-shader_parameter/brightness = 1.30000006175
+shader_parameter/brightness = 0.6000000285
 shader_parameter/emission_color = Color(0.99215686, 0.49019608, 0.0627451, 1)
 shader_parameter/emission_strength = 3.0000001425
 shader_parameter/emission_pulse = 1.0000000475

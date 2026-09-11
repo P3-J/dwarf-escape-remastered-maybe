@@ -7,4 +7,4 @@
 
 [resource]
 script = ExtResource("1_dlf23")
-inverse_scale_factor = 128.0
+inverse_scale_factor = 16.0
