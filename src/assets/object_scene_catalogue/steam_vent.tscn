@@ -1,18 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu5thp5x7c3ks"]
+[gd_scene format=3 uid="uid://cu5thp5x7c3ks"]
 
 [ext_resource type="PackedScene" uid="uid://c1f3cx0vkhl4c" path="res://src/assets/objects/steam_vent/SteamVent.fbx" id="1_0wlah"]
+[ext_resource type="Material" uid="uid://1snuwym130ej" path="res://src/assets/Shaders/shader_catalogue/RockSlate.tres" id="2_5jemb"]
+[ext_resource type="Material" uid="uid://jqe0tyfl832g" path="res://src/assets/Shaders/shader_catalogue/TiledGoldenConcreate.tres" id="3_fhj0d"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0wlah"]
 height = 0.3970337
 radius = 1.3979492
 
-[node name="SteamVent" instance=ExtResource("1_0wlah")]
+[node name="SteamVent" unique_id=744953187 instance=ExtResource("1_0wlah")]
 
-[node name="SteamVent" parent="." index="0"]
+[node name="SteamVent" parent="." index="0" unique_id=1981736732]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="pCube1" parent="SteamVent" index="0" unique_id=178848079]
+visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="pCube11" parent="SteamVent" index="1" unique_id=1063337751]
+material_override = ExtResource("2_5jemb")
+
+[node name="pCube12" parent="SteamVent" index="2" unique_id=1573832840]
+visible = false
+
+[node name="pCube13" parent="SteamVent" index="3" unique_id=1535554491]
+material_override = ExtResource("3_fhj0d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1030874410]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2091817092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014373779, 0)
 shape = SubResource("CylinderShape3D_0wlah")

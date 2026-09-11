@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://cyouad1rp0kyk"]
 
-[ext_resource type="PackedScene" uid="uid://cfltqrtsyjmvk" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_filled.tscn" id="1_r3281"]
+[ext_resource type="PackedScene" uid="uid://cjhlgvl87tuun" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_filled.tscn" id="2_tix53"]
 
 [node name="PipeFilledComposed" type="Node3D" unique_id=1843246475]
 
-[node name="PipeBlockFilled" parent="." unique_id=437204754 instance=ExtResource("1_r3281")]
-transform = Transform3D(3.3000002, 0, 0, 0, 3.3000002, 0, 0, 0, 3.3000002, 0.002846565, 0, -16.203362)
+[node name="PipeBlockFilled6" parent="." unique_id=442505293 instance=ExtResource("2_tix53")]
+transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -0.004, 0, -4.571)
 
-[node name="PipeBlockFilled2" parent="." unique_id=2118409124 instance=ExtResource("1_r3281")]
-transform = Transform3D(3.3000002, 0, 0, 0, 3.3000002, 0, 0, 0, 3.3000002, -0.00046106332, 0, -4.570545)
+[node name="PipeBlockFilled8" parent="." unique_id=437204754 instance=ExtResource("2_tix53")]
+transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -0.004, 0, 7.039)
 
-[node name="PipeBlockFilled3" parent="." unique_id=1406200039 instance=ExtResource("1_r3281")]
-transform = Transform3D(3.3000002, 0, 0, 0, 3.3000002, 0, 0, 0, 3.3000002, -0.00046106332, 0, 7.0394206)
+[node name="PipeBlockFilled9" parent="." unique_id=1500843798 instance=ExtResource("2_tix53")]
+transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -0.004, 0, 18.649)
 
-[node name="PipeBlockFilled4" parent="." unique_id=608498380 instance=ExtResource("1_r3281")]
-transform = Transform3D(3.3000002, 0, 0, 0, 3.3000002, 0, 0, 0, 3.3000002, -0.00046106332, 0, 18.648823)
+[node name="PipeBlockFilled10" parent="." unique_id=1955850740 instance=ExtResource("2_tix53")]
+transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -0.004, 0, 30.258)
 
-[node name="PipeBlockFilled5" parent="." unique_id=1738999562 instance=ExtResource("1_r3281")]
-transform = Transform3D(3.3000002, 0, 0, 0, 3.3000002, 0, 0, 0, 3.3000002, -0.00046106332, 0, 30.258217)
+[node name="PipeBlockFilled7" parent="." unique_id=1999507450 instance=ExtResource("2_tix53")]
+transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -0.004, 0, -16.203)
