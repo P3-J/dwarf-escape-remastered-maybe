@@ -70,7 +70,7 @@
 [ext_resource type="PackedScene" uid="uid://ccyobeqin2nea" path="res://src/assets/object_scene_catalogue/cart.tscn" id="68_g48bs"]
 [ext_resource type="PackedScene" uid="uid://ca1mcp12h2ed4" path="res://src/assets/blender_meshes/godot_scenes/wall_torch.tscn" id="70_t5trj"]
 [ext_resource type="PackedScene" uid="uid://che5xvfjr56ud" path="res://src/assets/object_scene_catalogue/wooden/barrel.tscn" id="71_t5trj"]
-[ext_resource type="PackedScene" uid="uid://cfltqrtsyjmvk" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_empty.tscn" id="72_1on1t"]
+[ext_resource type="PackedScene" uid="uid://dg4cvh4h1431w" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_empty.tscn" id="72_1on1t"]
 [ext_resource type="PackedScene" uid="uid://cjhlgvl87tuun" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_filled.tscn" id="72_ijm3r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1on1t"]
@@ -6514,7 +6514,7 @@ autoplay = &"swing"
 speed_scale = 1.2
 
 [node name="rope_animatable2" parent="assets/move" unique_id=659935673 instance=ExtResource("28_lhnpo")]
-transform = Transform3D(-0.023011213, 0, -0.99973375, 0, 1, 0, 0.9997337, 0, -0.023011213, 3.6414132, 114.88611, 174.81941)
+transform = Transform3D(-0.023011211, 0, -0.9997337, 0, 1, 0, 0.9997336, 0, -0.023011213, 3.6414132, 114.88611, 174.81941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="assets/move/rope_animatable2" unique_id=21456504]
 libraries/ = SubResource("AnimationLibrary_pnmt2")
