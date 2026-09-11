@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://be3ar751bceb0" path="res://src/assets/object_scene_catalogue/pipes/pipe_base_empty.tscn" id="1_xmd2i"]
 [ext_resource type="PackedScene" uid="uid://b2fh6eb2swovg" path="res://src/assets/object_scene_catalogue/pipes/pipe_connector_empty.tscn" id="2_wglxn"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e68yd"]
+height = 3.4892578
+radius = 1.0483398
+
 [node name="PipeBlockEmpty" type="Node3D" unique_id=437204754]
 
 [node name="pipe_empty" parent="." unique_id=1669570221 instance=ExtResource("1_xmd2i")]
@@ -10,3 +14,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.745, 0, 0, 0)
 
 [node name="pipe_connector_empty" parent="." unique_id=1453728514 instance=ExtResource("2_wglxn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.784)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=372618898]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=883004206]
+transform = Transform3D(1, 0, 0, 0, -0.020320285, -0.99979347, 0, 0.99979347, -0.020320285, 0, -0.020646458, 0.030808687)
+shape = SubResource("CylinderShape3D_e68yd")

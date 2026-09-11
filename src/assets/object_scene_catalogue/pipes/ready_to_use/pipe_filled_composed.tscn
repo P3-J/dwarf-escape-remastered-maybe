@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cjhlgvl87tuun" path="res://src/assets/object_scene_catalogue/pipes/ready_to_use/pipe_block_filled.tscn" id="2_tix53"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r3281"]
+height = 58.54004
+radius = 3.3618164
+
 [node name="PipeFilledComposed" type="Node3D" unique_id=1843246475]
 
 [node name="PipeBlockFilled6" parent="." unique_id=442505293 instance=ExtResource("2_tix53")]
@@ -18,3 +22,9 @@ transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -0.004, 0, 30.258)
 
 [node name="PipeBlockFilled7" parent="." unique_id=1999507450 instance=ExtResource("2_tix53")]
 transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -0.004, 0, -16.203)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1297139983]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1170771911]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.32750523, 7.2164164)
+shape = SubResource("CylinderShape3D_r3281")
