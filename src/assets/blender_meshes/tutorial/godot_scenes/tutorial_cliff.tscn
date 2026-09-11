@@ -8,7 +8,7 @@ data = PackedVector3Array(-9.221, -0.1498, 5.1071997, -4.6484, 2.7967, -5.2882, 
 
 [node name="tutorial_cliff" unique_id=111883450 instance=ExtResource("1_p22e0")]
 
-[node name="Cube" parent="." index="0" unique_id=1726444911]
+[node name="Cube" parent="." index="0" unique_id=666381571]
 material_override = ExtResource("2_oik5w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0" unique_id=1304630218]

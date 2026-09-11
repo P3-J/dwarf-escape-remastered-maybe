@@ -19,4 +19,6 @@ shape = SubResource("ConcavePolygonShape3D_rpy11")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=1918466946]
 light_color = Color(0.27624333, 0.6317555, 0.8125756, 1)
+light_energy = 1.5
 light_volumetric_fog_energy = 3.73
+omni_range = 7.5

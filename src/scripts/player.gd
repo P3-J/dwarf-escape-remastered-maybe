@@ -677,7 +677,7 @@ func _should_show_speed_lines(vel: Vector3) -> void:
 	if not %windblow.playing:
 		%windblow.play()
 	else:
-		%windblow.volume_db = -55 + clamp(total_speed, 0, 30)
+		%windblow.volume_db = -35 + clamp(total_speed, 0, 30)
 
 	if speed_lines_material == null and speed_lines_shader:
 		speed_lines_material = speed_lines_shader.material as ShaderMaterial
@@ -786,12 +786,12 @@ func intro_anim_unfreeze(intro_nr: int) -> void:
 			Globalsettings.first_boot_tutorial = false
 			start_countdown()
 		1:
-			Globalsettings.first_boot_tutorial = false
+			Globalsettings.first_boot_lv3 = false
 			start_countdown()
 
 func start_countdown() -> void:
 	if Globalsettings.first_boot_tutorial and Globalsettings.current_level == 0: return
-	#if Globalsettings.first_boot_lv3 and Globalsettings.current_level == 1: return
+	if Globalsettings.first_boot_lv3 and Globalsettings.current_level == 1: return
 	%UI.visible = true
 	%countdownanim.play("countdown")
 
